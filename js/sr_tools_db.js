@@ -7,7 +7,7 @@ var db = {
 		switch (true)
 		{
 			case (r < 40):
-				res = 'Human';
+				res = 'Humain';
 				break;
 
 			case (r < 65):
@@ -15,11 +15,11 @@ var db = {
 				break;
 
 			case (r < 80):
-				res = 'Elf';
+				res = 'Elfe';
 				break;
 
 			case (r < 95):
-				res = 'Dwarf';
+				res = 'Nain';
 				break;
 
 			default:
@@ -90,13 +90,13 @@ var db = {
 
 		switch (type)
 		{
-			case 'civilian':
+			case 'civil':
 				res.skills.Perception = 2 + rating;
 
 				if (roll.dval(6) === 6)
 				{
 					res.skills.Pistols = 1 + rating;
-					res.armor = 'Armor Clothing';
+					res.armor = 'Vêtements pare-balles';
 					res.weapons.push('Defiance EX Shocker');
 				}
 				break;
@@ -114,7 +114,7 @@ var db = {
 				if (rating > 4 || roll.dval(3) === 3)
 				{
 					res.skills.Pistols = 1 + rating;
-					res.armor = 'Armor Vest';
+					res.armor = 'Manteau renforcé';
 
 					if (rating > 3)
 						res.weapons.push('Browning Ultra-Power');
@@ -135,8 +135,8 @@ var db = {
 				res.skills.Intimidation = 3 + rating;
 				res.skills.Pistols = 3 + rating;
 				res.skills['Unarmed Combat'] = 2 + rating;
-				res.qualities.positive.push('Toughness');
-				res.armor = 'Armor Vest';
+				res.qualities.positive.push('Dur à cuire');
+				res.armor = 'Manteau renforcé';
 				res.weapons.push('Knife');
 
 				switch (roll.dval(4))
@@ -175,7 +175,7 @@ var db = {
 
 				if (rating > 3)
 				{
-					res.armor = 'Armor Jacket';
+					res.armor = 'Gilet pare-balle';
 				}
 				break;
 
@@ -199,14 +199,14 @@ var db = {
 				{
 					res.weapons.push('Fichetti Security 600');
 					res.weapons.push('Stun Baton');
-					res.armor = 'Armor Vest';
+					res.armor = 'Manteau renforcé';
 				}
 				else if (rating < 5)
 				{
 					res.weapons.push('Colt Cobra TZ-120');
 					res.weapons.push('Fichetti Security 600');
 					res.weapons.push('Stun Baton');
-					res.armor = 'Armor Jacket';
+					res.armor = 'Gilet pare-balle';
 				}
 				else
 				{
@@ -214,7 +214,7 @@ var db = {
 					res.weapons.push('FN P93 Praetor');
 					res.weapons.push('Ares Predator V');
 					res.weapons.push('Stun Baton');
-					res.armor = 'Full Body Armor';
+					res.armor = 'Armure corporelle intégrale';
 					res.gear.push({
 						name: 'Gas Grenade (CS/Tear)',
 						quantity: 2
@@ -234,7 +234,7 @@ var db = {
 				res.skills['Unarmed Combat'] = 1 + rating;
 				res.knowledge_skills['Law Enforcement'] = 1 + rating;
 				res.knowledge_skills['Local Crime'] = rating;
-				res.armor = 'Armor Jacket';
+				res.armor = 'Gilet pare-balle';
 				res.weapons.push('Defiance EX Shocker');
 				res.weapons.push('Stun Baton');
 				res.gear.push({
@@ -250,7 +250,7 @@ var db = {
 
 				if (rating < 2)
 				{
-					res.armor = 'Armor Vest';
+					res.armor = 'Manteau renforcé';
 				}
 				else
 				{
@@ -268,8 +268,8 @@ var db = {
 				res.skills.Perception = Math.floor(rating / 2);
 				res.skills.Pistols = rating;
 				res.skills['Unarmed Combat'] = 2 + rating;
-				res.qualities.positive.push('Toughness');
-				res.armor = 'Lined Coat';
+				res.qualities.positive.push('Dur à cuire');
+				res.armor = 'Manteau renforcé';
 				res.weapons.push('Knife');
 				res.commlink = 3;
 
@@ -338,13 +338,13 @@ var db = {
 				{
 					case 0:
 					case 1:
-						res.armor = 'Armor Jacket';
+						res.armor = 'Gilet pare-balle';
 						res.weapons.push('Enfield AS-7');
 						break;
 
 					case 2:
 					case 3:
-						res.armor = 'Full Body Armor';
+						res.armor = 'Armure corporelle intégrale';
 						res.weapons.push('FN P93 Praetor');
 						res.gear.push({
 							name: 'Flashbang',
@@ -353,7 +353,7 @@ var db = {
 						break;
 
 					default:
-						res.armor = 'Full Body Armor w/ Helmet & Chemical Seal';
+						res.armor = 'Armure corporelle intégrale avec casque et isolation chimique';
 						res.weapons.push('Ares Alpha');
 						res.gear.push({
 							name: 'Gas Grenade (CS/Tear)',
@@ -418,13 +418,13 @@ var db = {
 				{
 					case 0:
 					case 1:
-						res.armor = 'Armor Jacket';
+						res.armor = 'Gilet pare-balle';
 						res.weapons.push('FN P93 Praetor');
 						break;
 
 					case 2:
 					case 3:
-						res.armor = 'Full Body Armor';
+						res.armor = 'Armure corporelle intégrale';
 						res.weapons.push('HK-227');
 						res.gear.push({
 							name: 'Flashbang',
@@ -437,7 +437,7 @@ var db = {
 						break;
 
 					default:
-						res.armor = 'Full Body Armor w/ Helmet & Chemical Seal';
+						res.armor = 'Armure corporelle intégrale avec casque et isolation chimique';
 						res.weapons.push({
 							name: 'HK-227',
 							ammo: 'APDS'
@@ -551,8 +551,8 @@ var db = {
 		{
 			switch (options.professional_type)
 			{
-				case 'civilian':
-					res.professional_description = 'Civilian';
+				case 'civil':
+					res.professional_description = 'civil';
 					res.attributes.will = 1;
 					res.skills.Leadership = 3;
 					break;
@@ -580,7 +580,7 @@ var db = {
 					res.skills.Leadership = 2;
 					res.skills['Unarmed Combat'] = 3 + rating;
 					res.augmentations.push({name:'Cyber Spur'});
-					res.armor = 'Armor Jacket';
+					res.armor = 'Gilet pare-balle';
 					break;
 
 				case 'corpsec':
@@ -634,7 +634,7 @@ var db = {
 					res.skills.Etiquette = 3 + rating;
 					res.skills.Leadership = 2;
 					res.skills['Unarmed Combat'] = 3 + rating;
-					res.armor = 'Armor Jacket';
+					res.armor = 'Gilet pare-balle';
 					res.augmentations.push({name:'Cyber Spur'});
 					res.gear.push({
 						name: 'Jazz',
@@ -652,7 +652,7 @@ var db = {
 					res.attributes.reaction = 1;
 					res.attributes.strength = 1;
 					res.attributes.will = 1;
-					res.skills['Heavy Weapons'] = 3 + rating;
+					res.skills['Armes lourdes'] = 3 + rating;
 					res.skills.Demolitions = rating;
 					break;
 
@@ -663,7 +663,7 @@ var db = {
 					res.attributes.logic = 1;
 					res.attributes.will = 1;
 					res.skills.Demolitions = 2 + rating;
-					res.qualities.positive.push('Toughness');
+					res.qualities.positive.push('Dur à cuire');
 					res.weapons.push('Enfield AS-7');
 					break;
 
@@ -686,7 +686,7 @@ var db = {
 			switch (options.professional_type)
 			{
 				default:
-				case 'civilian':
+				case 'civil':
 				case 'police':
 					improved_skill = 'Pistols';
 					bonus_weapon = 'Remington Roomsweeper';
@@ -694,27 +694,27 @@ var db = {
 
 				case 'cultist':
 				case 'ganger':
-					improved_skill = 'Longarms';
+					improved_skill = 'Fusils';
 					bonus_weapon = 'Enfield AS-7';
 					break;
 
 				case 'corpsec':
-					improved_skill = 'Automatics';
+					improved_skill = 'Armes automatiques';
 					bonus_weapon = 'FN HAR';
 					break;
 
 				case 'mob':
-					improved_skill = 'Automatics';
+					improved_skill = 'Armes automatiques';
 					bonus_weapon = 'AK-97';
 					break;
 
 				case 'htr':
-					improved_skill = 'Automatics';
+					improved_skill = 'Armes automatiques';
 					bonus_weapon = 'FN P93 Praetor';
 					break;
 
 				case 'specops':
-					improved_skill = 'Longarms';
+					improved_skill = 'Fusils';
 					bonus_weapon = 'Cavalier Arms Crockett EBR';
 			}
 
@@ -943,7 +943,7 @@ var db = {
 
 			// Skills
 			res.skills.Assessing = rating + 2;
-			res.skills['Astral Combat'] = rating + 1;
+			res.skills['Combat astral'] = rating + 1;
 			res.skills.Summoning = rating + 1;
 			res.skills.Banishing = rating + 1;
 			res.skills.Binding = rating + 1;
@@ -1032,7 +1032,7 @@ var db = {
 			// Skills
 			res.skills.Computer = rating + 1;
 			res.skills.Cybercombat = rating + 2;
-			res.skills['Electronic Warfare'] = rating + 2;
+			res.skills['Guerre électronique'] = rating + 2;
 			res.skills.Hacking = rating + 2;
 
 			if (['corpsec', 'htr', 'mob', 'specops'].includes(options.professional_type))
@@ -1124,9 +1124,9 @@ var db = {
 
 			// Armor
 			if (rating < 4)
-				res.armor = 'Armor Clothing';
+				res.armor = 'Vêtements pare-balles';
 			else
-				res.armor = 'Actioneer Business Clothes';
+				res.armor = 'Costume Actioneer';
 
 			// Skills
 			res.skills.Computer = rating + 1;
@@ -1145,12 +1145,12 @@ var db = {
 			res.attributes.intuition = 1;
 
 			// Qualities
-			res.qualities.positive.push('Ambidextrous');
-			res.qualities.negative.push('Distinctive Style');
+			res.qualities.positive.push('Ambidextre');
+			res.qualities.negative.push('Style distinctif');
 
 			// One random quality from positive and negative
-			var pos_q = ['Analytical Mind', 'Blandness', 'First Impression', 'Lucky', 'Photographic Memory'];
-			var neg_q = ['Gremlins I', 'Sensitive System', 'Uncouth', 'Uneducated'];
+			var pos_q = ['Esprit analytique', 'M. Tout-le-monde', 'Première impression', 'Chanceux', 'Mémoire photographique'];
+			var neg_q = ['Gremlins I', 'Système sensible', 'Asocial', 'Illetré'];
 			var i = roll.dval(neg_q.length) - 1;
 			res.qualities.negative.push(neg_q[i]);
 			i = roll.dval(neg_q.length) - 1;
@@ -1158,9 +1158,9 @@ var db = {
 
 			// Armor
 			if (rating < 4)
-				res.armor = 'Armor Vest';
+				res.armor = 'Manteau renforcé';
 			else
-				res.armor = 'Armor Jacket';
+				res.armor = 'Gilet pare-balle';
 
 			// Skills
 			res.skills.Pistols = rating + 4;
@@ -1184,7 +1184,7 @@ var db = {
 
 			switch (options.race)
 			{
-				case 'Human':
+				case 'Humain':
 					res.skills['Throwing Weapons'] = rating + 3;
 					if (rating < 2)
 					{
@@ -1202,7 +1202,7 @@ var db = {
 					}
 					break;
 
-				case 'Elf':
+				case 'Elfe':
 					if (rating < 2)
 					{
 						res.weapons.push(this.get_weapon('Ares Predator V'));
@@ -1215,7 +1215,7 @@ var db = {
 					}
 					break;
 
-				case 'Dwarf':
+				case 'Nain':
 					res.skills.Longarms = rating + 4;
 
 					if (rating < 2)
@@ -1270,20 +1270,20 @@ var db = {
 
 			switch (options.race)
 			{
-				case 'Human':
+				case 'Humain':
 					res.attributes.reaction = 2;
 					res.skills.Demolitions = rating + 1;
 					res.skills['Unarmed Combat'] = rating + 3;
 					break;
 
-				case 'Elf':
+				case 'Elfe':
 					res.attributes.reaction = 2;
 					res.skills.Gymnastics = rating + 1;
 					res.skills.Negotiations = rating + 1;
 					break;
 
-				case 'Dwarf':
-					res.skills['First Aid'] = rating + 3;
+				case 'Nain':
+					res.skills['Premiers soins'] = rating + 3;
 					res.skills['Throwing Weapons'] = rating + 3;
 					if (rating < 3)
 					{
@@ -1299,19 +1299,19 @@ var db = {
 
 				case 'Ork':
 					res.skills.Intimidation = rating + 2;
-					res.skills['Heavy Weapons'] = rating + 2;
+					res.skills['Armes lourdes'] = rating + 2;
 					break;
 
 				case 'Troll':
 					res.skills.Intimidation = rating + 3;
-					res.skills['Heavy Weapons'] = rating + 3;
+					res.skills['Armes lourdes'] = rating + 3;
 					break;
 			}
 
 			// Qualities
 			// One random quality from positive and negative
-			var pos_q = ['Ambidextrous', 'Blandness', 'Gearhead', 'Magical Resistance I', 'Will to Live I'];
-			var neg_q = ['Bad Luck', 'Dependent(s) I', 'Insomnia I', 'Scorched (BTLs)', 'Social Stress'];
+			var pos_q = ['Ambidextre', 'M. Tout-le-monde', 'Fou du volant', 'Résistance à la Magie I', 'Rage de vivre I'];
+			var neg_q = ['Malchanceux', 'Personnes à charge I', 'Insomnie I', 'Ecorché (BTLs)', 'Anxiété sociale'];
 			var i = roll.dval(neg_q.length) - 1;
 			res.qualities.negative.push(neg_q[i]);
 			i = roll.dval(neg_q.length) - 1;
@@ -1319,9 +1319,9 @@ var db = {
 
 			// Armor
 			if (rating < 5)
-				res.armor = 'Armor Jacket';
+				res.armor = 'Gilet pare-balle';
 			else
-				res.armor = 'Full Body Armor';
+				res.armor = 'Armure corporelle intégrale';
 
 			// Weapons, Augmentations & Drugs
 			if (rating < 3)
@@ -1342,7 +1342,7 @@ var db = {
 
 			switch (options.race)
 			{
-				case 'Human':
+				case 'Humain':
 					if (rating > 1)
 					{
 						augment = this.get_augmentation('Muscle Toner');
@@ -1380,7 +1380,7 @@ var db = {
 					}
 					break;
 
-				case 'Elf':
+				case 'Elfe':
 					if (rating > 1)
 					{
 						augment = this.get_augmentation('Muscle Toner');
@@ -1418,7 +1418,7 @@ var db = {
 					}
 					break;
 
-				case 'Dwarf':
+				case 'Nain':
 					if (rating > 1)
 					{
 						augment = this.get_augmentation('Muscle Toner');
@@ -1568,8 +1568,8 @@ var db = {
 				res.augmentations.push(this.get_augmentation('Cyber Spur'));
 			}
 			// Qualities
-			res.qualities.negative.push('Bad Rep');
-			res.qualities.positive.push('Guts');
+			res.qualities.negative.push('Mauvaise réputation');
+			res.qualities.positive.push('Tripes');
 
 			// Weapon
 			if (rating < 2)
@@ -1590,11 +1590,11 @@ var db = {
 
 			// Armor
 			if (rating < 4)
-				res.armor = 'Armor Jacket';
+				res.armor = 'Gilet pare-balle';
 			else if (rating < 6)
-				res.armor = 'Full Body Armor';
+				res.armor = 'Armure corporelle intégrale';
 			else
-				res.armor = 'Full Body Armor w/ Helmet & Chemical Seal';
+				res.armor = 'Armure corporelle intégrale avec casque et isolation chimique';
 
 			// Augmentations & Drugs
 			var augment, armor;
@@ -1656,7 +1656,7 @@ var db = {
 
 			// Skills
 			res.skills.Assessing = rating + 2;
-			res.skills['Astral Combat'] = rating + 3;
+			res.skills['Combat astral'] = rating + 3;
 			res.skills.Summoning = rating + 2;
 			res.skills.Banishing = rating + 2;
 			res.skills.Binding = rating + 2;
@@ -1730,10 +1730,10 @@ var db = {
 
 		switch (race)
 		{
-			case 'Human':
+			case 'Humain':
 				break;
 
-			case 'Elf':
+			case 'Elfe':
 				res.attributes.agility = 1;
 				res.min_attributes.agility = 2;
 				res.max_attributes.agility = 7;
@@ -1742,7 +1742,7 @@ var db = {
 				res.max_attributes.charisma = 8;
 				break;
 
-			case 'Dwarf':
+			case 'Nain':
 				res.attributes.body = 2;
 				res.min_attributes.body = 3;
 				res.max_attributes.body = 8;
@@ -1817,16 +1817,16 @@ var db = {
 	get_armor_list: function()
 	{
 		return {
-			'Synth-Leather': 4,
-			'Actioneer Business Clothes': 8,
-			'Armor Clothing': 6,
-			'Armor Jacket': 12,
-			'Armor Vest': 9,
-			'Chameleon Suit': 9,
-			'Full Body Armor': 15,
-			'Full Body Armor w/ Helmet & Chemical Seal': 18,
-			'Lined Coat': 9,
-			'Urban Explorer Jumpsuit': 9
+			'Synthé-cuir': 4,
+			'Costume Actioneer': 8,
+			'Vêtements pare-balles': 6,
+			'Gilet pare-balle': 12,
+			'Manteau renforcé': 9,
+			'Combinaison caméléon': 9,
+			'Armure corporelle intégrale': 15,
+			'Armure corporelle intégrale avec casque et isolation chimique': 18,
+			'Manteau renforcé': 9,
+			'Combinaison Urban Explorer': 9
 		};
 	},
 
@@ -1834,36 +1834,36 @@ var db = {
 	{
 		return {
 			positive: [
-				'Ambidextrous',
-				'Analytical Mind',
-				'Astral Chameleon',
-				'Blandness',
-				'First Impression',
-				'Gearhead',
-				'Guts',
-				'Human-Looking',
-				'Lucky',
-				'Magical Resistance I',
-				'Photographic Memory',
-				'Toughness',
-				'Will to Live I'
+				'Ambidextre',
+				'Esprit analytique',
+				'Caméléon astral',
+				'M. Tout-le-monde',
+				'Première impression',
+				'Fou du volant',
+				'Tripes',
+				'Apparence humaine',
+				'Chanceux',
+				'Résistance à la Magie I',
+				'Mémoire photographique',
+				'Dur à cuire',
+				'Rage de vivre I'
 			],
 			negative: [
-				'Bad Luck',
-				'Bad Rep',
-				'Combat Paralysis',
-				'Dependent(s) I',
-				'Distinctive Style',
-				'Elf Poser',
+				'Malchanceux',
+				'Mauvaise réputation',
+				'Paralysie en combat',
+				'Personnes à charge I',
+				'Style distinctif',
+				'Poseur Elfe',
 				'Gremlins I',
-				'Insomnia I',
-				'Loss of Confidence',
-				'Ork Poser',
-				'Scorched (BTLs)',
-				'Sensitive System',
-				'Social Stress',
-				'Uncouth',
-				'Uneducated'
+				'Insomnie I',
+				'Crise de confiance',
+				'Poseur Ork',
+				'Ecorché (BTLs)',
+				'Système sensible',
+				'Anxiété sociale',
+				'Asocial',
+				'Illetré'
 			]
 		};
 	},
@@ -1871,35 +1871,35 @@ var db = {
 	get_skill_list: function()
 	{
 		return [
-			'Arcana',
-			'Assessing',
-			'Astral Combat',
-			'Automatics',
-			'Banishing',
-			'Binding',
-			'Blades',
-			'Clubs',
-			'Computer',
-			'Con',
-			'Counterspelling',
+			'Arcanes',
+			'Observation astrale',
+			'Combat astral',
+			'Armes automatiques',
+			'Bannissement',
+			'Lien d\'esprits',
+			'Armes tranchantes',
+			'Armes contondantes',
+			'Informatique',
+			'Escroquerie',
+			'Contresort',
 			'Cybercombat',
-			'Demolitions',
-			'Disguise',
-			'Electronic Warfare',
+			'Explosifs',
+			'Déguisement',
+			'Guerre électronique',
 			'Etiquette',
-			'First Aid',
-			'Gunnery',
-			'Gymnastics',
+			'Premiers soins',
+			'Armes de véhicules',
+			'Gymnastique',
 			'Hacking',
-			'Hardware',
-			'Heavy Weapons',
-			'Impersonation',
+			'Matériel électronique',
+			'Armes lourdes',
+			'Imposture',
 			'Intimidation',
 			'Leadership',
-			'Longarms',
-			'Navigation',
-			'Negotiation',
-			'Palming',
+			'Fusils',
+			'Orientation',
+			'Négociation',
+			'Escamotage',
 			'Perception',
 			'Pilot Aircraft',
 			'Pilot Ground Craft',
@@ -2063,7 +2063,7 @@ var db = {
 		{
 			name: 'Combat Axe',
 			type: 'Melee',
-			ability: 'Blades',
+			ability: 'Armes tranchantes',
 			acc: 4,
 			dv: 5,
 			damage_attribute: 'strength',
@@ -2073,7 +2073,7 @@ var db = {
 		{
 			name: 'Combat Knife',
 			type: 'Melee',
-			ability: 'Blades',
+			ability: 'Armes tranchantes',
 			acc: 6,
 			dv: 2,
 			damage_attribute: 'strength',
@@ -2083,7 +2083,7 @@ var db = {
 		{
 			name: 'Knife',
 			type: 'Melee',
-			ability: 'Blades',
+			ability: 'Armes tranchantes',
 			acc: 5,
 			dv: 1,
 			damage_attribute: 'strength',
@@ -2093,7 +2093,7 @@ var db = {
 		{
 			name: 'Katana',
 			type: 'Melee',
-			ability: 'Blades',
+			ability: 'Armes tranchantes',
 			acc: 7,
 			dv: 3,
 			damage_attribute: 'strength',
@@ -2104,7 +2104,7 @@ var db = {
 		{
 			name: 'Sword',
 			type: 'Melee',
-			ability: 'Blades',
+			ability: 'Armes tranchantes',
 			acc: 6,
 			dv: 3,
 			damage_attribute: 'strength',
@@ -2125,7 +2125,7 @@ var db = {
 		{
 			name: 'Club',
 			type: 'Melee',
-			ability: 'Clubs',
+			ability: 'Armes contondantes',
 			acc: 4,
 			dv: 3,
 			damage_attribute: 'strength',
@@ -2135,7 +2135,7 @@ var db = {
 		{
 			name: 'Stun Baton',
 			type: 'Melee',
-			ability: 'Clubs',
+			ability: 'Armes contondantes',
 			acc: 4,
 			dv: 9,
 			damage_type: 'S(e)',
@@ -2146,7 +2146,7 @@ var db = {
 		{
 			name: 'Staff',
 			type: 'Melee',
-			ability: 'Clubs',
+			ability: 'Armes contondantes',
 			acc: 6,
 			dv: 3,
 			damage_attribute: 'strength',
@@ -2156,7 +2156,7 @@ var db = {
 		{
 			name: 'Telescoping Staff',
 			type: 'Melee',
-			ability: 'Clubs',
+			ability: 'Armes contondantes',
 			acc: 4,
 			dv: 2,
 			damage_attribute: 'strength',
@@ -2252,7 +2252,7 @@ var db = {
 		{
 			name: 'Ceska Black Scorpion',
 			type: 'Machine Pistol',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 5,
 			dv: 6,
 			modes: 'SA/BF',
@@ -2264,7 +2264,7 @@ var db = {
 		{
 			name: 'Steyr TMP',
 			type: 'Machine Pistol',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 4,
 			dv: 7,
 			modes: 'SA/BF/FA',
@@ -2275,7 +2275,7 @@ var db = {
 		{
 			name: 'Colt Cobra TZ-120',
 			type: 'SMG',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 4,
 			acc_modified: 5,
 			dv: 7,
@@ -2289,7 +2289,7 @@ var db = {
 		{
 			name: 'FN P93 Praetor',
 			type: 'SMG',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 6,
 			dv: 8,
 			modes: 'SA/BF/FA',
@@ -2302,7 +2302,7 @@ var db = {
 		{
 			name: 'HK-227',
 			type: 'SMG',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 7,
 			dv: 7,
@@ -2315,7 +2315,7 @@ var db = {
 		{
 			name: 'AK-97',
 			type: 'Assault Rifle',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 5,
 			dv: 10,
 			ap: -2,
@@ -2327,7 +2327,7 @@ var db = {
 		{
 			name: 'Ares Alpha',
 			type: 'Assault Rifle',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 7,
 			dv: 11,
@@ -2341,7 +2341,7 @@ var db = {
 		{
 			name: 'FN HAR',
 			type: 'Assault Rifle',
-			ability: 'Automatics',
+			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 6,
 			dv: 10,
@@ -2355,7 +2355,7 @@ var db = {
 		{
 			name: 'Cavalier Arms Crockett EBR',
 			type: 'Sniper Rifle',
-			ability: 'Longarms',
+			ability: 'Fusils',
 			acc: 6,
 			dv: 12,
 			ap: -3,
@@ -2368,7 +2368,7 @@ var db = {
 		{
 			name: 'Defiance T-250',
 			type: 'Shotgun',
-			ability: 'Longarms',
+			ability: 'Fusils',
 			acc: 4,
 			dv: 10,
 			ap: -1,
@@ -2380,7 +2380,7 @@ var db = {
 		{
 			name: 'Enfield AS-7',
 			type: 'Shotgun',
-			ability: 'Longarms',
+			ability: 'Fusils',
 			acc: 4,
 			acc_modified: 5,
 			dv: 13,
@@ -2393,7 +2393,7 @@ var db = {
 		{
 			name: 'Ingram Valiant',
 			type: 'LMG',
-			ability: 'Heavy Weapons',
+			ability: 'Armes lourdes',
 			acc: 5,
 			acc_modified: 6,
 			dv: 9,
@@ -2406,7 +2406,7 @@ var db = {
 		{
 			name: 'Panther XXL',
 			type: 'Assault Cannon',
-			ability: 'Heavy Weapons',
+			ability: 'Armes lourdes',
 			acc: 5,
 			acc_modified: 7,
 			dv: 17,
@@ -2559,11 +2559,11 @@ var db = {
 		switch (skill)
 		{
 			// Weapon based skills
-			case 'Automatics':
-			case 'Blades':
-			case 'Clubs':
-			case 'Heavy Weapons':
-			case 'Longarms':
+			case 'Armes automatiques':
+			case 'Armes tranchantes':
+			case 'Armes contondantes':
+			case 'Armes lourdes':
+			case 'Fusils':
 			case 'Pistols':
 				data.attribute = 'agility';
 				data.limit = 'gear';
@@ -2577,9 +2577,9 @@ var db = {
 				break;
 
 			// Agility based skills
-			case 'Gunnery':
-			case 'Gymnastics':
-			case 'Palming':
+			case 'Armes de véhicules':
+			case 'Gymnastique':
+			case 'Escamotage':
 			case 'Sneaking':
 			case 'Unarmed Combat':
 			case 'Throwing Weapons':
@@ -2595,33 +2595,33 @@ var db = {
 				break;
 
 			// Charisma based social skills
-			case 'Con':
+			case 'Escroquerie':
 			case 'Etiquette':
 			case 'Intimidation':
 			case 'Leadership':
-			case 'Negotiation':
-			case 'Impersonation':
+			case 'Négociation':
+			case 'Imposture':
 				data.attribute = 'charisma';
 				data.limit = 'social';
 				break;
 
 			// Logic based skills
-			case 'Arcana':
-			case 'Computer':
-			case 'Demolitions':
+			case 'Arcanes':
+			case 'Informatique':
+			case 'Explosifs':
 			case 'Cybercombat':
-			case 'Electronic Warfare':
-			case 'First Aid':
+			case 'Guerre électronique':
+			case 'Premiers soins':
 			case 'Hacking':
-			case 'Hardware':
+			case 'Matériel électronique':
 			case 'Software':
 				data.attribute = 'logic';
 				data.limit = 'mental';
 				break;
 
 			// Intuition based mental skills
-			case 'Disguise':
-			case 'Navigation':
+			case 'Déguisement':
+			case 'Orientation':
 			case 'Perception':
 			case 'Tracking':
 				data.attribute = 'intuition';
@@ -2629,16 +2629,16 @@ var db = {
 				break;
 
 			// Willpower based skills
-			case 'Astral Combat':
+			case 'Combat astral':
 				data.attribute = 'will';
 				data.limit = 'astral';
 				break;
 
 			// Magic based skills
-			case 'Assessing':
-			case 'Banishing':
-			case 'Binding':
-			case 'Counterspelling':
+			case 'Observation astrale':
+			case 'Bannissement':
+			case 'Lien d\'esprits':
+			case 'Contresort':
 			case 'Spellcasting':
 			case 'Summoning':
 				data.attribute = 'magic';
