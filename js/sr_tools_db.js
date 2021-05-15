@@ -95,7 +95,7 @@ var db = {
 
 				if (roll.dval(6) === 6)
 				{
-					res.skills.Pistols = 1 + rating;
+					res.skills.Pistolets = 1 + rating;
 					res.armor = 'Vêtements pare-balles';
 					res.weapons.push('Defiance EX Shocker');
 				}
@@ -104,16 +104,16 @@ var db = {
 			case 'thug':
 				res.attributes.reaction = 1;
 				res.attributes.strength = 1;
-				res.skills.Blades = 2 + rating;
-				res.skills.Clubs = 2 + rating;
+				res.skills['Armes tranchantes'] = 2 + rating;
+				res.skills['Armes contondantes'] = 2 + rating;
 				res.skills.Intimidation = 2 + rating;
-				res.skills['Unarmed Combat'] = 2 + rating;
-				res.weapons.push('Club');
-				res.weapons.push('Knife');
+				res.skills['Combat à mains nues'] = 2 + rating;
+				res.weapons.push('Massue');
+				res.weapons.push('Couteau');
 
 				if (rating > 4 || roll.dval(3) === 3)
 				{
-					res.skills.Pistols = 1 + rating;
+					res.skills.Pistolets = 1 + rating;
 					res.armor = 'Manteau renforcé';
 
 					if (rating > 3)
@@ -129,15 +129,15 @@ var db = {
 				res.attributes.strength = 2;
 				res.attributes.logic = -1;
 				res.attributes.charisma = 1;
-				res.skills.Blades = 3 + rating;
-				res.skills.Clubs = 2 + rating;
+				res.skills['Armes tranchantes'] = 3 + rating;
+				res.skills['Armes contondantes'] = 2 + rating;
 				res.skills.Etiquette = 2 + rating;
 				res.skills.Intimidation = 3 + rating;
-				res.skills.Pistols = 3 + rating;
-				res.skills['Unarmed Combat'] = 2 + rating;
+				res.skills.Pistolets = 3 + rating;
+				res.skills['Combat à mains nues'] = 2 + rating;
 				res.qualities.positive.push('Dur à cuire');
 				res.armor = 'Manteau renforcé';
-				res.weapons.push('Knife');
+				res.weapons.push('Couteau');
 
 				switch (roll.dval(4))
 				{
@@ -161,15 +161,15 @@ var db = {
 
 				if (rating > 1 && roll.dval(4) === 4)
 				{
-					res.skills['Throwing Weapons'] = 1 + rating;
+					res.skills['Armes de jet'] = 1 + rating;
 					res.gear.push({
-						name: 'Gas Grenade (CS/Tear)',
+						name: 'Grenade lacrymogène',
 						quantity: 2
 					});
 				}
 				else if (roll.dval(4) === 4)
 				{
-					res.skills.Longarms = 1 + rating;
+					res.skills.Fusils = 1 + rating;
 					res.weapons.push('Defiance T-250');
 				}
 
@@ -186,37 +186,37 @@ var db = {
 				res.attributes.logic = -1;
 				res.attributes.intuition = -1;
 				res.attributes.charisma = 1;
-				res.skills.Automatics = 1 + rating;
-				res.skills.Clubs = 1 + rating;
+				res.skills['Armes automatiques'] = 1 + rating;
+				res.skills['Armes contondantes'] = 1 + rating;
 				res.skills.Etiquette = (rating * 2);
 				res.skills.Perception = rating;
-				res.skills.Pistols = 2 + rating;
-				res.skills.Running = 3 + Math.floor(rating / 2);
-				res.skills['Unarmed Combat'] = 1 + rating;
+				res.skills.Pistolets = 2 + rating;
+				res.skills.Course = 3 + Math.floor(rating / 2);
+				res.skills['Combat à mains nues'] = 1 + rating;
 				res.commlink = 3;
 
 				if (rating < 2)
 				{
 					res.weapons.push('Fichetti Security 600');
-					res.weapons.push('Stun Baton');
+					res.weapons.push('Electromatraque');
 					res.armor = 'Manteau renforcé';
 				}
 				else if (rating < 5)
 				{
 					res.weapons.push('Colt Cobra TZ-120');
 					res.weapons.push('Fichetti Security 600');
-					res.weapons.push('Stun Baton');
+					res.weapons.push('Electromatraque');
 					res.armor = 'Gilet pare-balle';
 				}
 				else
 				{
-					res.skills['Throwing Weapons'] = 1 + rating;
+					res.skills['Armes de jet'] = 1 + rating;
 					res.weapons.push('FN P93 Praetor');
 					res.weapons.push('Ares Predator V');
-					res.weapons.push('Stun Baton');
+					res.weapons.push('Electromatraque');
 					res.armor = 'Armure corporelle intégrale';
 					res.gear.push({
-						name: 'Gas Grenade (CS/Tear)',
+						name: 'Grenade lacrymogène',
 						quantity: 2
 					});
 					res.commlink = 5;
@@ -227,20 +227,20 @@ var db = {
 				res.attributes.reaction = 1;
 				res.attributes.logic = -1;
 				res.attributes.intuition = -1;
-				res.skills.Clubs = 2 + rating;
+				res.skills['Armes contondantes'] = 2 + rating;
 				res.skills.Perception = rating;
-				res.skills.Pistols = 3 + Math.floor(rating / 2);
-				res.skills.Running = 1 + Math.floor(rating / 2);
-				res.skills['Unarmed Combat'] = 1 + rating;
-				res.knowledge_skills['Law Enforcement'] = 1 + rating;
-				res.knowledge_skills['Local Crime'] = rating;
+				res.skills.Pistolets = 3 + Math.floor(rating / 2);
+				res.skills.Course = 1 + Math.floor(rating / 2);
+				res.skills['Combat à mains nues'] = 1 + rating;
+				res.knowledge_skills['Forces de l\'ordre'] = 1 + rating;
+				res.knowledge_skills['Crime local'] = rating;
 				res.armor = 'Gilet pare-balle';
 				res.weapons.push('Defiance EX Shocker');
-				res.weapons.push('Stun Baton');
+				res.weapons.push('Electromatraque');
 				res.gear.push({
-					name: 'Sunglasses',
+					name: 'Lunettes',
 					rating: 2,
-					augments: ['Image link', 'Smartlink', 'Low-light Vision']
+					augments: ['Interface visuelle', 'Smartlink', 'Vision nocturne']
 				});
 				res.gear.push({
 					name: 'Jazz',
@@ -262,15 +262,15 @@ var db = {
 				res.attributes.agility = 1;
 				res.attributes.reaction = 1;
 				res.attributes.strength = 1;
-				res.skills.Automatics = 1 + rating;
-				res.skills.Blades = 1 + rating;
+				res.skills['Armes automatiques'] = 1 + rating;
+				res.skills['Armes tranchantes'] = 1 + rating;
 				res.skills.Intimidation = 2 + rating;
 				res.skills.Perception = Math.floor(rating / 2);
-				res.skills.Pistols = rating;
-				res.skills['Unarmed Combat'] = 2 + rating;
+				res.skills.Pistolets = rating;
+				res.skills['Combat à mains nues'] = 2 + rating;
 				res.qualities.positive.push('Dur à cuire');
 				res.armor = 'Manteau renforcé';
-				res.weapons.push('Knife');
+				res.weapons.push('Couteau');
 				res.commlink = 3;
 
 				if (rating > 4)
@@ -295,7 +295,7 @@ var db = {
 
 				if (roll.dval(3) === 3)
 				{
-					res.skills['Throwing Weapons'] = 1 + rating;
+					res.skills['Armes de jet'] = 1 + rating;
 					res.gear.push({
 						name: 'Flashbang',
 						quantity: 2
@@ -313,25 +313,25 @@ var db = {
 				res.attributes.agility = 1;
 				res.attributes.reaction = 1;
 				res.attributes.logic = 1;
-				res.skills.Blades = 2 + rating;
-				res.skills.Clubs = 2 + rating;
-				res.skills['Unarmed Combat'] = 2 + rating;
-				res.skills['Throwing Weapons'] = 2 + rating;
-				res.skills.Gymnastics = 1 + rating;
-				res.skills.Running = 1 + rating;
-				res.skills.Swimming = 1 + rating;
+				res.skills['Armes tranchantes'] = 2 + rating;
+				res.skills['Armes contondantes'] = 2 + rating;
+				res.skills['Combat à mains nues'] = 2 + rating;
+				res.skills['Armes de jet'] = 2 + rating;
+				res.skills.Gymnastique = 1 + rating;
+				res.skills.Course = 1 + rating;
+				res.skills.Natation = 1 + rating;
 				res.skills.Etiquette = 3 + Math.ceil(rating / 2);
-				res.skills.Automatics = rating * 2 - 1;
-				res.skills.Longarms = rating * 2 - 1;
-				res.skills.Pistols = rating * 2 - 1;
+				res.skills['Armes automatiques'] = rating * 2 - 1;
+				res.skills.Fusils = rating * 2 - 1;
+				res.skills.Pistolets = rating * 2 - 1;
 				res.skills.Perception = 3 + Math.ceil(rating / 2);
-				res.skills.Sneaking = 1 + rating;
+				res.skills.Discrétion = 1 + rating;
 				res.weapons.push('Ares Predator V');
 				res.commlink = rating - 1;
 				res.augmentations.push({
-					name: 'Cybereyes',
+					name: 'Cyberyeux',
 					rating: 2,
-					augments: ['Flare Compensation', 'Image link', 'Smartlink', 'Thermographic vision', 'Low-light Vision']
+					augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
 				});
 
 				switch (rating)
@@ -356,7 +356,7 @@ var db = {
 						res.armor = 'Armure corporelle intégrale avec casque et isolation chimique';
 						res.weapons.push('Ares Alpha');
 						res.gear.push({
-							name: 'Gas Grenade (CS/Tear)',
+							name: 'Grenade lacrymogène',
 							quantity: 2
 						});
 						res.gear.push({
@@ -369,15 +369,15 @@ var db = {
 				if (rating > 2)
 				{
 					res.augmentations.push({
-						name: 'Muscle Augmentation',
+						name: 'Renforcement musculaire',
 						rating: Math.ceil(rating / 3)
 					});
 					res.augmentations.push({
-						name: 'Muscle Toner',
+						name: 'Tonification musculaire',
 						rating: Math.ceil(rating / 3)
 					});
 					res.augmentations.push({
-						name: 'Wired Reflexes',
+						name: 'Réflexes câblés',
 						rating: Math.ceil(rating / 3)
 					});
 				}
@@ -390,26 +390,26 @@ var db = {
 				res.attributes.logic = 1;
 				res.attributes.intuition = 1;
 				res.attributes.charisma = 1;
-				res.skills.Blades = 2 + rating;
-				res.skills.Clubs = 2 + rating;
-				res.skills['Unarmed Combat'] = 2 + rating;
-				res.skills['Throwing Weapons'] = 1 + rating;
-				res.skills.Gymnastics = 1 + rating;
-				res.skills.Running = 1 + rating;
-				res.skills.Swimming = 1 + rating;
-				res.skills.Sneaking = rating;
-				res.skills.Disguise = rating;
-				res.skills.Palming = rating;
-				res.skills.Demolitions = 1 + rating;
-				res.skills.Automatics = rating + 3;
-				res.skills.Longarms = rating + 3;
-				res.skills.Pistols = rating + 3;
+				res.skills['Armes tranchantes'] = 2 + rating;
+				res.skills['Armes contondantes'] = 2 + rating;
+				res.skills['Combat à mains nues'] = 2 + rating;
+				res.skills['Armes de jet'] = 1 + rating;
+				res.skills.Gymnastique = 1 + rating;
+				res.skills.Course = 1 + rating;
+				res.skills.Natation = 1 + rating;
+				res.skills.Discrétion = rating;
+				res.skills.Déguisement = rating;
+				res.skills.Escamotage = rating;
+				res.skills.Explosifs = 1 + rating;
+				res.skills['Armes automatiques'] = rating + 3;
+				res.skills.Fusils = rating + 3;
+				res.skills.Pistolets = rating + 3;
 				res.skills.Perception = 1 + rating;
 				res.gear.push({
-					name: 'Grapple Gun'
+					name: 'Pistolet-grappin'
 				});
 				res.gear.push({
-					name: 'Smoke Grenade',
+					name: 'Grenade fumigène',
 					quantity: 2
 				});
 				res.commlink = rating - 1;
@@ -431,7 +431,7 @@ var db = {
 							quantity: 2
 						});
 						res.gear.push({
-							name: 'Thermal Smoke Grenade',
+							name: 'Grenade fumigène (IR)',
 							quantity: 2
 						});
 						break;
@@ -443,7 +443,7 @@ var db = {
 							ammo: 'APDS'
 						});
 						res.gear.push({
-							name: 'Gas Grenade (CS/Tear)',
+							name: 'Grenade lacrymogène',
 							quantity: 2
 						});
 						res.gear.push({
@@ -456,15 +456,15 @@ var db = {
 				if (rating > 0)
 				{
 					res.augmentations.push({
-						name: 'Muscle Augmentation',
+						name: 'Renforcement musculaire',
 						rating: Math.ceil(rating / 2)
 					});
 					res.augmentations.push({
-						name: 'Muscle Toner',
+						name: 'Tonification musculaire',
 						rating: Math.ceil(rating / 2)
 					});
 					res.augmentations.push({
-						name: 'Synaptic Booster',
+						name: 'Booster synaptique',
 						rating: Math.ceil(rating / 2)
 					});
 				}
@@ -476,28 +476,28 @@ var db = {
 				res.attributes.logic = 1;
 				res.attributes.intuition = 1;
 				res.attributes.will = 2;
-				res.skills.Blades = 1 + rating;
-				res.skills.Clubs = 1 + rating;
-				res.skills.Running = 1 + rating;
+				res.skills['Armes tranchantes'] = 1 + rating;
+				res.skills['Armes contondantes'] = 1 + rating;
+				res.skills.Course = 1 + rating;
 				res.skills.Perception = 1 + rating;
 				res.skills.Intimidation = 2 + rating;
-				res.weapons.push('Club');
-				res.weapons.push('Knife');
+				res.weapons.push('Massue');
+				res.weapons.push('Couteau');
 
 				if (roll.dval(3) === 3)
 				{
-					res.skills.Longarms = 1 + rating;
+					res.skills.Fusils = 1 + rating;
 					res.weapons.push('Defiance T-250');
 				}
 				else if (roll.dval(3) === 3)
 				{
-					res.skills.Automatics = 1 + rating;
+					res.skills['Armes automatiques'] = 1 + rating;
 					res.weapons.push('Steyr TMP');
 				}
 
 				if (rating > 1)
 				{
-					res.skills['Throwing Weapons'] = 1 + rating;
+					res.skills['Armes de jet'] = 1 + rating;
 
 					if (roll.dval(2) === 2)
 					{
@@ -552,25 +552,25 @@ var db = {
 			switch (options.professional_type)
 			{
 				case 'civil':
-					res.professional_description = 'civil';
+					res.professional_description = 'Civil';
 					res.attributes.will = 1;
 					res.skills.Leadership = 3;
 					break;
 
-				case 'thug':
-					res.professional_description = 'Thug';
+				case 'voyou':
+					res.professional_description = 'Voyou';
 					res.attributes.agility = 1;
 					res.attributes.strength = 1;
 					res.attributes.logic = 1;
-					res.skills.Clubs = 1;
+					res.skills['Armes contondantes'] = 1;
 					res.skills.Intimidation = 2;
-					res.skills.Pistols = 3;
-					res.skills['Unarmed Combat'] = 1;
+					res.skills.Pistolets = 3;
+					res.skills['Combat à mains nues'] = 1;
 					res.weapons.push('Colt America L36');
 					break;
 
 				case 'ganger':
-					res.professional_description = 'Gang Member';
+					res.professional_description = 'Ganger';
 					res.attributes.reaction = 1;
 					res.attributes.will = 1;
 					res.attributes.logic = 1;
@@ -578,64 +578,64 @@ var db = {
 					res.attributes.charisma = 1;
 					res.skills.Etiquette = 3 + rating;
 					res.skills.Leadership = 2;
-					res.skills['Unarmed Combat'] = 3 + rating;
-					res.augmentations.push({name:'Cyber Spur'});
+					res.skills['Combat à mains nues'] = 3 + rating;
+					res.augmentations.push({name:'Griffes (retractable) implantées'});
 					res.armor = 'Gilet pare-balle';
 					break;
 
 				case 'corpsec':
-					res.professional_description = 'Corporate Security';
+					res.professional_description = 'Garde de sécurité corpo';
 					res.attributes.agility = 1;
 					res.attributes.logic = 1;
 					res.attributes.intuition = 1;
-					res.skills.Clubs = 1 + rating;
+					res.skills['Armes contondantes'] = 1 + rating;
 					res.skills.Perception = 2 + rating;
 					res.skills.Leadership = 1 + rating;
-					res.skills.Sneaking = rating;
+					res.skills.Discrétion = rating;
 					res.skills.Intimidation = 1 + rating;
 					res.gear.push({
-						name: 'Goggles',
+						name: 'Binoculaires',
 						rating: 2,
-						augments: ['Image link', 'Smartlink', 'Thermographic Vision']
+						augments: ['Interface visuelle', 'Smartlink', 'Vision thermographique']
 					});
 					res.gear.push({
-						name: 'Smoke Grenade',
+						name: 'Grenade fumigène',
 						quantity: 2
 					});
 					break;
 
 				case 'police':
-					res.professional_description = 'Law Enforcement';
+					res.professional_description = 'Membre des forces de l\'ordre';
 					res.attributes.agility = 1;
 					res.attributes.logic = 1;
 					res.attributes.intuition = 1;
 					res.attributes.charisma = 1;
-					res.skills.Automatics = 1 + rating;
-					res.skills.Blades = 3 + rating;
-					res.skills.Clubs = 3 + rating;
-					res.skills['Unarmed Combat'] = 3 + rating;
+					res.skills['Armes automatiques'] = 1 + rating;
+					res.skills['Armes tranchantes'] = 3 + rating;
+					res.skills['Armes contondantes'] = 3 + rating;
+					res.skills['Combat à mains nues'] = 3 + rating;
 					res.skills.Perception = 2 + rating;
 					res.skills.Leadership = 2 + rating;
-					res.skills.Sneaking = rating;
+					res.skills.Discrétion = rating;
 					res.skills.Intimidation = 1 + rating;
 					res.augmentations.push({
-						name: 'Cybereyes',
+						name: 'Cyberyeux',
 						rating: 2,
-						augments: ['Flare Compensation', 'Image link', 'Smartlink', 'Thermographic vision', 'Low-light Vision']
+						augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
 					});
 					break;
 
 				case 'mob':
-					res.professional_description = 'Organized Crime';
+					res.professional_description = 'Membre du crime organisé';
 					res.attributes.reaction = 1;
 					res.attributes.will = 1;
 					res.attributes.logic = 1;
 					res.attributes.charisma = 1;
 					res.skills.Etiquette = 3 + rating;
 					res.skills.Leadership = 2;
-					res.skills['Unarmed Combat'] = 3 + rating;
+					res.skills['Combat à mains nues'] = 3 + rating;
 					res.armor = 'Gilet pare-balle';
-					res.augmentations.push({name:'Cyber Spur'});
+					res.augmentations.push({name:'Griffes (retractable) implantées'});
 					res.gear.push({
 						name: 'Jazz',
 						quantity: 2
@@ -653,7 +653,7 @@ var db = {
 					res.attributes.strength = 1;
 					res.attributes.will = 1;
 					res.skills['Armes lourdes'] = 3 + rating;
-					res.skills.Demolitions = rating;
+					res.skills.Explosifs = rating;
 					break;
 
 				case 'specops':
@@ -662,7 +662,7 @@ var db = {
 					res.attributes.strength = 1;
 					res.attributes.logic = 1;
 					res.attributes.will = 1;
-					res.skills.Demolitions = 2 + rating;
+					res.skills.Explosifs = 2 + rating;
 					res.qualities.positive.push('Dur à cuire');
 					res.weapons.push('Enfield AS-7');
 					break;
@@ -672,13 +672,13 @@ var db = {
 					res.attributes.body = 2;
 					res.attributes.intuition = 1;
 					res.attributes.charisma = 2;
-					res.skills.Automatics = rating;
+					res.skills['Armes automatiques'] = rating;
 					res.weapons.push('Steyr TMP');
 					break;
 			}
 		}
 
-		if (special_type === 'Adept')
+		if (special_type === 'Adepte')
 		{
 			// What kind of adept?
 			var improved_skill, bonus_weapon;
@@ -688,7 +688,7 @@ var db = {
 				default:
 				case 'civil':
 				case 'police':
-					improved_skill = 'Pistols';
+					improved_skill = 'Pistolets';
 					bonus_weapon = 'Remington Roomsweeper';
 					break;
 
@@ -723,13 +723,13 @@ var db = {
 			res.attributes.strength = 1;
 
 			// Skills
-			res.skills.Arcana = rating + 2;
-			res.skills.Blades = rating + 2;
-			res.skills.Clubs = rating + 2;
+			res.skills.Arcanes = rating + 2;
+			res.skills['Armes tranchantes'] = rating + 2;
+			res.skills['Armes contondantes'] = rating + 2;
 			res.skills[improved_skill] = rating + 2;
 
 			// Qualities
-			res.qualities.positive.push('Adept');
+			res.qualities.positive.push('Adepte');
 
 			// Weapon
 			res.weapons.push(bonus_weapon);
@@ -744,21 +744,21 @@ var db = {
 					break;
 
 				case 3:
-					weapon_name = 'Sword';
+					weapon_name = 'Epée';
 					break;
 
 				case 4:
 				case 5:
-					weapon_name = 'Knife';
+					weapon_name = 'Couteau';
 					break;
 
 				case 6:
-					weapon_name = 'Staff';
+					weapon_name = 'Matraque';
 					break;
 
 				case 7:
 				case 8:
-					weapon_name = 'Telescoping Staff';
+					weapon_name = 'Matraque téléscopique';
 					break;
 			}
 			if (rating > 4)
@@ -778,11 +778,11 @@ var db = {
 			if (rating > 3)
 			{
 				res.gear.push({
-					name: 'Qi Focus',
+					name: 'Focus Qi',
 					magic_focus: true,
 					force: (rating - 3) * 2, // 4:2, 5:4, 6:6, 7:8
-					power: 'Improved Strength',
-					type: 'Improve Attribute',
+					power: 'Force améliorée',
+					type: 'Amélioration d\'attribut',
 					attribute: 'strength',
 					rating: rating - 3
 				});
@@ -805,7 +805,7 @@ var db = {
 				case 0:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 1
 						},
 						{
@@ -820,7 +820,7 @@ var db = {
 				case 1:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 1
 						},
 						{
@@ -841,7 +841,7 @@ var db = {
 				case 2:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 1
 						},
 						{
@@ -860,7 +860,7 @@ var db = {
 				case 3:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 2
 						},
 						{
@@ -879,7 +879,7 @@ var db = {
 				case 4:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 2
 						},
 						{
@@ -898,7 +898,7 @@ var db = {
 				case 5:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 2
 						},
 						{
@@ -917,7 +917,7 @@ var db = {
 				case 6:
 					res.special.powers.push(
 						{
-							name: 'Improved Reflexes',
+							name: 'Réflexes améliorés',
 							rating: 3
 						},
 						{
@@ -942,19 +942,19 @@ var db = {
 			res.attributes.logic = 1;
 
 			// Skills
-			res.skills.Assessing = rating + 2;
+			res.skills['Observation astrale'] = rating + 2;
 			res.skills['Combat astral'] = rating + 1;
-			res.skills.Summoning = rating + 1;
-			res.skills.Banishing = rating + 1;
-			res.skills.Binding = rating + 1;
-			res.skills.Counterspelling = rating + 2;
-			res.skills.Spellcasting = rating + 2;
+			res.skills.Invocation = rating + 1;
+			res.skills.Bannissement = rating + 1;
+			res.skills['Lien d\'esprits'] = rating + 1;
+			res.skills.Contresort = rating + 2;
+			res.skills['Lancement de sorts'] = rating + 2;
 
 			// Qualities
-			res.qualities.positive.push('Magician (Hermetic)');
+			res.qualities.positive.push('Magicien (Hermétique)');
 			if (rating > 3)
 			{
-				res.qualities.positive.push('Focused Concentration ' + (rating - 2));
+				res.qualities.positive.push('Concentration accrue ' + (rating - 2));
 			}
 
 			// Gear
@@ -963,11 +963,11 @@ var db = {
 				quantity: 2
 			});
 			res.gear.push({
-				name: 'Reagents',
+				name: 'Réactifs',
 				quantity: 10
 			});
 			res.gear.push({
-				name: 'Spellcasting focus (Combat)',
+				name: 'Focus de lancement de sorts (Combat)',
 				magic_focus: true,
 				rating: rating
 			});
@@ -975,7 +975,7 @@ var db = {
 			if (rating > 3)
 			{
 				res.gear.push({
-					name: 'Power focus',
+					name: 'Focus de pouvoir',
 					magic_focus: true,
 					rating: rating - 3
 				});
@@ -983,21 +983,21 @@ var db = {
 
 			// Specials : Spells
 			res.special.Magic = (rating < 2) ? 2 : rating;
-			res.special.spells = ['Powerbolt', 'Silence', 'Stunball'];
+			res.special.spells = ['Foudre', 'Silence', 'Boule étourdissante'];
 			switch (rating)
 			{
 				case 6:
-					res.special.spells.push('Armor', 'Agony');
+					res.special.spells.push('Armure', 'Agonie');
 				case 5:
-					res.special.spells.push('Clairvoyance', 'Improved Invisibility');
+					res.special.spells.push('Clairvoyance', 'Invisibilité supérieure');
 				case 4:
-					res.special.spells.push('Increase Reflexes', 'Combat Sense');
+					res.special.spells.push('Augmentation de réflexes', 'Sens du combat');
 				case 3:
-					res.special.spells.push('Heal');
+					res.special.spells.push('Soins');
 				case 2:
-					res.special.spells.push('Detect Life');
+					res.special.spells.push('Détection de la vie');
 				case 1:
-					res.special.spells.push('Physical Barrier');
+					res.special.spells.push('Barrière physique');
 				default:
 					break;
 			}
@@ -1030,7 +1030,7 @@ var db = {
 			}
 
 			// Skills
-			res.skills.Computer = rating + 1;
+			res.skills.Informatique = rating + 1;
 			res.skills.Cybercombat = rating + 2;
 			res.skills['Guerre électronique'] = rating + 2;
 			res.skills.Hacking = rating + 2;
@@ -1038,20 +1038,20 @@ var db = {
 			if (['corpsec', 'htr', 'mob', 'specops'].includes(options.professional_type))
 			{
 				res.skills.Leadership = rating;
-				res.skills.Hardware = rating + 1;
-				res.skills.Software = rating + 1;
+				res.skills['Matériel électronique'] = rating + 1;
+				res.skills.Logiciels = rating + 1;
 			}
 
 			if (['htr', 'specops'].includes(options.professional_type))
 			{
-				res.skills.Demolitions = rating;
+				res.skills.Explosifs = rating;
 			}
 
 			// Augmentations & Drugs
 			if (rating > 5)
 			{
 				res.augmentations.push({
-					name: 'Cerebellum Booster',
+					name: 'Cervelet amplifié',
 					rating: rating - 4
 				});
 			}
@@ -1059,7 +1059,7 @@ var db = {
 			if (rating >= 4)
 			{
 				res.augmentations.push({
-					name: 'Cerebral Booster',
+					name: 'Booster cérébral',
 					rating: rating - 3
 				});
 				res.gear.push({
@@ -1090,7 +1090,7 @@ var db = {
 						name: 'Shiawase Cyber-5',
 						type: 'cyberdeck',
 						rating: 5,
-						programs: ['Armor', 'Biofeedback', 'Decryption', 'Encryption', 'Fork', 'Hammer', 'Lockdown']
+						programs: ['Armure', 'Biofeedback', 'Décryptage', 'Chiffrement', 'Fork', 'Marteau', 'Lockdown']
 					});
 					break;
 
@@ -1100,7 +1100,7 @@ var db = {
 						name: 'Hermes Chariot',
 						type: 'cyberdeck',
 						rating: 2,
-						programs: ['Armor', 'Decryption', 'Encryption', 'Fork', 'Hammer']
+						programs: ['Armure', 'Décryptage', 'Chiffrement', 'Fork', 'Marteau']
 					});
 					break;
 
@@ -1109,7 +1109,7 @@ var db = {
 						name: 'Erika MCD-1',
 						type: 'cyberdeck',
 						rating: 1,
-						programs: ['Armor', 'Baby Monitor', 'Fork']
+						programs: ['Armure', 'Baby Monitor', 'Fork']
 					});
 			}
 		}
@@ -1129,11 +1129,11 @@ var db = {
 				res.armor = 'Costume Actioneer';
 
 			// Skills
-			res.skills.Computer = rating + 1;
-			res.skills.Con = rating + 1;
+			res.skills.Informatique = rating + 1;
+			res.skills.Escroquerie = rating + 1;
 			res.skills.Etiquette = Math.max(2, rating * 2) - 1;
 			res.skills.Intimidation = rating + 3;
-			res.skills.Negotiation = Math.max(2, rating * 2);
+			res.skills.Négociation = Math.max(2, rating * 2);
 			res.skills.Perception = rating + 2;
 		}
 
@@ -1163,21 +1163,21 @@ var db = {
 				res.armor = 'Gilet pare-balle';
 
 			// Skills
-			res.skills.Pistols = rating + 4;
-			res.skills.Gymnastics = rating + 2;
+			res.skills.Pistolets = rating + 4;
+			res.skills.Gymnastique = rating + 2;
 			res.skills.Perception = rating + 2;
-			res.skills.Running = rating + 2;
-			res.skills.Sneaking = rating + 2;
+			res.skills.Course = rating + 2;
+			res.skills.Discrétion = rating + 2;
 
 			// Weapons, Augmentations & Drugs
 			res.gear.push(this.get_gear('Jazz'));
 
 			if (rating > 0)
 			{
-				augment = this.get_augmentation('Muscle Toner');
+				augment = this.get_augmentation('Tonification musculaire');
 				augment.rating = roll.half(rating) + 1;
 				res.augmentations.push(augment);
-				augment = this.get_augmentation('Synaptic Booster');
+				augment = this.get_augmentation('Booster synaptique');
 				augment.rating = roll.half(rating);
 				res.augmentations.push(augment);
 			}
@@ -1185,19 +1185,19 @@ var db = {
 			switch (options.race)
 			{
 				case 'Humain':
-					res.skills['Throwing Weapons'] = rating + 3;
+					res.skills['Armes de jet'] = rating + 3;
 					if (rating < 2)
 					{
 						res.weapons.push(this.get_weapon('Browning Ultra-Power'));
 						res.weapons.push(this.get_weapon('Streetline Special'));
-						res.gear.push(this.get_gear('Smoke Grenade'));
-						res.gear.push(this.get_gear('Flashbang Grenade'));
+						res.gear.push(this.get_gear('Grenade fumigène'));
+						res.gear.push(this.get_gear('Flash-bang'));
 					}
 					else
 					{
 						res.weapons.push(this.get_weapon('Ares Predator V'));
 						res.weapons.push(this.get_weapon('Colt America L36'));
-						res.gear.push(this.get_gear('Thermal Smoke Grenade'));
+						res.gear.push(this.get_gear('Grenade fumigène (IR)'));
 						res.gear.push(this.get_gear('Fragmentation Grenade'));
 					}
 					break;
@@ -1216,7 +1216,7 @@ var db = {
 					break;
 
 				case 'Nain':
-					res.skills.Longarms = rating + 4;
+					res.skills.Fusils = rating + 4;
 
 					if (rating < 2)
 					{
@@ -1238,7 +1238,7 @@ var db = {
 					break;
 
 				case 'Troll':
-					res.skills.Automatics = rating + 4;
+					res.skills['Armes automatiques'] = rating + 4;
 					if (rating < 2)
 					{
 						res.weapons.push(this.get_weapon('Steyr TMP'));
@@ -1262,37 +1262,37 @@ var db = {
 			res.attributes.strength = 1;
 
 			// Skills
-			res.skills.Automatics = rating + 3;
-			res.skills.Blades = rating + 2;
+			res.skills['Armes automatiques'] = rating + 3;
+			res.skills['Armes tranchantes'] = rating + 2;
 			res.skills.Perception = rating + 2;
-			res.skills.Running = rating + 2;
-			res.skills.Sneaking = rating + 2;
+			res.skills.Course = rating + 2;
+			res.skills.Discrétion = rating + 2;
 
 			switch (options.race)
 			{
 				case 'Humain':
 					res.attributes.reaction = 2;
-					res.skills.Demolitions = rating + 1;
-					res.skills['Unarmed Combat'] = rating + 3;
+					res.skills.Explosifs = rating + 1;
+					res.skills['Combat à mains nues'] = rating + 3;
 					break;
 
 				case 'Elfe':
 					res.attributes.reaction = 2;
-					res.skills.Gymnastics = rating + 1;
-					res.skills.Negotiations = rating + 1;
+					res.skills.Gymnastique = rating + 1;
+					res.skills.Négociations = rating + 1;
 					break;
 
 				case 'Nain':
 					res.skills['Premiers soins'] = rating + 3;
-					res.skills['Throwing Weapons'] = rating + 3;
+					res.skills['Armes de jet'] = rating + 3;
 					if (rating < 3)
 					{
-						res.gear.push(this.get_gear('Smoke Grenade'));
-						res.gear.push(this.get_gear('Flashbang Grenade'));
+						res.gear.push(this.get_gear('Grenade fumigène'));
+						res.gear.push(this.get_gear('Flash-bang'));
 					}
 					else
 					{
-						res.gear.push(this.get_gear('Thermal Smoke Grenade'));
+						res.gear.push(this.get_gear('Grenade fumigène (IR)'));
 						res.gear.push(this.get_gear('Fragmentation Grenade'));
 					}
 					break;
@@ -1325,17 +1325,17 @@ var db = {
 
 			// Weapons, Augmentations & Drugs
 			if (rating < 3)
-				res.weapons.push(this.get_weapon('Knife'));
+				res.weapons.push(this.get_weapon('Couteau'));
 
 			var augment;
 
 			if (rating < 2)
 			{
-				res.gear.push(this.get_gear('Goggles'));
+				res.gear.push(this.get_gear('Binoculaires'));
 			}
 			else
 			{
-				augment = this.get_augmentation('Cybereyes');
+				augment = this.get_augmentation('Cyberyeux');
 				augment.rating = 2;
 				res.augmentations.push(augment);
 			}
@@ -1345,17 +1345,17 @@ var db = {
 				case 'Humain':
 					if (rating > 1)
 					{
-						augment = this.get_augmentation('Muscle Toner');
+						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Synaptic Booster');
+						augment = this.get_augmentation('Booster synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
-						res.augmentations.push(this.get_augmentation('Cyber Spur'));
+						res.augmentations.push(this.get_augmentation('Griffes (retractable) implantées'));
 					}
 					if (rating > 0)
 					{
-						augment = this.get_augmentation('Cerebellum Booster');
+						augment = this.get_augmentation('Cervelet amplifié');
 						augment.rating = Math.ceil(rating / 3);
 						res.augmentations.push(augment);
 					}
@@ -1383,17 +1383,17 @@ var db = {
 				case 'Elfe':
 					if (rating > 1)
 					{
-						augment = this.get_augmentation('Muscle Toner');
+						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Synaptic Booster');
+						augment = this.get_augmentation('Booster synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.weapons.push(this.get_weapon('Katana'));
 					}
 					if (rating > 0)
 					{
-						augment = this.get_augmentation('Cerebellum Booster');
+						augment = this.get_augmentation('Cervelet amplifié');
 						augment.rating = Math.ceil(rating / 3);
 						res.augmentations.push(augment);
 					}
@@ -1421,19 +1421,19 @@ var db = {
 				case 'Nain':
 					if (rating > 1)
 					{
-						augment = this.get_augmentation('Muscle Toner');
+						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Synaptic Booster');
+						augment = this.get_augmentation('Booster synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
-						res.weapons.push(this.get_weapon('Combat Knife'));
+						res.weapons.push(this.get_weapon('Couteau de combat'));
 					}
 
-					augment = this.get_augmentation('Orthoskin');
+					augment = this.get_augmentation('Orthoderme');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
-					augment = this.get_augmentation('Bone Density Augmentation');
+					augment = this.get_augmentation('Augmentation de densité osseuse');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
 
@@ -1461,22 +1461,22 @@ var db = {
 				case 'Ork':
 					if (rating > 1)
 					{
-						augment = this.get_augmentation('Muscle Toner');
+						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Muscle Augmentation');
+						augment = this.get_augmentation('Renforcement musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Synaptic Booster');
+						augment = this.get_augmentation('Booster synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
-						res.weapons.push(this.get_weapon('Sword'));
+						res.weapons.push(this.get_weapon('Epée'));
 					}
 
-					augment = this.get_augmentation('Orthoskin');
+					augment = this.get_augmentation('Orthoderme');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
-					augment = this.get_augmentation('Bone Density Augmentation');
+					augment = this.get_augmentation('Augmentation de densité osseuse');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
 
@@ -1504,22 +1504,22 @@ var db = {
 				case 'Troll':
 					if (rating > 1)
 					{
-						augment = this.get_augmentation('Muscle Toner');
+						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Muscle Augmentation');
+						augment = this.get_augmentation('Renforcement musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Synaptic Booster');
+						augment = this.get_augmentation('Booster synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
-						res.weapons.push(this.get_weapon('Combat Axe'));
+						res.weapons.push(this.get_weapon('Hache de combat'));
 					}
 
-					augment = this.get_augmentation('Orthoskin');
+					augment = this.get_augmentation('Orthoderme');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
-					augment = this.get_augmentation('Bone Density Augmentation');
+					augment = this.get_augmentation('Augmentation de densité osseuse');
 					augment.rating = roll.half(rating + 2);
 					res.augmentations.push(augment);
 
@@ -1558,14 +1558,14 @@ var db = {
 			res.attributes.strength = 2;
 
 			// Skills
-			res.skills.Clubs = rating + 2;
-			res.skills.Longarms = rating + 2;
-			res.skills.Pistols = rating + 2;
+			res.skills['Armes contondantes'] = rating + 2;
+			res.skills.Fusils = rating + 2;
+			res.skills.Pistolets = rating + 2;
 
 			if (rating > 3)
 			{
-				res.skills['Unarmed'] = rating + 2;
-				res.augmentations.push(this.get_augmentation('Cyber Spur'));
+				res.skills['Combat à mains nues'] = rating + 2;
+				res.augmentations.push(this.get_augmentation('Griffes (retractable) implantées'));
 			}
 			// Qualities
 			res.qualities.negative.push('Mauvaise réputation');
@@ -1573,9 +1573,9 @@ var db = {
 
 			// Weapon
 			if (rating < 2)
-				res.weapons.push(this.get_weapon('Club'));
+				res.weapons.push(this.get_weapon('Massue'));
 			else
-				res.weapons.push(this.get_weapon('Stun Baton'));
+				res.weapons.push(this.get_weapon('Electromatraque'));
 
 			if (rating < 3)
 			{
@@ -1601,26 +1601,26 @@ var db = {
 
 			augment = res.augmentations.find(function (aug)
 			{
-				return aug.name === 'Cybereyes';
+				return aug.name === 'Cyberyeux';
 			});
 
 			if (!augment)
 			{
-				augment = this.get_augmentation('Cybereyes');
+				augment = this.get_augmentation('Cyberyeux');
 				augment.rating = 2;
 				res.augmentations.push(augment);
 			}
 
 			if (rating > 2)
 			{
-				augment = this.get_augmentation('Orthoskin');
+				augment = this.get_augmentation('Orthoderme');
 				augment.rating = rating - 2;
 				res.augmentations.push(augment);
 			}
 
 			if (rating > 4)
 			{
-				augment = this.get_augmentation('Bone Lacing');
+				augment = this.get_augmentation('Ossature renforcée');
 				augment.rating = rating - 4;
 				res.augmentations.push(augment);
 			}
@@ -1628,22 +1628,22 @@ var db = {
 			if (rating > 0)
 			{
 				armor = (rating > 3) ? 3 : rating;
-				augment = this.get_augmentation('Cyberarm (Left)');
+				augment = this.get_augmentation('Cyberbras (gauche)');
 				augment.bonus_armor = armor;
 				if (!augment.hasOwnProperty('augments'))
 					augment.augments = [];
-				augment.augments.push('Armor ' + armor);
+				augment.augments.push('Armure ' + armor);
 				res.augmentations.push(augment);
 			}
 
 			if (rating > 3)
 			{
 				armor = rating - 3;
-				augment = this.get_augmentation('Cyberarm (Right)');
+				augment = this.get_augmentation('Cyberbras (droit)');
 				augment.bonus_armor = armor;
 				if (!augment.hasOwnProperty('augments'))
 					augment.augments = [];
-				augment.augments.push('Armor ' + armor);
+				augment.augments.push('Armure ' + armor);
 				res.augmentations.push(augment);
 			}
 		}
@@ -1655,19 +1655,19 @@ var db = {
 			res.attributes.charisma = 1;
 
 			// Skills
-			res.skills.Assessing = rating + 2;
+			res.skills['Observation astrale'] = rating + 2;
 			res.skills['Combat astral'] = rating + 3;
-			res.skills.Summoning = rating + 2;
-			res.skills.Banishing = rating + 2;
-			res.skills.Binding = rating + 2;
-			res.skills.Counterspelling = rating + 2;
-			res.skills.Spellcasting = rating + 1;
+			res.skills.Invocation = rating + 2;
+			res.skills.Bannissement = rating + 2;
+			res.skills['Lien d\'esprits'] = rating + 2;
+			res.skills.Contresort = rating + 2;
+			res.skills['Lancement de sorts'] = rating + 1;
 
 			// Qualities
-			res.qualities.positive.push('Magician (Shaman)');
+			res.qualities.positive.push('Magicien (Chaman)');
 			if (rating > 3)
 			{
-				res.qualities.positive.push('Focused Concentration ' + (rating - 2));
+				res.qualities.positive.push('Concentration accrue ' + (rating - 2));
 			}
 
 			// Gear
@@ -1680,7 +1680,7 @@ var db = {
 				quantity: 2
 			});
 			res.gear.push({
-				name: 'Spellcasting focus (Summoning)',
+				name: 'Focus d\'invocation',
 				magic_focus: true,
 				rating: rating
 			});
@@ -1688,7 +1688,7 @@ var db = {
 			if (rating > 3)
 			{
 				res.gear.push({
-					name: 'Power focus',
+					name: 'Focus de pouvoir',
 					magic_focus: true,
 					rating: rating - 3
 				});
@@ -1696,21 +1696,21 @@ var db = {
 
 			// Specials : Spells
 			res.special.Magic = (rating < 2) ? 2 : rating;
-			res.special.spells = ['Manabolt', 'Ice Sheet', 'Ball Lightning'];
+			res.special.spells = ['Frappe à distance', 'Lance de glace', 'Boule de foudre'];
 			switch (rating)
 			{
 				case 6:
-					res.special.spells.push('Mindlink', 'Chaos');
+					res.special.spells.push('Lien mental', 'Confusion');
 				case 5:
-					res.special.spells.push('Mind Probe', 'Trid Phantasm');
+					res.special.spells.push('Contrôle des pensées', 'Fantasme tridéo');
 				case 4:
-					res.special.spells.push('Increase Reflexes', 'Combat Sense');
+					res.special.spells.push('Augmentation de réflexes', 'Sens du combat');
 				case 3:
-					res.special.spells.push('Heal');
+					res.special.spells.push('Soins');
 				case 2:
-					res.special.spells.push('Detect Magic');
+					res.special.spells.push('Détection de la magie');
 				case 1:
-					res.special.spells.push('Invisibility');
+					res.special.spells.push('Invisibilité');
 				default:
 					break;
 			}
@@ -1791,7 +1791,7 @@ var db = {
 				res.attributes.charisma = -2;
 				res.min_attributes.charisma = 1;
 				res.max_attributes.charisma = 4;
-				res.augmentations.push({name: 'Troll Dermal Deposits'});
+				res.augmentations.push({name: 'Dépôts dermiques'});
 				break;
 
 			case 'Special':
@@ -1901,68 +1901,68 @@ var db = {
 			'Négociation',
 			'Escamotage',
 			'Perception',
-			'Pilot Aircraft',
-			'Pilot Ground Craft',
-			'Pistols',
-			'Running',
-			'Sneaking',
-			'Software',
-			'Spellcasting',
-			'Summoning',
-			'Swimming',
-			'Throwing Weapons',
-			'Tracking',
-			'Unarmed Combat'
+			'Appareils volants',
+			'Véhicules terrestres',
+			'Pistolets',
+			'Course',
+			'Discrétion',
+			'Logiciels',
+			'Lancement de sorts',
+			'Invocation',
+			'Natation',
+			'Armes de jet',
+			'Pistage',
+			'Combat à mains nues'
 		];
 	},
 
 	_augmentation_list: [
 		{
-			name: 'Bone Density Augmentation',
+			name: 'Augmentation de densité osseuse',
 			essence: 0.3,
 			max_rating: 4
 		},
 		{
-			name: 'Bone Lacing',
+			name: 'Ossature renforcée',
 			essence: 0.5,
 			max_rating: 3
 		},
 		{
-			name: 'Cerebellum Booster',
+			name: 'Cervelet amplifié',
 			essence: 0.2,
 			max_rating: 2
 		},
 		{
-			name: 'Cerebral Booster',
+			name: 'Booster cérébral',
 			essence: 0.2,
 			max_rating: 3
 		},
 		{
-			name: 'Cyberarm (Left)',
+			name: 'Cyberbras (gauche)',
 			essence: 1,
 			type: 'full cyberlimb',
 			sub_type: 'arm'
 		},
 		{
-			name: 'Cyberarm (Right)',
+			name: 'Cyberbras (droit)',
 			essence: 1,
 			type: 'full cyberlimb',
 			sub_type: 'arm'
 		},
 		{
-			name: 'Cybereyes',
+			name: 'Cyberyeux',
 			essence: 0.1,
 			max_rating: 4,
-			augments: ['Flare Compensation', 'Image link', 'Smartlink', 'Thermographic vision', 'Low-light Vision']
+			augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
 		},
 		{
-			name: 'Cyberleg (Left)',
+			name: 'Cyberjambe (gauche)',
 			essence: 1,
 			type: 'full cyberlimb',
 			sub_type: 'leg'
 		},
 		{
-			name: 'Cyberleg (Right)',
+			name: 'Cyberjambe (droite)',
 			essence: 1,
 			type: 'full cyberlimb',
 			sub_type: 'leg'
@@ -1972,44 +1972,44 @@ var db = {
 			essence: 0.1
 		},
 		{
-			name: 'Dermal Plating',
+			name: 'Armure dermique',
 			essence: 0.5,
 			max_rating: 6
 		},
 		{
-			name: 'Internal Air Tank',
+			name: 'Réservoir d\'air interne',
 			essence: 0.5
 		},
 		{
-			name: 'Muscle Augmentation',
+			name: 'Renforcement musculaire',
 			essence: 0.2,
 			max_rating: 4
 		},
 		{
-			name: 'Muscle Toner',
+			name: 'Tonification musculaire',
 			essence: 0.2,
 			max_rating: 4
 		},
 		{
-			name: 'Orthoskin',
+			name: 'Orthoderme',
 			essence: 0.25,
 			max_rating: 4
 		},
 		{
-			name: 'Cyber Spur',
+			name: 'Griffes (retractable) implantées',
 			essence: 0.3
 		},
 		{
-			name: 'Synaptic Booster',
+			name: 'Booster synaptique',
 			essence: 0.5,
 			max_rating: 3
 		},
 		{
-			name: 'Wired Reflexes',
+			name: 'Réflexes câblés',
 			max_rating: 3
 		},
 		{
-			name: 'Troll Dermal Deposits',
+			name: 'Dépôts dermiques',
 			essence: 0,
 			selectable: false
 		},
@@ -2061,7 +2061,7 @@ var db = {
 
 	_weapon_list: [
 		{
-			name: 'Combat Axe',
+			name: 'Hache de combat',
 			type: 'Melee',
 			ability: 'Armes tranchantes',
 			acc: 4,
@@ -2071,7 +2071,7 @@ var db = {
 		},
 
 		{
-			name: 'Combat Knife',
+			name: 'Couteau de combat',
 			type: 'Melee',
 			ability: 'Armes tranchantes',
 			acc: 6,
@@ -2081,7 +2081,7 @@ var db = {
 		},
 
 		{
-			name: 'Knife',
+			name: 'Couteau',
 			type: 'Melee',
 			ability: 'Armes tranchantes',
 			acc: 5,
@@ -2102,7 +2102,7 @@ var db = {
 		},
 
 		{
-			name: 'Sword',
+			name: 'Epée',
 			type: 'Melee',
 			ability: 'Armes tranchantes',
 			acc: 6,
@@ -2113,9 +2113,9 @@ var db = {
 		},
 
 		{
-			name: 'Cyber Spur',
+			name: 'Griffes (retractable) implantées',
 			type: 'Melee',
-			ability: 'Unarmed Combat',
+			ability: 'Combat à mains nues',
 			acc: 'Physical',
 			dv: 3,
 			damage_attribute: 'strength',
@@ -2123,7 +2123,7 @@ var db = {
 		},
 
 		{
-			name: 'Club',
+			name: 'Massue',
 			type: 'Melee',
 			ability: 'Armes contondantes',
 			acc: 4,
@@ -2133,18 +2133,18 @@ var db = {
 		},
 
 		{
-			name: 'Stun Baton',
+			name: 'Electromatraque',
 			type: 'Melee',
 			ability: 'Armes contondantes',
 			acc: 4,
 			dv: 9,
-			damage_type: 'S(e)',
+			damage_type: 'E(e)',
 			ap: -5,
 			reach: 1
 		},
 
 		{
-			name: 'Staff',
+			name: 'Matraque',
 			type: 'Melee',
 			ability: 'Armes contondantes',
 			acc: 6,
@@ -2154,7 +2154,7 @@ var db = {
 		},
 
 		{
-			name: 'Telescoping Staff',
+			name: 'Matraque téléscopique',
 			type: 'Melee',
 			ability: 'Armes contondantes',
 			acc: 4,
@@ -2166,20 +2166,20 @@ var db = {
 		{
 			name: 'Defiance EX Shocker',
 			type: 'Taser',
-			ability: 'Pistols',
+			ability: 'Pistolets',
 			acc: 4,
 			dv: 9,
-			damage_type: 'S(e)',
+			damage_type: 'E(e)',
 			ap: -5,
-			modes: 'SS',
+			modes: 'CC',
 			ammo_count: 4,
 			reload: 'm'
 		},
 
 		{
 			name: 'Streetline Special',
-			type: 'Hold-out Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets de poche',
+			ability: 'Pistolets',
 			acc: 4,
 			dv: 6,
 			modes: 'SA',
@@ -2189,8 +2189,8 @@ var db = {
 
 		{
 			name: 'Colt America L36',
-			type: 'Light Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets légers',
+			ability: 'Pistolets',
 			acc: 7,
 			dv: 7,
 			modes: 'SA',
@@ -2200,8 +2200,8 @@ var db = {
 
 		{
 			name: 'Fichetti Security 600',
-			type: 'Light Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets légers',
+			ability: 'Pistolets',
 			acc: 6,
 			acc_modified: 7,
 			dv: 7,
@@ -2213,8 +2213,8 @@ var db = {
 
 		{
 			name: 'Ares Predator V',
-			type: 'Heavy Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets lourds',
+			ability: 'Pistolets',
 			acc: 5,
 			acc_modified: 7,
 			dv: 8,
@@ -2226,8 +2226,8 @@ var db = {
 
 		{
 			name: 'Browning Ultra-Power',
-			type: 'Heavy Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets lourds',
+			ability: 'Pistolets',
 			acc: 5,
 			acc_modified: 6,
 			dv: 8,
@@ -2239,8 +2239,8 @@ var db = {
 
 		{
 			name: 'Remington Roomsweeper',
-			type: 'Heavy Pistol',
-			ability: 'Pistols',
+			type: 'Pistolets lourds',
+			ability: 'Pistolets',
 			acc: 4,
 			dv: 7,
 			ap: -1,
@@ -2251,11 +2251,11 @@ var db = {
 
 		{
 			name: 'Ceska Black Scorpion',
-			type: 'Machine Pistol',
+			type: 'Pistolets mitrailleurs',
 			ability: 'Armes automatiques',
 			acc: 5,
 			dv: 6,
-			modes: 'SA/BF',
+			modes: 'SA/TR',
 			rc_modified: 1,
 			ammo_count: 35,
 			reload: 'c'
@@ -2263,23 +2263,23 @@ var db = {
 
 		{
 			name: 'Steyr TMP',
-			type: 'Machine Pistol',
+			type: 'Pistolets mitrailleurs',
 			ability: 'Armes automatiques',
 			acc: 4,
 			dv: 7,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			ammo_count: 30,
 			reload: 'c'
 		},
 
 		{
 			name: 'Colt Cobra TZ-120',
-			type: 'SMG',
+			type: 'Mitraillettes',
 			ability: 'Armes automatiques',
 			acc: 4,
 			acc_modified: 5,
 			dv: 7,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			rc: 2,
 			rc_modified: 3,
 			ammo_count: 32,
@@ -2288,11 +2288,11 @@ var db = {
 
 		{
 			name: 'FN P93 Praetor',
-			type: 'SMG',
+			type: 'Mitraillettes',
 			ability: 'Armes automatiques',
 			acc: 6,
 			dv: 8,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			rc: 1,
 			rc_modified: 2,
 			ammo_count: 50,
@@ -2301,12 +2301,12 @@ var db = {
 
 		{
 			name: 'HK-227',
-			type: 'SMG',
+			type: 'Mitraillettes',
 			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 7,
 			dv: 7,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			rc_modified: 1,
 			ammo_count: 28,
 			reload: 'c'
@@ -2314,25 +2314,25 @@ var db = {
 
 		{
 			name: 'AK-97',
-			type: 'Assault Rifle',
+			type: 'Fusils d\'assaut',
 			ability: 'Armes automatiques',
 			acc: 5,
 			dv: 10,
 			ap: -2,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			ammo_count: 38,
 			reload: 'c'
 		},
 
 		{
 			name: 'Ares Alpha',
-			type: 'Assault Rifle',
+			type: 'Fusils d\'assaut',
 			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 7,
 			dv: 11,
 			ap: -2,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			rc: 2,
 			ammo_count: 42,
 			reload: 'c'
@@ -2340,13 +2340,13 @@ var db = {
 
 		{
 			name: 'FN HAR',
-			type: 'Assault Rifle',
+			type: 'Fusils d\'assaut',
 			ability: 'Armes automatiques',
 			acc: 5,
 			acc_modified: 6,
 			dv: 10,
 			ap: -2,
-			modes: 'SA/BF/FA',
+			modes: 'SA/TR/TA',
 			rc: 2,
 			ammo_count: 35,
 			reload: 'c'
@@ -2354,12 +2354,12 @@ var db = {
 
 		{
 			name: 'Cavalier Arms Crockett EBR',
-			type: 'Sniper Rifle',
+			type: 'Fusils de précision',
 			ability: 'Fusils',
 			acc: 6,
 			dv: 12,
 			ap: -3,
-			modes: 'SA/BF',
+			modes: 'SA/TR',
 			rc_modified: 1,
 			ammo_count: 20,
 			reload: 'c'
@@ -2385,33 +2385,33 @@ var db = {
 			acc_modified: 5,
 			dv: 13,
 			ap: -1,
-			modes: 'SA/BF',
+			modes: 'SA/TR',
 			ammo_count: 10,
 			reload: 'c'
 		},
 
 		{
 			name: 'Ingram Valiant',
-			type: 'LMG',
+			type: 'Mitrailleuses',
 			ability: 'Armes lourdes',
 			acc: 5,
 			acc_modified: 6,
 			dv: 9,
 			ap: -2,
-			modes: 'BF/FA',
+			modes: 'BF/TA',
 			ammo_count: 50,
 			reload: 'c'
 		},
 
 		{
 			name: 'Panther XXL',
-			type: 'Assault Cannon',
+			type: 'Mitrailleuses',
 			ability: 'Armes lourdes',
 			acc: 5,
 			acc_modified: 7,
 			dv: 17,
 			ap: -6,
-			modes: 'SS',
+			modes: 'CC',
 			ammo_count: 15,
 			reload: 'c'
 		}
@@ -2466,14 +2466,14 @@ var db = {
 
 	_gear_list: [
 		{
-			name: 'Sunglasses',
+			name: 'Lunettes',
 			rating: 2,
-			augments: ['Image link', 'Smartlink', 'Low-light Vision']
+			augments: ['Interface visuelle', 'Smartlink', 'Vision nocturne']
 		},
 		{
-			name: 'Goggles',
+			name: 'Binoculaires',
 			rating: 2,
-			augments: ['Image link', 'Smartlink', 'Thermographic Vision']
+			augments: ['Interface visuelle', 'Smartlink', 'Vision thermographique']
 		},
 		{
 			name: 'Jazz',
@@ -2492,38 +2492,38 @@ var db = {
 			quantity: 2
 		},
 		{
-			name: 'Reagents',
+			name: 'Réactifs',
 			quantity: 10
 		},
 		{
-			name: 'Flashbang Grenade',
+			name: 'Grenade flash-bang',
 			quantity: 2
 		},
 		{
-			name: 'Fragmentation Grenade',
+			name: 'Grenade fragmentation',
 			quantity: 1
 		},
 		{
-			name: 'Gas Grenade (CS/Tear)',
+			name: 'Grenade lacrymogène',
 			quantity: 2
 		},
 		{
-			name: 'Smoke Grenade',
+			name: 'Grenade fumigène',
 			quantity: 2
 		},
 		{
-			name: 'Thermal Smoke Grenade',
+			name: 'Grenade fumigène (IR)',
 			quantity: 2
 		},
 		{
-			name: 'Grapple Gun'
+			name: 'Pistolet-grappin'
 		},
 		{
-			name: 'Bug Scanner',
+			name: 'Scanner de fréquence',
 			rating: 2
 		},
 		{
-			name: 'Flashlight'
+			name: 'Lampe-torche'
 		},
 		{
 			name: 'Stim Patch',
@@ -2564,14 +2564,14 @@ var db = {
 			case 'Armes contondantes':
 			case 'Armes lourdes':
 			case 'Fusils':
-			case 'Pistols':
+			case 'Pistolets':
 				data.attribute = 'agility';
 				data.limit = 'gear';
 				break;
 
 			// Strength based skills
-			case 'Running':
-			case 'Swimming':
+			case 'Course':
+			case 'Natation':
 				data.attribute = 'strength';
 				data.limit = 'physical';
 				break;
@@ -2580,16 +2580,16 @@ var db = {
 			case 'Armes de véhicules':
 			case 'Gymnastique':
 			case 'Escamotage':
-			case 'Sneaking':
-			case 'Unarmed Combat':
-			case 'Throwing Weapons':
+			case 'Discrétion':
+			case 'Combat à mains nues':
+			case 'Armes de jet':
 				data.attribute = 'agility';
 				data.limit = 'physical';
 				break;
 
 			// Reaction based skills
-			case 'Pilot Ground Craft':
-			case 'Pilot Aircraft':
+			case 'Véhicules terrestres':
+			case 'Appareils volants':
 				data.attribute = 'reaction';
 				data.limit = 'gear';
 				break;
@@ -2614,7 +2614,7 @@ var db = {
 			case 'Premiers soins':
 			case 'Hacking':
 			case 'Matériel électronique':
-			case 'Software':
+			case 'Logiciels':
 				data.attribute = 'logic';
 				data.limit = 'mental';
 				break;
@@ -2623,7 +2623,7 @@ var db = {
 			case 'Déguisement':
 			case 'Orientation':
 			case 'Perception':
-			case 'Tracking':
+			case 'Pistage':
 				data.attribute = 'intuition';
 				data.limit = 'mental';
 				break;
@@ -2639,8 +2639,8 @@ var db = {
 			case 'Bannissement':
 			case 'Lien d\'esprits':
 			case 'Contresort':
-			case 'Spellcasting':
-			case 'Summoning':
+			case 'Lancement de sorts':
+			case 'Invocation':
 				data.attribute = 'magic';
 				data.limit = 'force';
 				break;

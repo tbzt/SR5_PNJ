@@ -122,7 +122,7 @@ function view_cast(show_intro)
 			var $deletion_dialog = $char_template.find('.delete_dialog').dialog({
 				autoOpen: false,
 				modal: true,
-				title: 'Remove Cast Member',
+				title: 'Supprimer un figurant',
 				width: 450,
 				buttons: [
 					{
@@ -134,7 +134,7 @@ function view_cast(show_intro)
 						}
 					},
 					{
-						text: "Cancel",
+						text: "Annuler",
 						click: function() {
 							$(this).dialog("close");
 						}
@@ -151,7 +151,7 @@ function view_cast(show_intro)
 			var $clone_dialog = $char_template.find('.clone_dialog').dialog({
 				autoOpen: false,
 				modal: true,
-				title: 'Clone Cast Member',
+				title: 'Cloner le figurant',
 				width: 450,
 				buttons: [
 					{
@@ -163,7 +163,7 @@ function view_cast(show_intro)
 						}
 					},
 					{
-						text: "Cancel",
+						text: "Annuler",
 						click: function() {
 							$(this).dialog("close");
 						}
@@ -176,10 +176,10 @@ function view_cast(show_intro)
 				$clone_dialog.dialog('open');
 			});
 
-			$char_template.find('.created_date').html('Created: ' + render.format_string_date(cast.created));
+			$char_template.find('.created_date').html('Créé le : ' + render.format_string_date(cast.created));
 
 			if (cast.edited)
-				$char_template.find('.edited_date').html('Last Edited: ' + render.format_string_date(cast.edited));
+				$char_template.find('.edited_date').html('Dernière modification : ' + render.format_string_date(cast.edited));
 			else
 				$char_template.find('.edited_date').hide();
 
@@ -258,7 +258,7 @@ function view_cast(show_intro)
 				var $deletion_dialog = $char_template.find('.tab_delete_dialog').dialog({
 					autoOpen: false,
 					modal: true,
-					title: 'Remove Cast Member',
+					title: 'Supprimer le figurant',
 					width: 450,
 					buttons: [
 						{
@@ -270,7 +270,7 @@ function view_cast(show_intro)
 							}
 						},
 						{
-							text: "Cancel",
+							text: "Annuler",
 							click: function() {
 								$(this).dialog("close");
 							}
@@ -287,7 +287,7 @@ function view_cast(show_intro)
 				var $clone_dialog = $char_template.find('.tab_clone_dialog').dialog({
 					autoOpen: false,
 					modal: true,
-					title: 'Clone Cast Member',
+					title: 'Cloner le figurant',
 					width: 450,
 					buttons: [
 						{
@@ -299,7 +299,7 @@ function view_cast(show_intro)
 							}
 						},
 						{
-							text: "Cancel",
+							text: "Annuler",
 							click: function() {
 								$(this).dialog("close");
 							}
@@ -312,10 +312,10 @@ function view_cast(show_intro)
 					$clone_dialog.dialog('open');
 				});
 
-				$char_template.find('.created_date').html('Created: ' + render.format_string_date(character.created));
+				$char_template.find('.created_date').html('Créé le : ' + render.format_string_date(character.created));
 
 				if (character.edited)
-					$char_template.find('.edited_date').html('Last Edited: ' + render.format_string_date(character.edited));
+					$char_template.find('.edited_date').html('Dernière modification : ' + render.format_string_date(character.edited));
 				else
 					$char_template.find('.edited_date').hide();
 	
@@ -515,11 +515,11 @@ function view_generator()
 		$popup.dialog({
 			autoOpen: false,
 			modal: true,
-			title: 'Add NPC to specific tab',
+			title: 'Ajouter le PNJ à un onglet spécifique',
 			width: 500,
 			buttons: [
 				{
-					text: "Cancel",
+					text: "Annuler",
 					click: function() {
 						$(this).dialog( "close" );
 					}
@@ -739,11 +739,11 @@ function view_generator()
 		$popup.dialog({
 			autoOpen: false,
 			modal: true,
-			title: 'Add NPCs to specific tab',
+			title: 'Ajouter les PNJs à un onglet spécifique',
 			width: 500,
 			buttons: [
 				{
-					text: "Cancel",
+					text: "Annuler",
 					click: function() {
 						$(this).dialog( "close" );
 					}
@@ -820,7 +820,7 @@ function view_settings()
 	$container.find('#delete_localstorage_dialog').dialog({
 		autoOpen: false,
 		modal: true,
-		title: 'Frag the World!',
+		title: 'Atomiser !',
 		width: 500,
 		buttons: [
 			{
@@ -833,7 +833,7 @@ function view_settings()
 				}
 			},
 			{
-				text: "Cancel",
+				text: "Annuler",
 				click: function() {
 					$( this ).dialog( "close" );
 				}
@@ -876,7 +876,7 @@ function view_intro()
 	var $build_mismatch_dialog = $('.build_mismatch_nuke_storage').dialog({
 		autoOpen: false,
 		modal: true,
-		title: 'Fatal Version Mismatch',
+		title: 'Erreur fatale de version',
 		width: 500,
 		buttons: [
 			{
@@ -888,7 +888,7 @@ function view_intro()
 				}
 			},
 			{
-				text: "Cancel",
+				text: "Annuler",
 				click: function() {
 					$( this ).dialog( "close" );
 				}
@@ -940,12 +940,12 @@ function setup_controls()
 
 		var timestamp = new Date();
 
-		addition += timestamp.toLocaleTimeString() + '; pool of ' + dice;
+		addition += timestamp.toLocaleTimeString() + ' : ' + dice + 'D6';
 
 		if ($('.top_bar_roller #explode').is(':checked'))
 		{
 			options.pre_edge = true;
-			addition += ' exploding';
+			addition += ' explosifs !';
 		}
 
 		addition += '\n';
@@ -954,16 +954,16 @@ function setup_controls()
 
 		addition += results.rolls.join(', ') + '\n' + results.hits;
 
-		addition += (results.hits === 1) ? ' hit' : ' hits';
+		addition += (results.hits === 1) ? ' succès' : ' succès';
 
 		// Our roller marks it as either a glitch or a critical glitch, not both
 		if (results.crit_glitch)
 		{
-			addition += ', CRITICAL GLITCH!';
+			addition += ', ECHEC CRITIQUE !';
 		}
 		else if (results.glitch)
 		{
-			addition += ', glitch roll.';
+			addition += ', complication.';
 		}
 
 		update_results_text(addition);

@@ -1,5 +1,5 @@
 var gen = {
-	type_options: ['civilian', 'thug', 'ganger', 'corpsec', 'police', 'cultist', 'htr', 'specops', 'mob'],
+	type_options: ['civil', 'voyou', 'ganger', 'corpsec', 'police', 'cultist', 'htr', 'specops', 'mob'],
 
 	random_type: function()
 	{
@@ -269,18 +269,18 @@ var gen = {
 		// Will limiting gender to a binary decision piss off some people? Probably yes.
 		// However, the author is not spending time developing a fully politically correct gender-determination system at this time.
 		// If you really want to hear how the author feels about the situation, buy him a beer
-		if (options.gender !== 'Male' && options.gender !== 'Female')
+		if (options.gender !== 'Homme' && options.gender !== 'Femme')
 		{
 			if (options.is_contact)
 			{
 				// Even split
 				if (roll.dval(2) === 2)
 				{
-					mook.gender = 'Female';
+					mook.gender = 'Femme';
 				}
 				else
 				{
-					mook.gender = 'Male';
+					mook.gender = 'Homme';
 				}
 			}
 			else
@@ -288,11 +288,11 @@ var gen = {
 				// Probably not so even
 				if (roll.dval(10) >= 9)
 				{
-					mook.gender = 'Female';
+					mook.gender = 'Femme';
 				}
 				else
 				{
-					mook.gender = 'Male';
+					mook.gender = 'Homme';
 				}
 			}
 		}
@@ -340,32 +340,32 @@ var gen = {
 
 			switch (mook.professional_type)
 			{
-				case 'civilian':
-					mook.professional_description = 'Civilian';
+				case 'civil':
+					mook.professional_description = 'Civil';
 					break;
-				case 'thug':
-					mook.professional_description = 'Thug';
+				case 'voyou':
+					mook.professional_description = 'Voyou';
 					break;
 				case 'ganger':
-					mook.professional_description = 'Gang Member';
+					mook.professional_description = 'Membre d\'un gang';
 					break;
 				case 'corpsec':
-					mook.professional_description = 'Corporate Security';
+					mook.professional_description = 'Garde de sécurité corpo';
 					break;
 				case 'police':
-					mook.professional_description = 'Law Enforcement';
+					mook.professional_description = 'Membre des forces de l\'ordre';
 					break;
 				case 'cultist':
-					mook.professional_description = 'Cultist';
+					mook.professional_description = 'Membre du culte';
 					break;
 				case 'htr':
-					mook.professional_description = 'High Threat Response';
+					mook.professional_description = 'Membre d\'une force d\'intervention rapide';
 					break;
 				case 'specops':
-					mook.professional_description = 'Special Operations';
+					mook.professional_description = 'Membre des forces spéciales';
 					break;
 				case 'mob':
-					mook.professional_description = 'Organized Crime';
+					mook.professional_description = 'Membre du crime organisé';
 					break;
 			}
 		}
@@ -451,7 +451,7 @@ var gen = {
 		// If this is a Troll who has certain augmentations, they need to lose the Troll Dermal Deposits
 		if (mook.race === 'Troll')
 		{
-			var skin_augments = ['Dermal Plating', 'Orthoskin'];
+			var skin_augments = ['Armure dermique', 'Orthoskin'];
 
 			var augment = mook.augmentations.filter(function (aug)
 			{

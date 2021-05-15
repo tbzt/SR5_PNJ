@@ -105,7 +105,7 @@ var render = {
 			{
 				data.augmentations = data.augmentations.filter(function (aug)
 				{
-					return aug.name !== 'Troll Dermal Deposits';
+					return aug.name !== 'Dépôts dermiques';
 				});
 			}
 			else
@@ -113,12 +113,12 @@ var render = {
 				// If this troll doesn't have skin augmentations, make sure they have standard Troll hide
 				var has_troll_skin = data.augmentations.find(function (aug)
 				{
-					return aug.name === 'Troll Dermal Deposits';
+					return aug.name === 'Dépôts dermiques';
 				});
 
 				if (!has_troll_skin)
 				{
-					data.augmentations.push({name: 'Troll Dermal Deposits'});
+					data.augmentations.push({name: 'Dépôts dermiques'});
 				}
 			}
 
@@ -1115,7 +1115,7 @@ var render = {
 
 		data.augmentations.forEach(function(aug)
 		{
-			if (aug.name === 'Troll Dermal Deposits')
+			if (aug.name === 'Dépôts dermiques')
 				soak++;
 
 			if (aug.type === 'full cyberlimb')
@@ -1848,7 +1848,7 @@ var render = {
 
 		data.augmentations.forEach(function(aug)
 		{
-			if (aug.name === 'Troll Dermal Deposits')
+			if (aug.name === 'Dépôts dermiques')
 				soak++;
 
 			if (aug.type === 'full cyberlimb')
