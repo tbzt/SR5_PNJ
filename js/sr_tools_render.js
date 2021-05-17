@@ -1258,9 +1258,9 @@ var render = {
 					total = $gear.prop('limit');
 
 				if (i.glitch)
-					total += ',g';
+					total += ', complication';
 				else if (i.crit_glitch)
-					total += ',G';
+					total += ', ECHEC CRITIQUE !';
 
 				$gear.find('.result').html(total);
 			});
@@ -1416,9 +1416,9 @@ var render = {
 					total = $gear.prop('limit');
 
 				if (i.glitch)
-					total += ',g';
+					total += ', complication';
 				else if (i.crit_glitch)
-					total += ',G';
+					total += ', ECHEC CRITIQUE !';
 
 				$gear.find('.result').html(total);
 			});
@@ -1442,13 +1442,13 @@ var render = {
 				{
 					default:
 					case 1:
-						complex_gear.push('Erika MCD-1 cyberdeck (Indice 1, Atts 4 3 2 1, Programmes 1)');
+						complex_gear.push('Cyberdeck Erika MCD-1 (indice 1, Atts 4 3 2 1, Programme 1)');
 						break;
 					case 2:
-						complex_gear.push('Hermes Chariot cyberdeck (Indice 2, Atts 5 4 3 2, Programmes 2)');
+						complex_gear.push('Cyberdeck Hermes Chariot (indice 2, Atts 5 4 3 2, Programmes 2)');
 						break;
 					case 5:
-						complex_gear.push('Shiawase Cyber-5 cyberdeck (Indice 5, Atts 8 7 6 5, Programmes 5)');
+						complex_gear.push('Cyberdeck Shiawase Cyber-5 (indice 5, Atts 8 7 6 5, Programmes 5)');
 						break;
 				}
 			}
@@ -1463,7 +1463,7 @@ var render = {
 
 				if (item.hasOwnProperty('rating'))
 				{
-					item_display += ' rating ' + item.rating + '';
+					item_display += ' indice ' + item.rating + '';
 				}
 
 				if (item.hasOwnProperty('quantity'))
@@ -1510,7 +1510,7 @@ var render = {
 				commlink = 'Transys Avalon';
 		}
 
-		commlink += ' commlink (Indice ' + data.commlink + ')';
+		commlink += ' commlink (indice ' + data.commlink + ')';
 
 		commlink = '<div>' + commlink + '</div>';
 
@@ -1537,7 +1537,7 @@ var render = {
 
 				if (data.special.powers[i].hasOwnProperty('attribute'))
 				{
-					power = 'Improved ' + data.special.powers[i].attribute;
+					power = 'Attribut amélioré (' + data.special.powers[i].attribute + ')';
 				}
 
 				power += ' ' + data.special.powers[i].rating;
@@ -1918,7 +1918,7 @@ var render = {
 			else
 				entry_text.push('Pré. ' + entry.acc);
 
-			entry_text.push('Allonge  ' + entry.reach);
+			entry_text.push('All.  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
 				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
@@ -1949,7 +1949,7 @@ var render = {
 			else
 				entry_text.push('Pré. ' + limits.physical + ' (' + limits.physical_aug + ')');
 
-			entry_text.push('Allonge  ' + entry.reach);
+			entry_text.push('All.  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
 				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
@@ -2007,13 +2007,13 @@ var render = {
 				{
 					default:
 					case 1:
-						complex_gear.push('Erika MCD-1 cyberdeck (Indice 1, Atts 4 3 2 1, Programmes 1)');
+						complex_gear.push('Cyberdeck Erika MCD-1 (indice 1, Atts 4 3 2 1, Programmes 1)');
 						break;
 					case 2:
-						complex_gear.push('Hermes Chariot cyberdeck (Indice 2, Atts 5 4 3 2, Programmes 2)');
+						complex_gear.push('Cyberdeck Chariot (indice 2, Atts 5 4 3 2, Programmes 2)');
 						break;
 					case 5:
-						complex_gear.push('Shiawase Cyber-5 cyberdeck (Indice 5, Atts 8 7 6 5, Programmes 5)');
+						complex_gear.push('Cyberdeck Cyber-5 (indice 5, Atts 8 7 6 5, Programmes 5)');
 						break;
 				}
 			}
@@ -2075,7 +2075,7 @@ var render = {
 				commlink = 'Transys Avalon';
 		}
 
-		commlink += ' commlink (Indice ' + data.commlink + ')';
+		commlink += ' commlink (indice ' + data.commlink + ')';
 
 		commlink = '<div>' + commlink + '</div>';
 
