@@ -101,7 +101,7 @@ var db = {
 				}
 				break;
 
-			case 'thug':
+			case 'voyou':
 				res.attributes.reaction = 1;
 				res.attributes.strength = 1;
 				res.skills['Armes tranchantes'] = 2 + rating;
@@ -678,7 +678,7 @@ var db = {
 			}
 		}
 
-		if (special_type === 'Adepte')
+		if (special_type === 'Adept')
 		{
 			// What kind of adept?
 			var improved_skill, bonus_weapon;
@@ -809,7 +809,7 @@ var db = {
 							rating: 1
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							type: 'ability',
 							rating: 1,
 							ability: improved_skill
@@ -824,13 +824,13 @@ var db = {
 							rating: 1
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							type: 'ability',
 							rating: 1,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							type: 'attribute',
 							rating: 1,
 							attribute: 'Agility'
@@ -845,12 +845,12 @@ var db = {
 							rating: 1
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							rating: 1,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							rating: 2,
 							attribute: 'Agility'
 						}
@@ -864,12 +864,12 @@ var db = {
 							rating: 2
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							rating: 1,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							rating: 2,
 							attribute: 'Agility'
 						}
@@ -883,12 +883,12 @@ var db = {
 							rating: 2
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							rating: 3,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							rating: 2,
 							attribute: 'Agility'
 						}
@@ -902,12 +902,12 @@ var db = {
 							rating: 2
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							rating: 3,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							rating: 3,
 							attribute: 'Agility'
 						}
@@ -921,12 +921,12 @@ var db = {
 							rating: 3
 						},
 						{
-							name: 'Improved Ability',
+							name: 'Compétence améliorée',
 							rating: 3,
 							ability: improved_skill
 						},
 						{
-							name: 'Improved Physical Attribute',
+							name: 'Attribut amélioré',
 							rating: 3,
 							attribute: 'Agility'
 						}
@@ -1090,7 +1090,7 @@ var db = {
 						name: 'Shiawase Cyber-5',
 						type: 'cyberdeck',
 						rating: 5,
-						programs: ['Armure', 'Biofeedback', 'Décryptage', 'Chiffrement', 'Fork', 'Marteau', 'Lockdown']
+						programs: ['Armure', 'Biofeedback', 'Décryptage', 'Chiffrement', 'Fork', 'Marteau', 'Verrouillage']
 					});
 					break;
 
@@ -1279,7 +1279,7 @@ var db = {
 				case 'Elfe':
 					res.attributes.reaction = 2;
 					res.skills.Gymnastique = rating + 1;
-					res.skills.Négociations = rating + 1;
+					res.skills.Négociation = rating + 1;
 					break;
 
 				case 'Nain':

@@ -768,16 +768,16 @@ var render = {
 		{
 			$mook.find('.npc_name').html(data.name);
 
-			var description = data.gender + ' ' + data.race + ', Rating ' + data.professional_rating + ' ' + data.professional_description;
+			var description = data.gender + ' ' + data.race + ', Professionnalisme ' + data.professional_rating + ', ' + data.professional_description;
 
 			if (data.special.is_lt)
 				description += ' Lieutenant';
 			if (data.special.is_decker)
 				description += ' Decker';
 			if (data.special.is_adept)
-				description += ' Physical Adept';
+				description += ' Adepte';
 			if (data.special.is_mage)
-				description += ' Magician';
+				description += ' Mage';
 
 			$mook.find('.npc_description').html(description);
 		}
@@ -865,7 +865,7 @@ var render = {
 		if (data.special.is_decker === true)
 		{
 			var matrix_initiative = this.calc_initiative(data, augmented_attributes, 'matrix');
-			$mook.find('.information .matrix_initiative .value').html('Data Processing + ' + matrix_initiative.base + ' + ' + matrix_initiative.dice + 'D6');
+			$mook.find('.information .matrix_initiative .value').html('Traitement de données + ' + matrix_initiative.base + ' + ' + matrix_initiative.dice + 'D6');
 
 			$mook.find('.information .matrix_initiative button').button().click(function ()
 			{
@@ -878,7 +878,7 @@ var render = {
 
 				total += wp.penalty;
 
-				$mook.find('.information .matrix_initiative .result').html(total + " + DP");
+				$mook.find('.information .matrix_initiative .result').html(total + " + TdD");
 			});
 		}
 		else
@@ -917,19 +917,19 @@ var render = {
 		var limit_display = '';
 
 		if (limits.physical === limits.physical_aug)
-			limit_display += 'Physical ' + limits.physical + ', ';
+			limit_display += 'Physique ' + limits.physical + ', ';
 		else
-			limit_display += 'Physical ' + limits.physical + ' (' + limits.physical_aug + '), ';
+			limit_display += 'Physique ' + limits.physical + ' (' + limits.physical_aug + '), ';
 
 		if (limits.mental === limits.mental_aug)
-			limit_display += 'Mental ' + limits.mental + ', ';
+			limit_display += 'Mentale ' + limits.mental + ', ';
 		else
-			limit_display += 'Mental ' + limits.mental + ' (' + limits.mental_aug + '), ';
+			limit_display += 'Mentale ' + limits.mental + ' (' + limits.mental_aug + '), ';
 
 		if (limits.social === limits.social_aug)
-			limit_display += 'Social ' + limits.social;
+			limit_display += 'Sociale ' + limits.social;
 		else
-			limit_display += 'Social ' + limits.social + ' (' + limits.social_aug + ')';
+			limit_display += 'Sociale ' + limits.social + ' (' + limits.social_aug + ')';
 
 		$mook.find('.information .limits .value').html(limit_display);
 
@@ -958,7 +958,7 @@ var render = {
 
 		power_focus = data.gear.find(function (gear)
 		{
-			return gear.name === 'Power focus';
+			return gear.name === 'Focus de pouvoir';
 		});
 
 		// TODO This only really accounts for 1 improved ability, but that's all that is generated right now
@@ -968,7 +968,7 @@ var render = {
 			{
 				var improved_power = data.special.powers[i];
 
-				if (improved_power.name === 'Improved Ability')
+				if (improved_power.name === 'Compétence améliorée')
 				{
 					improved_skills.push(improved_power.ability);
 
@@ -1002,7 +1002,7 @@ var render = {
 			}
 			else if (skill_data.limit === 'gear')
 			{
-				skill_limit = 'Gear';
+				skill_limit = 'Equipement';
 			}
 			else if (limits.hasOwnProperty(skill_data.limit))
 			{
@@ -1052,9 +1052,9 @@ var render = {
 					total = $skill.prop('limit');
 
 				if (i.glitch)
-					total += ', glitch';
+					total += ', complication';
 				else if (i.crit_glitch)
-					total += ', CRIT GLITCH';
+					total += ', ECHEC CRITIQUE';
 
 				$skill.find('.result').html(total);
 			});
@@ -1078,12 +1078,12 @@ var render = {
 
 				augment = aug.name;
 
-				if (aug.name === 'Bone Lacing')
+				if (aug.name === 'Ossature renforcée')
 				{
 					if (aug.rating === 1)
-						augment += ' (Plastic)';
+						augment += ' (Plastique)';
 					else if (aug.rating === 2)
-						augment += ' (Aluminum)';
+						augment += ' (Aluminium)';
 					else if (aug.rating === 3)
 						augment += ' (Titanium)';
 				}
@@ -1124,10 +1124,10 @@ var render = {
 					soak += aug.bonus_armor;
 			}
 
-			if (aug.name === 'Bone Lacing')
+			if (aug.name === 'Ossature renforcée')
 				soak += (aug.rating * 2);
 
-			if (aug.name === 'Orthoskin' || aug.name === 'Dermal Plating' || aug.name === 'Bone Density Augmentation')
+			if (aug.name === 'Orthoderme' || aug.name === 'Armure dermique' || aug.name === 'Augmentation de densité osseuse')
 				soak += aug.rating;
 		});
 
@@ -1201,19 +1201,19 @@ var render = {
 				entry_text.push('Force ' + entry.force);
 
 			if (entry.acc_modified !== null)
-				entry_text.push('Acc ' + entry.acc + ' (' + entry.acc_modified + ')');
+				entry_text.push('Pré. ' + entry.acc + ' (' + entry.acc_modified + ')');
 			else
-				entry_text.push('Acc ' + entry.acc);
+				entry_text.push('Pré. ' + entry.acc);
 
-			entry_text.push('Reach ' + entry.reach);
+			entry_text.push('All.  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
 			$gear = render.get_template('display_weapon').appendTo($mook.find('.information .gear .value'));
 
@@ -1271,30 +1271,30 @@ var render = {
 
 		data.augmentations.forEach(function(aug)
 		{
-			if (aug.name === 'Cyber Spur')
+			if (aug.name === 'Griffes (retractable) implantées')
 				has_spur = true;
 		});
 
 		if (has_spur)
 		{
-			entry = db.get_weapon('Cyber Spur');
+			entry = db.get_weapon('Griffes (retractable) implantées');
 
 			entry_text = [entry.ability];
 
 			if (limits.physical === limits.physical_aug)
-				entry_text.push('Acc ' + limits.physical);
+				entry_text.push('Pré. ' + limits.physical);
 			else
-				entry_text.push('Acc ' + limits.physical + ' (' + limits.physical_aug + ')');
+				entry_text.push('Pré. ' + limits.physical + ' (' + limits.physical_aug + ')');
 
-			entry_text.push('Reach ' + entry.reach);
+			entry_text.push('All.  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
 			$gear = render.get_template('display_weapon').appendTo($mook.find('.information .gear .value'));
 
@@ -1351,29 +1351,29 @@ var render = {
 			entry_text = [entry.type];
 
 			if (entry.acc_modified !== null)
-				entry_text.push('Acc ' + entry.acc + ' (' + entry.acc_modified + ')');
+				entry_text.push('Pré. ' + entry.acc + ' (' + entry.acc_modified + ')');
 			else
-				entry_text.push('Acc ' + entry.acc);
+				entry_text.push('Pré. ' + entry.acc);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
 			entry_text.push(entry.modes);
 
 			if (entry.rc < entry.rc_modified)
-				entry_text.push('RC ' + entry.rc + ' (' + entry.rc_modified + ')');
+				entry_text.push('CR ' + entry.rc + ' (' + entry.rc_modified + ')');
 			else
-				entry_text.push('RC ' + entry.dv);
+				entry_text.push('CR ' + entry.dv);
 
 			entry_text.push(entry.ammo_count + '(' + entry.reload + ')');
 
 			if (entry.ammo_type !== '')
-				entry_text.push('w/' + entry.ammo_type + ' ammo');
+				entry_text.push('avec ' + entry.ammo_type + ' mun.');
 
 			// gear.push('<div>' + entry.name + ' [' + entry_text.join(', ') + ']</div>');
 			$gear = render.get_template('display_weapon').appendTo($mook.find('.information .gear .value'));
@@ -1442,19 +1442,19 @@ var render = {
 				{
 					default:
 					case 1:
-						complex_gear.push('Erika MCD-1 cyberdeck (DR 1, Atts 4 3 2 1, Programs 1)');
+						complex_gear.push('Erika MCD-1 cyberdeck (Indice 1, Atts 4 3 2 1, Programmes 1)');
 						break;
 					case 2:
-						complex_gear.push('Hermes Chariot cyberdeck (DR 2, Atts 5 4 3 2, Programs 2)');
+						complex_gear.push('Hermes Chariot cyberdeck (Indice 2, Atts 5 4 3 2, Programmes 2)');
 						break;
 					case 5:
-						complex_gear.push('Shiawase Cyber-5 cyberdeck (DR 5, Atts 8 7 6 5, Programs 5)');
+						complex_gear.push('Shiawase Cyber-5 cyberdeck (Indice 5, Atts 8 7 6 5, Programmes 5)');
 						break;
 				}
 			}
-			else if (data.gear[i].name === 'Qi Focus')
+			else if (data.gear[i].name === 'Focus Qi')
 			{
-				complex_gear.push('Qi Focus (Force ' + data.gear[i].force + ', ' + data.gear[i].power + ' ' + data.gear[i].rating + ')');
+				complex_gear.push('Focus Qi (Force ' + data.gear[i].force + ', ' + data.gear[i].power + ' ' + data.gear[i].rating + ')');
 			}
 			else
 			{
@@ -1510,7 +1510,7 @@ var render = {
 				commlink = 'Transys Avalon';
 		}
 
-		commlink += ' commlink (DR ' + data.commlink + ')';
+		commlink += ' commlink (Indice ' + data.commlink + ')';
 
 		commlink = '<div>' + commlink + '</div>';
 
@@ -1562,7 +1562,7 @@ var render = {
 			$mook.find('.information .spells').hide();
 		}
 
-		// Decker Programs
+		// Decker Programmes
 		if (data.special.is_decker === true)
 		{
 			// Find the deck in the gear, get the programs from it
@@ -1605,16 +1605,16 @@ var render = {
 		{
 			$mook.find('.npc_name').html(data.name);
 
-			var description = data.gender + ' ' + data.race + ', Rating ' + data.professional_rating + ' ' + data.professional_description;
+			var description = data.gender + ' ' + data.race + ', Professionnalisme ' + data.professional_rating + ', ' + data.professional_description;
 
 			if (data.special.is_lt)
 				description += ' Lieutenant';
 			if (data.special.is_decker)
 				description += ' Decker';
 			if (data.special.is_adept)
-				description += ' Physical Adept';
+				description += ' Adepte';
 			if (data.special.is_mage)
-				description += ' Magician';
+				description += ' Magicien';
 
 			$mook.find('.npc_description').html(description);
 		}
@@ -1690,7 +1690,7 @@ var render = {
 		if (data.special.is_decker === true)
 		{
 			initiative = this.calc_initiative(data, augmented_attributes, 'matrix');
-			$mook.find('.information .matrix_initiative .value').html('Data Processing + ' + initiative.base + ' + ' + initiative.dice + 'D6');
+			$mook.find('.information .matrix_initiative .value').html('Traitement de données + ' + initiative.base + ' + ' + initiative.dice + 'D6');
 		}
 		else
 		{
@@ -1726,19 +1726,19 @@ var render = {
 		var limit_display = '';
 
 		if (limits.physical === limits.physical_aug)
-			limit_display += 'Physical ' + limits.physical + ', ';
+			limit_display += 'Physique ' + limits.physical + ', ';
 		else
-			limit_display += 'Physical ' + limits.physical + ' (' + limits.physical_aug + '), ';
+			limit_display += 'Physique ' + limits.physical + ' (' + limits.physical_aug + '), ';
 
 		if (limits.mental === limits.mental_aug)
-			limit_display += 'Mental ' + limits.mental + ', ';
+			limit_display += 'Mentale ' + limits.mental + ', ';
 		else
-			limit_display += 'Mental ' + limits.mental + ' (' + limits.mental_aug + '), ';
+			limit_display += 'Mentale ' + limits.mental + ' (' + limits.mental_aug + '), ';
 
 		if (limits.social === limits.social_aug)
-			limit_display += 'Social ' + limits.social;
+			limit_display += 'Sociale ' + limits.social;
 		else
-			limit_display += 'Social ' + limits.social + ' (' + limits.social_aug + ')';
+			limit_display += 'Sociale ' + limits.social + ' (' + limits.social_aug + ')';
 
 		$mook.find('.information .limits .value').html(limit_display);
 
@@ -1772,7 +1772,7 @@ var render = {
 			{
 				var improved_power = data.special.powers[i];
 
-				if (improved_power.name === 'Improved Ability')
+				if (improved_power.name === 'Compétence améliorée')
 				{
 					improved_skills.push(improved_power.ability);
 
@@ -1811,12 +1811,12 @@ var render = {
 
 				augment = aug.name;
 
-				if (aug.name === 'Bone Lacing')
+				if (aug.name === 'Ossature renforcée')
 				{
 					if (aug.rating === 1)
-						augment += ' (Plastic)';
+						augment += ' (Plastique)';
 					else if (aug.rating === 2)
-						augment += ' (Aluminum)';
+						augment += ' (Aluminium)';
 					else if (aug.rating === 3)
 						augment += ' (Titanium)';
 				}
@@ -1842,7 +1842,7 @@ var render = {
 
 		// Armor & Damage Resistance
 		// The PQ Toughness grants 1 bonus soak die
-		var soak = (data.qualities.positive.includes('Toughness')) ? 1 : 0;
+		var soak = (data.qualities.positive.includes('Dur à cuire')) ? 1 : 0;
 
 		soak += parseInt(augmented_attributes.body);
 
@@ -1857,10 +1857,10 @@ var render = {
 					soak += aug.bonus_armor;
 			}
 
-			if (aug.name === 'Bone Lacing')
+			if (aug.name === 'Ossature renforcée')
 				soak += (aug.rating * 2);
 
-			if (aug.name === 'Orthoskin' || aug.name === 'Dermal Plating' || aug.name === 'Bone Density Augmentation')
+			if (aug.name === 'Orthoderme' || aug.name === 'Armure dermique' || aug.name === 'Augmentation de densité osseuse')
 				soak += aug.rating;
 		});
 
@@ -1914,19 +1914,19 @@ var render = {
 				entry_text.push('Force ' + entry.force);
 
 			if (entry.acc_modified !== null)
-				entry_text.push('Acc ' + entry.acc + ' (' + entry.acc_modified + ')');
+				entry_text.push('Pré. ' + entry.acc + ' (' + entry.acc_modified + ')');
 			else
-				entry_text.push('Acc ' + entry.acc);
+				entry_text.push('Pré. ' + entry.acc);
 
-			entry_text.push('Reach ' + entry.reach);
+			entry_text.push('Allonge  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
 			gear.push('<div>' + entry.name + ' [' + entry_text.join(', ') + ']</div>');
 		}
@@ -1935,31 +1935,31 @@ var render = {
 		var has_spur = false;
 		data.augmentations.forEach(function(aug)
 		{
-			if (aug.name === 'Cyber Spur')
+			if (aug.name === 'Griffes (retractable) implantées')
 				has_spur = true;
 		});
-		if (data.augmentations.includes('Cyber Spur') || has_spur)
+		if (data.augmentations.includes('Griffes (retractable) implantées') || has_spur)
 		{
-			entry = db.get_weapon('Cyber Spur');
+			entry = db.get_weapon('Griffes (retractable) implantées');
 
 			entry_text = [entry.ability];
 
 			if (limits.physical === limits.physical_aug)
-				entry_text.push('Acc ' + limits.physical);
+				entry_text.push('Pré. ' + limits.physical);
 			else
-				entry_text.push('Acc ' + limits.physical + ' (' + limits.physical_aug + ')');
+				entry_text.push('Pré. ' + limits.physical + ' (' + limits.physical_aug + ')');
 
-			entry_text.push('Reach ' + entry.reach);
+			entry_text.push('Allonge  ' + entry.reach);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
-			gear.push('<div>Cyber Spur [' + entry_text.join(', ') + ']</div>');
+			gear.push('<div>Griffes (retractable) implantées [' + entry_text.join(', ') + ']</div>');
 		}
 
 		for (i in ranged)
@@ -1969,29 +1969,29 @@ var render = {
 			entry_text = [entry.type];
 
 			if (entry.acc_modified !== null)
-				entry_text.push('Acc ' + entry.acc + ' (' + entry.acc_modified + ')');
+				entry_text.push('Pré. ' + entry.acc + ' (' + entry.acc_modified + ')');
 			else
-				entry_text.push('Acc ' + entry.acc);
+				entry_text.push('Pré. ' + entry.acc);
 
 			if (entry.damage_attribute === 'strength')
-				entry_text.push('DV (STR + ' + entry.dv + ')' + entry.damage_type);
+				entry_text.push('VD (FOR  + ' + entry.dv + ')' + entry.damage_type);
 			else
-				entry_text.push('DV ' + entry.dv + entry.damage_type);
+				entry_text.push('VD ' + entry.dv + entry.damage_type);
 
 			if (entry.ap !== 0)
-				entry_text.push('AP ' + entry.ap);
+				entry_text.push('PA ' + entry.ap);
 
 			entry_text.push(entry.modes);
 
 			if (entry.rc < entry.rc_modified)
-				entry_text.push('RC ' + entry.rc + ' (' + entry.rc_modified + ')');
+				entry_text.push('CR ' + entry.rc + ' (' + entry.rc_modified + ')');
 			else
-				entry_text.push('RC ' + entry.dv);
+				entry_text.push('CR ' + entry.dv);
 
 			entry_text.push(entry.ammo_count + '(' + entry.reload + ')');
 
 			if (entry.ammo_type !== '')
-				entry_text.push('w/' + entry.ammo_type + ' ammo');
+				entry_text.push('avec ' + entry.ammo_type + ' mun.');
 
 			gear.push('<div>' + entry.name + ' [' + entry_text.join(', ') + ']</div>');
 		}
@@ -2007,19 +2007,19 @@ var render = {
 				{
 					default:
 					case 1:
-						complex_gear.push('Erika MCD-1 cyberdeck (DR 1, Atts 4 3 2 1, Programs 1)');
+						complex_gear.push('Erika MCD-1 cyberdeck (Indice 1, Atts 4 3 2 1, Programmes 1)');
 						break;
 					case 2:
-						complex_gear.push('Hermes Chariot cyberdeck (DR 2, Atts 5 4 3 2, Programs 2)');
+						complex_gear.push('Hermes Chariot cyberdeck (Indice 2, Atts 5 4 3 2, Programmes 2)');
 						break;
 					case 5:
-						complex_gear.push('Shiawase Cyber-5 cyberdeck (DR 5, Atts 8 7 6 5, Programs 5)');
+						complex_gear.push('Shiawase Cyber-5 cyberdeck (Indice 5, Atts 8 7 6 5, Programmes 5)');
 						break;
 				}
 			}
-			else if (data.gear[i].name === 'Qi Focus')
+			else if (data.gear[i].name === 'Focus Qi')
 			{
-				complex_gear.push('Qi Focus (Force ' + data.gear[i].force + ', ' + data.gear[i].power + ' ' + data.gear[i].rating + ')');
+				complex_gear.push('Focus Qi (Puissance ' + data.gear[i].force + ', ' + data.gear[i].power + ' ' + data.gear[i].rating + ')');
 			}
 			else
 			{
@@ -2028,7 +2028,7 @@ var render = {
 
 				if (item.hasOwnProperty('rating'))
 				{
-					item_display += ' rating ' + item.rating + '';
+					item_display += ' indice ' + item.rating + '';
 				}
 
 				if (item.hasOwnProperty('quantity'))
@@ -2075,7 +2075,7 @@ var render = {
 				commlink = 'Transys Avalon';
 		}
 
-		commlink += ' commlink (DR ' + data.commlink + ')';
+		commlink += ' commlink (Indice ' + data.commlink + ')';
 
 		commlink = '<div>' + commlink + '</div>';
 
@@ -2099,7 +2099,7 @@ var render = {
 
 				if (data.special.powers[i].hasOwnProperty('attribute'))
 				{
-					power = 'Improved ' + data.special.powers[i].attribute;
+					power = 'Attribut amélioré (' + data.special.powers[i].attribute + ')';
 				}
 
 				power += ' ' + data.special.powers[i].rating;
@@ -2124,7 +2124,7 @@ var render = {
 			$mook.find('.information .spells').hide();
 		}
 
-		// Decker Programs
+		// Decker Programmes
 		if (data.special.is_decker === true)
 		{
 			// Find the deck in the gear, get the programs from it
@@ -2177,7 +2177,7 @@ var render = {
 			// Handle essence loss
 			switch (name)
 			{
-				case 'Wired Reflexes':
+				case 'Réflexes câblés':
 					if (aug.rating === 1)
 						attr.essence -= 2;
 					else if (aug.rating === 2)
@@ -2186,7 +2186,7 @@ var render = {
 						attr.essence -= 5;
 					break;
 
-				case 'Cybereyes':
+				case 'Cyberyeux':
 					attr.essence -= (0.1 + aug.essence * aug.rating);
 					break;
 
@@ -2205,27 +2205,27 @@ var render = {
 			// Handle attribute changes
 			switch (name)
 			{
-				case 'Muscle Augmentation':
+				case 'Renforcement musculaire':
 					attr.strength += aug.rating;
 					break;
 
-				case 'Muscle Toner':
+				case 'Tonification musculaire':
 					attr.agility += aug.rating;
 					break;
 
-				case 'Cerebellum Booster':
+				case 'Cervelet amplifié':
 					attr.intuition += aug.rating;
 					break;
 
-				case 'Cerebral Booster':
+				case 'Booster cérébral':
 					attr.logic += aug.rating;
 					break;
 
-				case 'Wired Reflexes':
+				case 'Réflexes câblés':
 					attr.reaction += aug.rating;
 					break;
 
-				case 'Synaptic Booster':
+				case 'Booster synaptique':
 					attr.reaction += aug.rating;
 					break;
 
@@ -2268,11 +2268,11 @@ var render = {
 			{
 				switch (power.name)
 				{
-					case 'Improved Reflexes':
+					case 'Réflexes améliorés':
 						attr.reaction += power.rating;
 						break;
 
-					case 'Improved Physical Attribute':
+					case 'Attribut amélioré':
 						attr[power.attribute.toLowerCase()] += power.rating;
 						break;
 				}
@@ -2281,11 +2281,11 @@ var render = {
 			// Also look through the gear section for Qi Foci
 			for (var i in data.gear)
 			{
-				if (data.gear[i].hasOwnProperty('name') && data.gear[i].name === 'Qi Focus')
+				if (data.gear[i].hasOwnProperty('name') && data.gear[i].name === 'Focus Qi')
 				{
 					var focus = data.gear[i];
 
-					if (focus.hasOwnProperty('type') && focus.type === 'Improve Attribute')
+					if (focus.hasOwnProperty('type') && focus.type === 'Attribut amélioré')
 					{
 						attr[focus.attribute] += focus.rating;
 					}
@@ -2331,8 +2331,8 @@ var render = {
 			{
 				switch (aug.name)
 				{
-					case 'Wired Reflexes':
-					case 'Synaptic Booster':
+					case 'Réflexes câblés':
+					case 'Booster synaptique':
 						dice_aug += aug.rating;
 						break;
 				}
@@ -2344,7 +2344,7 @@ var render = {
 				{
 					switch (power.name)
 					{
-						case 'Improved Reflexes':
+						case 'Réflexes améliorés':
 							dice_aug += power.rating;
 							break;
 					}
@@ -2432,7 +2432,7 @@ var render = {
 				wp.penalty = parseInt($(this).prop('penalty'));
 				if (isNaN(wp.penalty))
 					wp.penalty = 0;
-				$cm.find('.penalty').html('Penalty: ' + wp.penalty);
+				$cm.find('.penalty').html('Malus : ' + wp.penalty);
 			});
 
 			// Add a visual to the boxes
@@ -2504,7 +2504,7 @@ var render = {
 				if (isNaN(wp.physical))
 					wp.physical = 0;
 				wp.penalty = wp.physical + wp.stun;
-				$cm.find('.penalty').html('Penalty: ' + wp.penalty);
+				$cm.find('.penalty').html('Malus : ' + wp.penalty);
 			});
 
 			// Add a visual to the boxes
@@ -2550,7 +2550,7 @@ var render = {
 				if (isNaN(wp.stun))
 					wp.stun = 0;
 				wp.penalty = wp.physical + wp.stun;
-				$cm.find('.penalty').html('Penalty: ' + wp.penalty);
+				$cm.find('.penalty').html('Malus : ' + wp.penalty);
 			});
 
 			// Add a visual to the boxes
