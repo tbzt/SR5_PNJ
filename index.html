@@ -80,7 +80,7 @@
 		<div class="edging">
 			<div class="row">
 				<input type="radio" id="explode" name="radio">
-				<label for="explode">Explode</label>
+				<label for="explode">Explosif</label>
 			</div>
 			<div class="row">
 				<input type="radio" id="normal" name="radio" checked="checked">
@@ -92,7 +92,7 @@
 </div>
 
 <div class="menu">
-	<button class="cast">Casting</button>
+	<button class="cast">Ombres portées</button>
 	<button class="minion">Générateur de PNJ</button>
 	<button class="contact">Générateur de contacts</button>
 	<button class="run">Générateur de Run</button>
@@ -105,16 +105,16 @@
 <div template_holder>
 	<div template="main_screen" class="intro_screen">
 		<div>Bienvenue sur le Mob Master de Shadowrun 5e édition !</div> 
-		<p>Le GM Mob Master a été créé par <a href=https://github.com/toktic/sr_gmt>Toktic</a> comme un ensemble d'outils pour les maîtres de jeu de Shadowrun.</p> 
-		<p>Il est divisé en plusieurs sections, toutes accessibles par les boutons de gauche. Il y a également un simulateur de dés en haut pour vous permettre de simuler rapidement un poignée de dés.</p> 
+		<p>Le GM Mob Master a été créé par <a href=https://github.com/toktic/sr_gmt>Toktic</a> comme un ensemble d'outils pour les meneurs de Shadowrun.</p> 
+		<p>Il est divisé en plusieurs sections, toutes accessibles par les onglets à gauche. Il y a également un simulateur de dés en haut pour vous permettre de simuler rapidement un poignée de dés.</p> 
 		<ul> 
-			<li>La première section est <b>Cast of Shadows</b>. Elle contient l'assortiment complet des PNJs que vous créez et sauvegardez pour les utiliser plus tard. Le "Casting" répertorie tous les figurants sauvegardés. Vous pouvez créer plein d'onglets personnalisés et ne lister que les membres du casting dont vous avez besoin pour une scène sur cet onglet.</li> 
-			<li>Vient ensuite le <b>Générateur de PNJ</b>. Vous pouvez utiliser les onglets qui s'y trouvent pour créer un seul PNJ ou une horde d'entre eux. Sachez simplement que si vous en créez un et que vous ne le sauvegardez pas dans le <b>Cast of Shadows</b>, il disparaîtra et sera perdu.</li> 
-			<li><b>Paramètres</b> a une sélection de, vous l'avez deviné, paramètres que vous pouvez modifier. Il y a également un bouton Atomiser si vous voulez supprimer toutes vos informations enregistrées et recommencer à zéro.</li> 
+			<li>La première section est <b>Ombres portées</b>. Elle contient l'assortiment complet des PNJs que vous créez et sauvegardez pour les utiliser plus tard. Ce casting répertorie tous les figurants sauvegardés. Vous pouvez créer plein de groupes personnalisés et ne lister que les figurants dont vous avez besoin pour une scène.</li> 
+			<li>Vient ensuite le <b>Générateur de PNJ</b>. Vous pouvez l'utiliser pour créer un seul PNJ ou une bande. Sachez simplement que si vous en créez un et que vous ne le sauvegardez pas dans les <b>Ombres portées</b>, il disparaîtra et sera perdu (à jamais).</li> 
+			<li><b>Paramètres</b> propose une sélection de, vous l'avez deviné, paramètres que vous pouvez modifier. Il y a également un bouton <b>Atomiser</b> si vous voulez supprimer toutes les informations enregistrées et recommencer à zéro.</li> 
 		</ul> 
 		<p>Ce code a également servi d'exutoire créatif à Toktic pour la programmation pour son propre plaisir. Mais si vous le trouvez par hasard à une convention et que vous voulez le remercier, vous pouvez lui payer une bière à la GenCon.</p> 
 		<p>Ce code a été traduit en français par Michel_Platinium qui l'héberge sur son propre serveur. Pareil pour la bière, moins la GenCon.</p>
-		<p><b>Sur la rétention des données :</b> le site utilise une fonctionnalité web, appelée Local Storage, qui agit un peu comme des cookies. Les données sont stockées dans le cache de votre navigateur pour vous pour ce navigateur. Les données ne sont pas partagées avec d'autres utilisateurs de votre ordinateur, ni même avec d'autres navigateurs. Donc, si vous prenez le temps de créer et de sauvegarder un casting, assurez-vous de le créer sur l'ordinateur que vous apportez à la session de jeu. Ou imprimez-les, ça marche aussi !</p> 
+		<p><b>Sur la conservation des données :</b> le site utilise une fonctionnalité web, appelée Local Storage, qui agit un peu comme des cookies. Les données sont stockées dans le cache de votre navigateur. Les données ne sont pas partagées avec d'autres utilisateurs de votre ordinateur, ni même avec d'autres navigateurs, ni au créateur et ni à Michel_Platinium. Donc, si vous prenez le temps de créer et de sauvegarder des PNJs, assurez-vous de le créer sur l'ordinateur que vous apportez à la session de jeu. Ou imprimez-les, ça marche aussi !</p> 
 		<p>Amusez-vous bien avec cet outil ! Il est destiné à être utilisé et destiné à rendre votre vie plus facile en tant que MJ.</p> 
 		<div class="legalese">La Topps Company, Inc. a la propriété exclusive des noms, du logo, des œuvres d'art, des marques, des photographies, des sons, de l'audio, de la vidéo et/ou de tout matriel propriétaire utilisé en relation avec le jeu Shadowrun.<br />Le contenu original de GM Mob Master est sous licence Creative Commons Attribution-NonCommercial 4.0 International. Donc, si vous utilisez quoi que ce soit ici, veuillez donner le crédit où il est dû.<br />GM Mob Master est fourni "tel quel" et aucune garantie n'est fournie ou déduite. En aucun cas, le détenteur du droit d'auteur ou les contributeurs ne sont responsables des dommages quelle que soit la manière dont ils sont causés.</div> 
 		<div class="build_mismatch_nuke_storage"> <p>La version du logiciel que vous exécutez ne correspond pas à la version des données stockées, ce qui causera des problèmes. Voulez-vous supprimer les données stockées locales et repartir de zéro ? </p> <p>Alternativement, regardez la version des données stockées et saisissez plutôt cette version du code.</p>
@@ -129,16 +129,16 @@
 	<div template="cast_of_shadows">
 		<div class="cast_of_shadows">
 			<ul class="cast_tabs">
-				<li tab_id="0"><a href="#0" tab_id="0">Cast Management</a></li>
+				<li tab_id="0"><a href="#0" tab_id="0">Ombres portées</a></li>
 			</ul>
 			<div id="0">
-				<div>Welcome to your cast of shadows! You can edit tab names and rearrange them here.</div>
+				<div>Bienvenue dans les Ombres ! Vous pouvez créez des groupes et les modifier ici.</div>
 
 				<div class="spacer_40"></div>
 
 				<div class="edit_tabs">
 					<div class="add_tab_wrapper">
-						<span>Add tab:</span>
+						<span>Ajouter un groupe :</span>
 						<input id="add_tab_name"/>
 						<button class="add_tab smaller_button"><span class="ui-icon ui-icon-circle-plus"></span></button>
 					</div>
@@ -146,7 +146,7 @@
 					<div class="spacer_20"></div>
 
 					<div class="edit_tab_wrapper">
-						<span>Edit tabs:</span>
+						<span>Modifier un groupe :</span>
 					</div>
 				</div>
 			</div>
@@ -178,9 +178,10 @@
 
 
 	<div template="settings">
-		<h2>Settings</h2>
+		<h2>Paramètres</h2>
 		<div class="row">
 			<div class="description">Cela va supprimer tous les paramètres, les PNJ, tout. C'est la grenade dans le magasin de porcelaine. Tout sera perdu, rien ne sera sauvé.</div>
+			<br>
 			<button id="delete_localstorage">Atomiser</button>
 		</div>
 
@@ -220,10 +221,11 @@
 			</ul>
 			<div id="overview">
 				<div class="intro">Le générateur de PNJ est le concept qui a donné le coup d'envoi de la création de ces outils. Ici, vous pouvez facilement créer une bande de voyous pour harceler le groupe ou une équipe HTR surpuissante pour les débusquer d'un bâtiment d'entreprise.</div>
-				<div class="intro">Lors de la génération d'un seul PNJ, il y a plusieurs catégories et options générales parmi lesquelles vous pouvez choisir ou laisser tout au hasard. Une fois le PNJ créé, vous pouvez les enregistrer dans la section <b>Cast of Shadows</b>. Ils peuvent également être modifiés à la fois immédiatement ou plus tard. Cependant, ils ne sont pas sauvegardés tant qu'ils n'ont pas été ajoutés à la <b>Cast of Shadows</b>.</div> 
+				<div class="intro">Lors de la génération d'un seul PNJ, il y a plusieurs catégories et options générales parmi lesquelles vous pouvez choisir ou laisser tout au hasard. Une fois le PNJ créé, vous pouvez les enregistrer dans la section <b>Ombres portées</b>. Ils peuvent également être modifiés à la fois immédiatement ou plus tard. Cependant, ils ne sont pas sauvegardés tant qu'ils n'ont pas été ajoutés à la <b>Cast of Shadows</b>.</div> 
 				<div class="intro">Générer un groupe de PNJ fonctionne de manière similaire, en ne définissant ici que les grandes lignes et en vous laissant affiner individuellement les PNJ plus tard. </div> 
 				<div class="intro">Générer l'un des <i>Types spéciaux</i> ne se produit que si vous choisissez l'option correspondante.</div> 
 				<div class="intro">Ces PNJ utilisent les exemples de figurants du livre des règles comme lignes directrices. Ils ne sont pas censés être parfaits ni même optimaux. N'hésitez pas à mettre votre grain de sel.</div>
+				<br>
 				<button class="generate_mook">Generer un PNJ</button>
 				<button class="generate_mob">Generer un groupe de PNJ</button>
 			</div>
@@ -272,7 +274,7 @@
 					<div class="input_row">
 						<label equalize>Type de profession</label>
 						<select name="professional_type">
-							<option value="">- Random</option>
+							<option value="">- Aléatoire</option>
 							<option value="civil">Civil</option>
 							<option value="voyou">Voyou</option>
 							<option value="ganger">Membre d'un gang</option>
@@ -302,11 +304,11 @@
 
 					<div id="generated_results"></div>
 
-					<button id="discard_minion">Rejeter</button>
+					<button id="discard_minion">Virer</button>
 
-					<button id="add_to_cast">Ajouter au Cast</button>
+					<button id="add_to_cast">Ajouter aux Ombres</button>
 
-					<button id="add_dialog">Ajouter à un onglet spécifique</button>
+					<button id="add_dialog">Ajouter à un groupe spécifique</button>
 				</div>
 			</div>
 			<div id="mob_generator">
@@ -398,11 +400,11 @@
 
 					<div id="generated_results"></div>
 
-					<button id="discard_minion">Les rejeter</button>
+					<button id="discard_minion">Les virer</button>
 
-					<button id="add_to_cast">Les ajouter au Cast</button>
+					<button id="add_to_cast">Les ajouter aux ombres</button>
 
-					<button id="add_dialog">Les ajouter à un onglet spécifique</button>
+					<button id="add_dialog">Les ajouter à un groupe spécifique</button>
 				</div>
 			</div>
 		</div>
@@ -410,8 +412,8 @@
 
 	<div template="render__display_npc" class="display_npc_wrapper">
 		<div class="controls">
-			<button class="tiny_button action"><span title="Action mode" class="ui-icon ui-icon-play"></span></button>
-			<button class="tiny_button edit"><span title="Edit mode" class="ui-icon ui-icon-pencil"></span></button>
+			<button class="tiny_button action"><span title="Mode jeu" class="ui-icon ui-icon-play"></span></button>
+			<button class="tiny_button edit"><span title="Mode édition" class="ui-icon ui-icon-pencil"></span></button>
 		</div>
 		<div class="npc_name"></div>
 		<div class="npc_description"></div>
@@ -523,7 +525,7 @@
 	<div template="render__action_npc" class="display_npc_wrapper action_npc_wrapper">
 		<div class="controls">
 			<button class="tiny_button display"><span title="Display mode" class="ui-icon ui-icon-search"></span></button>
-			<button class="tiny_button edit"><span title="Edit mode" class="ui-icon ui-icon-pencil"></span></button>
+			<button class="tiny_button edit"><span title="Mode édition" class="ui-icon ui-icon-pencil"></span></button>
 		</div>
 		<div class="npc_name"></div>
 		<div class="npc_description"></div>
@@ -836,8 +838,9 @@
 	</div>
 
 	<div template="cast__full_list" class="cast__full_list">
-		<div class="empty_message">Vous n'avez pas de figurants enregistrés dans votre Casting. Il n'y a rien à voir ici, continuez.</div> 
-		<div class="cast_message">Voici la liste complète de tous les figurants que vous avez ajoutés à votre Casting.</div>
+		<div class="empty_message">Vous n'avez pas de figurants enregistrés dans vos ombres. Il n'y a rien à voir ici !</div> 
+		<div class="cast_message">Voici la liste complète de tous les figurants que vous avez ajoutés à vos ombres portées.</div>
+		<br>
 		<div list></div>
 	</div>
 
@@ -850,17 +853,17 @@
 			<div class="edited_date"></div>
 			<div class="add_to_tab">
 				<div>
-					<span>Ajouter le PNJ à l'onglet :</span>
+					<span>Ajouter le PNJ au groupe :</span>
 					<select name="tab_name"></select>
 				</div>
-				<button class="add_npc"><span title="L'ajouter">Ajouter le pNJ</span></button>
-				<button class="add_npc_and_switch"><span title="Ajouter &amp; remplacer">Ajouter &amp; remplacer l'onglet</span></button>
+				<button class="add_npc"><span title="L'ajouter">Ajouter le PNJ</span></button>
+				<button class="add_npc_and_switch"><span title="Ajouter &amp; remplacer">Ajouter &amp; remplacer le groupe</span></button>
 			</div>
 
-			<div class="clone_dialog">Voulez-vous cloner ce PNJ ? Cela générera un nouveau clone sans l'ajouter à aucun onglet de casting.</div> 
-			<div class="delete_dialog">Etes-vous sûr de vouloir supprimer ce personnage ? Le supprimer ici le supprimera également de tous les autres onglets. C'est une mort permanente.</div> 
-			<div class="tab_clone_dialog">Voulez-vous cloner ce PNJ ? Ceci ajoutera le clone à tous les mêmes onglets.</div> 
-			<div class="tab_delete_dialog">Etes-vous sûr de vouloir supprimer ce personnage ? Ceci ne fait que supprimer le PNJ de l'onglet actuel.</div>
+			<div class="clone_dialog">Voulez-vous cloner ce PNJ ? Cela générera un nouveau clone sans l'ajouter à un groupe.</div> 
+			<div class="delete_dialog">Etes-vous sûr de vouloir supprimer ce personnage ? Le supprimer ici le supprimera également de tous les autres groupes. C'est une mort permanente.</div> 
+			<div class="tab_clone_dialog">Voulez-vous cloner ce PNJ ?</div> 
+			<div class="tab_delete_dialog">Etes-vous sûr de vouloir supprimer ce personnage ? Ceci ne fait que supprimer le PNJ du groupz actuel.</div>
 		</div>
 	</div>
 
@@ -873,7 +876,7 @@
 		<div class="tools">
 			<button class="clone_cast_member"><span title="Cloner" class="ui-icon ui-icon-copy"></span></button>
 			<button class="delete_cast_member"><span title="Supprimer" class="ui-icon ui-icon-circle-close"></span></button>
-			<div class="dialog">Supprimer ce personnage de cet onglet ? Ce personnage peut toujours être trouvé dans le Casting</div>
+			<div class="dialog">Supprimer ce personnage de ce groupe ? Ce personnage peut toujours être trouvé dans les ombres portées</div>
 			<div class="created_date"></div>
 			<div class="edited_date"></div>
 		</div>
@@ -881,7 +884,7 @@
 
 	<div template="add_dialog_single" class="add_dialog_single">
 		<div class="existing_tab_wrapper">
-			<div>Ajouter ce PNJ à l'un des onglets existants</div>
+			<div>Ajouter ce PNJ à l'un des groupes existants</div>
 			<div><select name="existing"></select></div>
 			<div class="spacer_5"></div>
 			<button existing>Ajouter</button>
@@ -889,7 +892,7 @@
 			<div class="spacer_20"></div>
 		</div>
 		<div class="new_tab_wrapper">
-			<div>Ajouter ce PNJ à un nouvel onglet</div>
+			<div>Ajouter ce PNJ à un nouveau groupe</div>
 			<div><input new_tab/></div>
 			<div class="spacer_5"></div>
 			<button new_tab>Créer &amp; ajouter</button>
@@ -898,7 +901,7 @@
 
 	<div template="add_dialog_mob" class="add_dialog_mob">
 		<div class="existing_tab_wrapper">
-			<div>Ajouter ces PNJs à l'un des onglets existants</div>
+			<div>Ajouter ces PNJs à l'un des groupes existants</div>
 			<div><select name="existing"></select></div>
 			<div class="spacer_5"></div>
 			<button existing>Ajouter</button>
@@ -906,7 +909,7 @@
 			<div class="spacer_20"></div>
 		</div>
 		<div class="new_tab_wrapper">
-			<div>Ajouter ces PNJs à un nouvel onglet.</div>
+			<div>Ajouter ces PNJs à un nouveau groupe</div>
 			<div><input new_tab/></div>
 			<div class="spacer_5"></div>
 			<button new_tab>Créer &amp; Ajouter</button>
