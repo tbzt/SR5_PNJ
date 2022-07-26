@@ -181,6 +181,416 @@ var storage = {
 		return character;
 	},
 
+	get_export_foundry: function(data)
+	{
+		var character = null;
+		var magicType = "";
+		var specialAttribute = "";
+		var gender = "";
+		var metatype = "";
+		if (data.special.is_adept) {
+			magicType = "Adept";
+			specialAttribute = "magic"
+		};
+		if (data.special.is_mage) {
+			magicType = "Magician";
+			specialAttribute = "magic";
+		};
+		if (data.race) {
+			switch(data.race) {
+				case "Elfe":
+					metatype = "elf";
+				break;
+				case "Humain":
+					metatype = "human";
+				break;
+				case "Ork":
+					metatype = "ork";
+				break;
+				case "Nain":
+					metatype = "dwarf";
+				break;
+				case "Troll":
+					metatype = "troll";
+				break;
+			}
+		};
+		if (data.gender) {
+			switch(data.gender) {
+				case "Homme":
+					gender = "male";
+				break;
+				case "Femme":
+					gender = "human";
+				break;
+			}
+		};
+			
+
+		character = {
+			"name": data.name,
+			"type": "actorGrunt",
+			"img": "systems/sr5/img/actors/actorGrunt.svg",
+			"data": {
+			  "attributes": {
+				"body": {
+				  "natural": {
+					"base": data.attributes.body
+				  }
+				},
+				"agility": {
+				  "natural": {
+					"base": data.attributes.agility
+				  }
+				},
+				"reaction": {
+				  "natural": {
+					"base": data.attributes.reaction
+				  }
+				},
+				"strength": {
+				  "natural": {
+					"base": data.attributes.strength
+				  }
+				},
+				"willpower": {
+				  "natural": {
+					"base": data.attributes.will
+				  }
+				},
+				"logic": {
+				  "natural": {
+					"base": data.attributes.logic
+				  }
+				},
+				"intuition": {
+				  "natural": {
+					"base": data.attributes.intuition
+				  }
+				},
+				"charisma": {
+				  "natural": {
+					"base": data.attributes.charisma
+				  }
+				}
+			  },
+			  "specialAttributes": {
+				"magic": {
+				  "natural": {
+					"base": data.special.Magic || 0
+				  },				  
+				  "augmented": {
+					"base": 0
+				  }
+				},
+				"resonance": {
+				  "natural": {
+					"base": data.attributes.magic || 0
+				  },				  
+				  "augmented": {
+					"base": 0
+				  }
+				},
+				"edge": {
+				  "natural": {
+					"base": data.professional_rating || 0
+				  },				  
+				  "augmented": {
+					"base": 0
+				  }
+				}
+			  },
+			  "skills": {
+				"pilotAircraft": {
+				  "rating": {
+					"base": data.skills['Appareils volants'] || 0
+				  }
+				},
+				"arcana": {
+				  "rating": {
+					"base": data.skills['Arcanes'] || 0
+				  }
+				},
+				"automatics": {
+				  "rating": {
+					"base": data.skills['Armes à feu'] || 0
+				  }
+				},
+				"heavyWeapons": {
+				  "rating": {
+					"base": data.skills['Armes lourdes'] || 0
+				  }
+				},
+				"clubs": {
+				  "rating": {
+					"base": data.skills['Armes contondantes'] || 0
+				  }
+				},
+				"throwingWeapons": {
+				  "rating": {
+					"base": data.skills['Armes de jet'] || 0
+				  }
+				},
+				"gunnery": {
+				  "rating": {
+					"base": data.skills['Armes de véhicules'] || 0
+				  }
+				},
+				"blades": {
+				  "rating": {
+					"base": data.skills['Armes tranchantes'] || 0
+				  }
+				},
+				"banishing": {
+				  "rating": {
+					"base": data.skills['Bannissement'] || 0
+				  }
+				},
+				"unarmedCombat": {
+				  "rating": {
+					"base": data.skills['Combat à mains nue'] || 0
+				  }
+				},
+				"astralCombat": {
+				  "rating": {
+					"base": data.skills['Combat astral'] || 0
+				  }
+				},
+				"counterspelling": {
+				  "rating": {
+					"base": data.skills['Contresort'] || 0
+				  }
+				},
+				"running": {
+				  "rating": {
+					"base": data.skills['Course'] || 0
+				  }
+				},
+				"cybercombat": {
+				  "rating": {
+					"base": data.skills['Cybercombat'] || 0
+				  }
+				},
+				"disguise": {
+				  "rating": {
+					"base": data.skills['Déguisement'] || 0
+				  }
+				},
+				"sneaking": {
+				  "rating": {
+					"base": data.skills['Discrétion'] || 0
+				  }
+				},
+				"con": {
+				  "rating": {
+					"base": data.skills['Escroquerie'] || 0
+				  }
+				},
+				"etiquette": {
+				  "rating": {
+					"base": data.skills['Etiquette'] || 0
+				  }
+				},
+				"demolitions": {
+				  "rating": {
+					"base": data.skills['Explosifs'] || 0
+				  }
+				},
+				"longarms": {
+				  "rating": {
+					"base": data.skills['Fusils'] || 0
+				  }
+				},
+				"electronicWarfare": {
+				  "rating": {
+					"base": data.skills['Guerre électronique'] || 0
+				  }
+				},
+				"gymnastics": {
+				  "rating": {
+					"base": data.skills['Gymnastique'] || 0
+				  }
+				},
+				"hacking": {
+				  "rating": {
+					"base": data.skills['Hacking'] || 0
+				  }
+				},
+				"impersonation": {
+				  "rating": {
+					"base": data.skills['Imposture'] || 0
+				  }
+				},
+				"computer": {
+				  "rating": {
+					"base": data.skills['Informatique'] || 0
+				  }
+				},
+				"intimidation": {
+				  "rating": {
+					"base": data.skills['Intimidation'] || 0
+				  }
+				},
+				"summoning": {
+				  "rating": {
+					"base": data.skills['Invocation'] || 0
+				  }
+				},
+				"spellcasting": {
+				  "rating": {
+					"base": data.skills['Lancement de sorts'] || 0
+				  }
+				},
+				"leadership": {
+				  "rating": {
+					"base": data.skills['Leadership'] || 0
+				  }
+				},
+				"binding": {
+				  "rating": {
+					"base": data.skills['Lien d\'esprits'] || 0
+				  }
+				},
+				"software": {
+				  "rating": {
+					"base": data.skills['Logiciels'] || 0
+				  }
+				},
+				"ritualSpellcasting": {
+				  "rating": {
+					"base": data.skills['Magie rituelle'] || 0
+				  }
+				},
+				"hardware": {
+				  "rating": {
+					"base": data.skills['Matériel électronique'] || 0
+				  }
+				},
+				"swimming": {
+				  "rating": {
+					"base": data.skills['Natation'] || 0
+				  }
+				},
+				"negociation": {
+				  "rating": {
+					"base": data.skills['Négociation'] || 0
+				  }
+				},
+				"assensing": {
+				  "rating": {
+					"base": data.skills['Observation astrale'] || 0
+				  }
+				},
+				"navigation": {
+				  "rating": {
+					"base": data.skills['Orientation'] || 0
+				  }
+				},
+				"perception": {
+				  "rating": {
+					"base": data.skills['Perception'] || 0
+				  }
+				},
+				"tracking": {
+				  "rating": {
+					"base": data.skills['Pistage'] || 0
+				  }
+				},
+				"pistols": {
+				  "rating": {
+					"base": data.skills['Pistolets'] || 0
+				  }
+				},
+				"firstAid": {
+				  "rating": {
+					"base": data.skills['Premiers soins'] || 0
+				  }
+				},
+				"pilotGroundCraft": {
+				  "rating": {
+					"base": data.skills['Véhicules terrestres'] || 0
+				  }
+				}
+			  },
+			  "magic": {
+				"magicType": magicType
+			  },
+			  "conditionMonitors": {
+				"stun": {
+				  "base": 0,
+				  "actual": {
+					"base": 0
+				  }
+				},
+				"physical": {
+				  "base": 0,
+				  "actual": {
+					"base": 0
+				  }
+				},
+				"edge": {
+				  "base": data.professional_rating,
+				  "actual": {
+					"base": 0
+				  }
+				},
+				"overflow": {
+				  "base": 0,
+				  "actual": {
+					"base": 0
+				  }
+				}
+			  },
+			  "statusBars": {
+				"stun": {
+				  "value": 0,
+				  "max": 0
+				},
+				"physical": {
+				  "value": 0,
+				  "max": 0
+				},
+				"edge": {
+				  "value": 0,
+				  "max": 0
+				},
+				"condition": {
+				  "value": 0,
+				  "max": 0
+				},
+				"matrix": {
+				  "value": 0,
+				  "max": 0
+				},
+				"overflow": {
+				  "value": 0,
+				  "max": 0
+				}
+			  },
+			  "biography": {
+				"characterMetatype": metatype,
+				"description": data.notes || ""
+			  },
+			  "activeSpecialAttribute": specialAttribute
+			},
+			"items": [],
+			"effects": [],
+			"flags": {
+			  "sr5": {
+				"cumulativeDefense": null,
+				"cumulativeRecoil": 3
+			  },
+			  "exportSource": {
+				"world": "sr5",
+				"system": "sr5",
+				"coreVersion": "9.269",
+				"systemVersion": "0.0.5.12"
+			  }
+			}
+		  }
+		return character;
+	},
+
 	set_character: function(data)
 	{
 		var cast_characters = $.parseJSON(localStorage.cast_characters), new_char = false;

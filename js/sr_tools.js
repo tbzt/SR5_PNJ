@@ -324,13 +324,31 @@ function view_cast(show_intro)
 				  width: 450,
 				  buttons: [
 					{
-					  text: "Ok",
+						text: "JSON",
+						click: function () {
+						  let character = storage.get_character(character_id);
+						  let dataStr = JSON.stringify(character);
+						  let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+					  
+						  let exportFileDefaultName = 'PNJ_' + character.name + '_data.json';
+					  
+						  let linkElement = document.createElement('a');
+						  linkElement.setAttribute('href', dataUri);
+						  linkElement.setAttribute('download', exportFileDefaultName);
+						  linkElement.click();
+						  $(this).dialog("close");
+						  view_cast();
+						}
+					  },
+					{
+					  text: "Foundry",
 					  click: function () {
 						let character = storage.get_character(character_id);
-						let dataStr = JSON.stringify(character);
+						let char = storage.get_export_foundry(character);
+						let dataStr = JSON.stringify(char);
 						let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 					
-						let exportFileDefaultName = 'PNJ_' + character.name + '_data.json';
+						let exportFileDefaultName = 'PNJ_' + character.name + '_Foundry_data.json';
 					
 						let linkElement = document.createElement('a');
 						linkElement.setAttribute('href', dataUri);

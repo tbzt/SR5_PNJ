@@ -2562,6 +2562,9 @@ var db = {
 			case 'Armes automatiques':
 			case 'Armes tranchantes':
 			case 'Armes contondantes':
+			case 'Combat rapproché':
+			case 'Athlétisme':
+			case 'Armes à feu':
 			case 'Armes lourdes':
 			case 'Fusils':
 			case 'Pistolets':
