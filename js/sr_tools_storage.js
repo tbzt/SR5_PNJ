@@ -189,11 +189,11 @@ var storage = {
 		var gender = "";
 		var metatype = "";
 		if (data.special.is_adept) {
-			magicType = "Adept";
+			magicType = "adept";
 			specialAttribute = "magic"
 		};
 		if (data.special.is_mage) {
-			magicType = "Magician";
+			magicType = "magician";
 			specialAttribute = "magic";
 		};
 		if (data.race) {
