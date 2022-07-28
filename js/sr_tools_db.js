@@ -1825,7 +1825,6 @@ var db = {
 			'Combinaison caméléon': 9,
 			'Armure corporelle intégrale': 15,
 			'Armure corporelle intégrale avec casque et isolation chimique': 18,
-			'Manteau renforcé': 9,
 			'Combinaison Urban Explorer': 9
 		};
 	},
@@ -2372,7 +2371,7 @@ var db = {
 			acc: 4,
 			dv: 10,
 			ap: -1,
-			modes: 'SS/SA',
+			modes: 'CC/SA',
 			ammo_count: 5,
 			reload: 'm'
 		},
@@ -2398,7 +2397,7 @@ var db = {
 			acc_modified: 6,
 			dv: 9,
 			ap: -2,
-			modes: 'BF/TA',
+			modes: 'TA/TR',
 			ammo_count: 50,
 			reload: 'c'
 		},

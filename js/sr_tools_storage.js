@@ -181,6 +181,18 @@ var storage = {
 		return character;
 	},
 
+	makeID: function(length) 
+	{
+		var result           = '';
+		var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		var charactersLength = characters.length;
+		for ( var i = 0; i < length; i++ ) {
+		  result += characters.charAt(Math.floor(Math.random() * 
+	 charactersLength));
+	   }
+	   return result;
+	},
+
 	get_export_foundry: function(data)
 	{
 		var character = null;
@@ -188,6 +200,8 @@ var storage = {
 		var specialAttribute = "";
 		var gender = "";
 		var metatype = "";
+		var items = [];
+
 		if (data.special.is_adept) {
 			magicType = "adept";
 			specialAttribute = "magic"
@@ -225,6 +239,50 @@ var storage = {
 				break;
 			}
 		};
+
+		if(data.weapons) {		
+
+			data.weapons.forEach(function(weapon)
+		{			
+			w = storage.get_foundry_weapon(weapon);
+			items.push(w);
+		});
+
+		};
+
+		if(data.armor) {				
+			a = storage.get_foundry_armor(data.armor);
+			items.push(a);
+		};
+
+		if(data.gear) {
+			
+		};
+
+		if(data.augmentations) {
+			
+		};
+
+		if(data.commlink) {
+			
+		};
+
+		if(data.special.powers) {
+			
+		};
+
+		if(data.special.spells) {
+			
+		};
+
+		if(data.qualities.positive) {
+			
+		};
+
+		if(data.qualities.negative) {
+			
+		};
+			
 			
 
 		character = {
@@ -572,23 +630,683 @@ var storage = {
 				"description": data.notes || ""
 			  },
 			  "activeSpecialAttribute": specialAttribute
-			},
-			"items": [],
+			},"token": {
+				"name": data.name,
+				"img": "systems/sr5/img/actors/actorGrunt.svg",
+				"displayName": 40,
+				"actorLink": false,
+				"width": 1,
+				"height": 1,
+				"scale": 1,
+				"mirrorX": false,
+				"mirrorY": false,
+				"lockRotation": true,
+				"rotation": 0,
+				"alpha": 1,
+				"vision": true,
+				"dimSight": 100,
+				"brightSight": 0,
+				"sightAngle": 0,
+				"light": {
+				  "alpha": 0.5,
+				  "angle": 0,
+				  "bright": 0,
+				  "coloration": 1,
+				  "dim": 0,
+				  "gradual": true,
+				  "luminosity": 0.5,
+				  "saturation": 0,
+				  "contrast": 0,
+				  "shadows": 0,
+				  "animation": {
+					"speed": 5,
+					"intensity": 5,
+					"reverse": false
+				  },
+				  "darkness": {
+					"min": 0,
+					"max": 1
+				  }
+				},
+				"disposition": -1,
+				"displayBars": 40,
+				"bar1": {
+				  "attribute": "statusBars.physical"
+				},
+				"bar2": {
+				  "attribute": "statusBars.stun"
+				},
+				"flags": {},
+			  },
+			"items": items,
 			"effects": [],
 			"flags": {
 			  "sr5": {
 				"cumulativeDefense": null,
 				"cumulativeRecoil": 3
-			  },
-			  "exportSource": {
-				"world": "sr5",
-				"system": "sr5",
-				"coreVersion": "9.269",
-				"systemVersion": "0.0.5.12"
 			  }
 			}
 		  }
 		return character;
+	},
+
+	get_foundry_weapon: function(weapon)
+	{
+
+		var category;
+			var weaponSkill;
+			var damageType;
+			var armorPenetration; 
+			var damageValue;
+			var isStrengthBased = false;
+			var accuracy;
+			var reach;
+			var damageElement;
+			var singleShot = false;
+			var semiAutomatic = false;
+			var burstFire = false;
+			var fullyAutomatic = false;
+			var ammunition = 0;
+			var recoilCompensation = 0;
+			var type;
+			var rangeIsStrengthBased = false, short, medium, long, extreme;
+
+
+			switch(weapon) {
+				case "Hache de combat":
+					category = "meleeWeapon";
+					weaponSkill = "blades";
+					damageType = "physical";
+					armorPenetration = -4;
+					damageValue = 5;
+					isStrengthBased = true;
+					accuracy = 4;
+					type = "blades";
+				break;
+				case "Couteau de combat":
+					category = "meleeWeapon";
+					weaponSkill = "blades";
+					damageType = "physical";
+					armorPenetration = -3;
+					damageValue = 2;
+					isStrengthBased = true;
+					accuracy = 6;	
+					type = "blades";
+				break;				
+				case "Couteau":
+					category = "meleeWeapon";
+					weaponSkill = "blades";
+					damageType = "physical";
+					armorPenetration = -1;
+					damageValue = 1;
+					isStrengthBased = true;
+					accuracy = 5;
+					type = "blades";
+				break;
+				case "Katana":
+					category = "meleeWeapon";
+					weaponSkill = "blades";
+					damageType = "physical";
+					armorPenetration = -3;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 7;
+					reach = 1;
+					type = "blades";
+				break;
+				case "Epée":
+					category = "meleeWeapon";
+					weaponSkill = "blades";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 6;
+					reach = 1;
+					type = "blades";
+				break;				
+				case "Griffes (retractable) implantées":
+					category = "meleeWeapon";
+					weaponSkill = "unarmedCombat";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 6;
+					type = "exoticMeleeWeapon";
+				break;				
+				case "Massue":
+					category = "meleeWeapon";
+					weaponSkill = "clubs";
+					damageType = "stun";
+					armorPenetration = 0;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 4;
+					reach = 1;
+					type = "clubs";
+				break;				
+				case "Electromatraque":
+					category = "meleeWeapon";
+					weaponSkill = "clubs";
+					damageType = "stun";
+					armorPenetration = -5;
+					damageValue = 9;
+					accuracy = 4;
+					reach = 1;
+					damageElement = "electricity"
+					type = "clubs";
+				break;				
+				case "Matraque":
+					category = "meleeWeapon";
+					weaponSkill = "clubs";
+					damageType = "stun";
+					armorPenetration = -2;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 6;
+					reach = 1;
+					type = "clubs";
+				break;				
+				case "Matraque téléscopique":
+					category = "meleeWeapon";
+					weaponSkill = "clubs";
+					damageType = "stun";
+					armorPenetration = -2;
+					damageValue = 3;
+					isStrengthBased = true;
+					accuracy = 6;
+					reach = 2;
+					type = "clubs";
+				break;				
+				case "Defiance EX Shocker":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "stun";
+					armorPenetration = -5;
+					damageValue = 9;
+					accuracy = 4;
+					damageElement = "electricity";
+					singleShot = true;
+					ammunition = 4;
+					type = "taser";
+					short = 5;
+					medium = 10;
+					long = 15;
+					extreme = 20;
+				break;				
+				case "Streetline Special":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 6;
+					accuracy = 4;
+					semiAutomatic = true;
+					ammunition = 6;
+					type = "holdOut";
+					short = 5;
+					medium = 15;
+					long = 30;
+					extreme = 50;
+				break;				
+				case "Colt America L36":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 7;
+					semiAutomatic = true;
+					ammunition = 11;
+					type = "lightPistol";
+					short = 5;
+					medium = 15;
+					long = 30;
+					extreme = 50;
+				break;				
+				case "Fichetti Security 600":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 6;
+					semiAutomatic = true;
+					ammunition = 30;
+					type = "lightPistol";
+					short = 5;
+					medium = 15;
+					long = 30;
+					extreme = 50;
+				break;				
+				case "Ares Predator V":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 8;
+					accuracy = 5;
+					semiAutomatic = true;
+					ammunition = 15;
+					type = "heavyPistol";
+					short = 5;
+					medium = 20;
+					long = 40;
+					extreme = 60;
+				break;				
+				case "Browning Ultra-Power":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = -1;
+					damageValue = 8;
+					accuracy = 5;
+					semiAutomatic = true;
+					ammunition = 10;
+					type = "heavyPistol";
+					short = 5;
+					medium = 20;
+					long = 40;
+					extreme = 60;
+				break;				
+				case "Remington Roomsweeper":
+					category = "rangedWeapon";
+					weaponSkill = "pistols";
+					damageType = "physical";
+					armorPenetration = -1;
+					damageValue = 7;
+					accuracy = 8;
+					ammunition = 8;
+					type = "heavyPistol";
+					short = 5;
+					medium = 20;
+					long = 40;
+					extreme = 60;
+				break;				
+				case "Ceska Black Scorpion":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 6;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					ammunition = 35;
+					type = "submachineGun";
+					short = 5;
+					medium = 15;
+					long = 30;
+					extreme = 50;
+				break;				
+				case "Steyr TMP":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 4;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 30;
+					type = "submachineGun";
+					short = 5;
+					medium = 15;
+					long = 30;
+					extreme = 50;
+				break;				
+				case "Colt Cobra TZ-120":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 4;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 32;
+					recoilCompensation = 2;
+					type = "lightMachineGun";
+					short = 10;
+					medium = 40;
+					long = 80;
+					extreme = 150;
+				break;				
+				case "FN P93 Praetor":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 8;
+					accuracy = 6;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 50;
+					recoilCompensation = 1;
+					type = "lightMachineGun";
+					short = 10;
+					medium = 40;
+					long = 80;
+					extreme = 150;
+				break;				
+				case "HK-227":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 28;
+					recoilCompensation = 1;
+					type = "lightMachineGun";
+					short = 10;
+					medium = 40;
+					long = 80;
+					extreme = 150;
+				break;				
+				case "AK-97":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 10;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 38;
+					type = "assaultRifle";
+					short = 25;
+					medium = 150;
+					long = 350;
+					extreme = 550;
+				break;				
+				case "Ares Alpha":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 11;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 42;
+					recoilCompensation = 2;
+					type = "assaultRifle";
+					short = 25;
+					medium = 150;
+					long = 350;
+					extreme = 550;
+				break;				
+				case "FN HAR":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 10;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 35;
+					recoilCompensation = 2;
+					type = "assaultRifle";
+					short = 25;
+					medium = 150;
+					long = 350;
+					extreme = 550;
+				break;				
+				case "HK-227":
+					category = "rangedWeapon";
+					weaponSkill = "automatics";
+					damageType = "physical";
+					armorPenetration = 0;
+					damageValue = 7;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					burstFire = true;
+					ammunition = 6;
+					recoilCompensation = 1;
+					type = "lightMachineGun";
+					short = 25;
+					medium = 150;
+					long = 350;
+					extreme = 550;
+				break;				
+				case "Cavalier Arms Crockett EBR":
+					category = "rangedWeapon";
+					weaponSkill = "longarms";
+					damageType = "physical";
+					armorPenetration = -3;
+					damageValue = 12;
+					accuracy = 6;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					ammunition = 20;
+					recoilCompensation = 1;
+					type = "sniperRifle";
+					short = 50;
+					medium = 350;
+					long = 800;
+					extreme = 1500;
+				break;				
+				case "Defiance T-250":
+					category = "rangedWeapon";
+					weaponSkill = "longarms";
+					damageType = "physical";
+					armorPenetration = -1;
+					damageValue = 10;
+					accuracy = 4;
+					singleShot = true;
+					semiAutomatic = true;
+					ammunition = 5;
+					type = "shotgun";
+					short = 10;
+					medium = 40;
+					long = 80;
+					extreme = 150;
+				break;				
+				case "Enfield AS-7":
+					category = "rangedWeapon";
+					weaponSkill = "longarms";
+					damageType = "physical";
+					armorPenetration = -1;
+					damageValue = 13;
+					accuracy = 4;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					ammunition = 10;
+					type = "shotgun";
+					short = 10;
+					medium = 40;
+					long = 80;
+					extreme = 150;
+				break;				
+				case "Ingram Valiant":
+					category = "rangedWeapon";
+					weaponSkill = "heavyWeapons";
+					damageType = "physical";
+					armorPenetration = -2;
+					damageValue = 9;
+					accuracy = 5;
+					semiAutomatic = true;
+					fullyAutomatic = true;
+					ammunition = 50;
+					type = "heavyMachineGun";
+					short = 25;
+					medium = 200;
+					long = 400;
+					extreme = 800;
+				break;				
+				case "Panther XXL":
+					category = "rangedWeapon";
+					weaponSkill = "heavyWeapons";
+					damageType = "physical";
+					armorPenetration = -6;
+					damageValue = 17;
+					accuracy = 5;
+					singleShot = true;
+					ammunition = 15;
+					type = "heavyMachineGun";
+					short = 50;
+					medium = 300;
+					long = 750;
+					extreme = 1500;
+				break;
+			};
+
+			w = {
+			"_id": storage.makeID(16),
+      		"name": weapon,
+      		"type": "itemWeapon",
+      		"img": "systems/sr5/img/items/itemWeapon.svg",
+      		"data": {				
+				"deviceRating": 2,
+				"quantity": 1,
+        		"category": category,				
+				"type": type,
+				"range": {
+				  "short": {
+					"value": 0,
+					"base": short,
+					"modifiers": []
+				  },
+				  "medium": {
+					"value": 0,
+					"base": medium,
+					"modifiers": []
+				  },
+				  "long": {
+					"value": 0,
+					"base": long,
+					"modifiers": []
+				  },
+				  "extreme": {
+					"value": 0,
+					"base": extreme,
+					"modifiers": []
+				  },
+				  "isStrengthBased": rangeIsStrengthBased
+				},
+				"damageValue": {
+				  "base": damageValue,
+				  "modifiers": [],
+				  "value": 0,
+				  "isStrengthBased": isStrengthBased
+				},
+				"damageType": damageType,				
+				"damageElement": damageElement || "",
+				"armorPenetration": {
+				  "base": armorPenetration,
+				  "modifiers": [],
+				  "value": 0
+				},
+				"accuracy": {
+				  "base": accuracy,
+				  "modifiers": [],
+				  "value": 0,
+				  "isPhysicalLimitBased": true
+				},
+				"reach": {
+				  "value": 0,
+				  "base": reach || 0,
+				  "modifiers": []
+				},
+				"firingMode": {
+				  "singleShot": singleShot,
+				  "semiAutomatic": semiAutomatic,
+				  "burstFire": burstFire,
+				  "fullyAutomatic": fullyAutomatic,
+				  "value": []
+				},
+				"ammunition": {
+					"value": ammunition,
+					"max": ammunition,
+					"type": "",
+					"casing": "",
+					"rating": ""
+				  },
+				  "recoilCompensation": {
+					"value": 0,
+					"base": recoilCompensation,
+					"modifiers": []
+				  },
+				"weaponSkill": {
+					"dicePool": 0,
+					"base": 0,
+					"modifiers": [],					
+					"specialization": false,
+					"category": weaponSkill
+				}
+			},
+		};
+
+		return w;
+	},
+
+	get_foundry_armor: function(armor)
+	{
+
+		var armorValue;
+
+			switch(armor) {
+				case "Synthé-cuir":
+					armorValue = 4;
+				break;
+				case "Vêtements pare-balles":
+					armorValue = 6;
+				break;
+				case "Costume Actioneer":
+					armorValue = 8;
+				break;
+				case "Manteau renforcé":
+				case "Combinaison caméléon":
+				case "Combinaison Urban Explorer":
+					armorValue = 9;
+				break;
+				case "Gilet pare-balle":
+					armorValue = 12;
+				break;
+				case "Armure corporelle intégrale":
+					armorValue = 15;
+				break;
+				case "Armure corporelle intégrale avec casque et isolation chimique":
+					armorValue = 18;
+				break;
+			};
+
+			a = {
+			"_id": storage.makeID(16),
+      		"name": armor,
+      		"type": "itemArmor",
+      		"img": "systems/sr5/img/items/itemArmor.svg",
+      		"data": {				
+				"deviceRating": 2,
+				"quantity": 1,				
+				"isActive": true,
+				"armorValue": {
+				  "value": 0,
+				  "base": armorValue,
+				  "modifiers": []
+				},
+				"flags": {
+				  "core": {
+					"sourceId": "Compendium.sr5-Item-Full-fr.fr_armors.Yt9zi2AmVLB2ZNxy"
+				  }
+				}
+			},
+		};
+
+		return a;
 	},
 
 	set_character: function(data)
