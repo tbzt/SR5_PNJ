@@ -344,7 +344,7 @@ function view_cast(show_intro)
 					  text: "Foundry",
 					  click: function () {
 						let character = storage.get_character(character_id);
-						let char = storage.get_export_foundry(character);
+						let char = exportFoundry.get_export_foundry(character);
 						let dataStr = JSON.stringify(char);
 						let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
 					

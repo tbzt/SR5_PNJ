@@ -989,7 +989,7 @@ var db = {
 				case 6:
 					res.special.spells.push('Armure', 'Agonie');
 				case 5:
-					res.special.spells.push('Clairvoyance', 'Invisibilité supérieure');
+					res.special.spells.push('Clairvoyance', 'Invisibilité physique');
 				case 4:
 					res.special.spells.push('Augmentation de réflexes', 'Sens du combat');
 				case 3:
@@ -1311,7 +1311,7 @@ var db = {
 			// Qualities
 			// One random quality from positive and negative
 			var pos_q = ['Ambidextre', 'M. Tout-le-monde', 'Fou du volant', 'Résistance à la Magie I', 'Rage de vivre I'];
-			var neg_q = ['Malchanceux', 'Personnes à charge I', 'Insomnie I', 'Ecorché (BTLs)', 'Anxiété sociale'];
+			var neg_q = ['Malchanceux', 'Personnes à charge I', 'Insomnie I', 'Ecorché (BTLs)'];
 			var i = roll.dval(neg_q.length) - 1;
 			res.qualities.negative.push(neg_q[i]);
 			i = roll.dval(neg_q.length) - 1;
@@ -1860,7 +1860,6 @@ var db = {
 				'Poseur Ork',
 				'Ecorché (BTLs)',
 				'Système sensible',
-				'Anxiété sociale',
 				'Asocial',
 				'Illetré'
 			]
