@@ -329,7 +329,7 @@ var db = {
 				res.weapons.push('Ares Predator V');
 				res.commlink = rating - 1;
 				res.augmentations.push({
-					name: 'Cyberyeux',
+					name: 'Yeux cybernétiques',
 					rating: 2,
 					augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
 				});
@@ -464,7 +464,7 @@ var db = {
 						rating: Math.ceil(rating / 2)
 					});
 					res.augmentations.push({
-						name: 'Booster synaptique',
+						name: 'Amplificateur synaptique',
 						rating: Math.ceil(rating / 2)
 					});
 				}
@@ -619,7 +619,7 @@ var db = {
 					res.skills.Discrétion = rating;
 					res.skills.Intimidation = 1 + rating;
 					res.augmentations.push({
-						name: 'Cyberyeux',
+						name: 'Yeux cybernétiques',
 						rating: 2,
 						augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
 					});
@@ -1059,7 +1059,7 @@ var db = {
 			if (rating >= 4)
 			{
 				res.augmentations.push({
-					name: 'Booster cérébral',
+					name: 'Amplificateur cérébral',
 					rating: rating - 3
 				});
 				res.gear.push({
@@ -1177,7 +1177,7 @@ var db = {
 				augment = this.get_augmentation('Tonification musculaire');
 				augment.rating = roll.half(rating) + 1;
 				res.augmentations.push(augment);
-				augment = this.get_augmentation('Booster synaptique');
+				augment = this.get_augmentation('Amplificateur synaptique');
 				augment.rating = roll.half(rating);
 				res.augmentations.push(augment);
 			}
@@ -1335,7 +1335,7 @@ var db = {
 			}
 			else
 			{
-				augment = this.get_augmentation('Cyberyeux');
+				augment = this.get_augmentation('Yeux cybernétiques');
 				augment.rating = 2;
 				res.augmentations.push(augment);
 			}
@@ -1348,7 +1348,7 @@ var db = {
 						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Booster synaptique');
+						augment = this.get_augmentation('Amplificateur synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.augmentations.push(this.get_augmentation('Griffes (retractable) implantées'));
@@ -1386,7 +1386,7 @@ var db = {
 						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Booster synaptique');
+						augment = this.get_augmentation('Amplificateur synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.weapons.push(this.get_weapon('Katana'));
@@ -1424,7 +1424,7 @@ var db = {
 						augment = this.get_augmentation('Tonification musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Booster synaptique');
+						augment = this.get_augmentation('Amplificateur synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.weapons.push(this.get_weapon('Couteau de combat'));
@@ -1467,7 +1467,7 @@ var db = {
 						augment = this.get_augmentation('Renforcement musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Booster synaptique');
+						augment = this.get_augmentation('Amplificateur synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.weapons.push(this.get_weapon('Epée'));
@@ -1510,7 +1510,7 @@ var db = {
 						augment = this.get_augmentation('Renforcement musculaire');
 						augment.rating = roll.half(rating);
 						res.augmentations.push(augment);
-						augment = this.get_augmentation('Booster synaptique');
+						augment = this.get_augmentation('Amplificateur synaptique');
 						augment.rating = roll.half(rating - 1);
 						res.augmentations.push(augment);
 						res.weapons.push(this.get_weapon('Hache de combat'));
@@ -1601,12 +1601,12 @@ var db = {
 
 			augment = res.augmentations.find(function (aug)
 			{
-				return aug.name === 'Cyberyeux';
+				return aug.name === 'Yeux cybernétiques';
 			});
 
 			if (!augment)
 			{
-				augment = this.get_augmentation('Cyberyeux');
+				augment = this.get_augmentation('Yeux cybernétiques');
 				augment.rating = 2;
 				res.augmentations.push(augment);
 			}
@@ -1931,7 +1931,7 @@ var db = {
 			max_rating: 2
 		},
 		{
-			name: 'Booster cérébral',
+			name: 'Amplificateur cérébral',
 			essence: 0.2,
 			max_rating: 3
 		},
@@ -1948,7 +1948,7 @@ var db = {
 			sub_type: 'arm'
 		},
 		{
-			name: 'Cyberyeux',
+			name: 'Yeux cybernétiques',
 			essence: 0.1,
 			max_rating: 4,
 			augments: ['Compensation anti-flashs', 'Interface visuelle', 'Smartlink', 'Vision thermographique', 'Vision nocturne']
@@ -1998,7 +1998,7 @@ var db = {
 			essence: 0.3
 		},
 		{
-			name: 'Booster synaptique',
+			name: 'Amplificateur synaptique',
 			essence: 0.5,
 			max_rating: 3
 		},

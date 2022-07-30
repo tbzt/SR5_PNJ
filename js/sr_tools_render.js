@@ -2186,7 +2186,7 @@ var render = {
 						attr.essence -= 5;
 					break;
 
-				case 'Cyberyeux':
+				case 'Yeux cybernétiques':
 					attr.essence -= (0.1 + aug.essence * aug.rating);
 					break;
 
@@ -2217,7 +2217,7 @@ var render = {
 					attr.intuition += aug.rating;
 					break;
 
-				case 'Booster cérébral':
+				case 'Amplificateur cérébral':
 					attr.logic += aug.rating;
 					break;
 
@@ -2225,7 +2225,7 @@ var render = {
 					attr.reaction += aug.rating;
 					break;
 
-				case 'Booster synaptique':
+				case 'Amplificateur synaptique':
 					attr.reaction += aug.rating;
 					break;
 
@@ -2332,7 +2332,7 @@ var render = {
 				switch (aug.name)
 				{
 					case 'Réflexes câblés':
-					case 'Booster synaptique':
+					case 'Amplificateur synaptique':
 						dice_aug += aug.rating;
 						break;
 				}

@@ -25,10 +25,37 @@ var exportFoundry = {
 			magicType = "adept";
 			specialAttribute = "magic"
 		};
+
 		if (data.special.is_mage) {
 			magicType = "magician";
 			specialAttribute = "magic";
+
+			tradition = {
+				"_id": exportFoundry.makeID(16),
+				  "name": "Hermétisme",
+				  "type": "itemTradition",
+				  "img": "systems/sr5/img/items/itemTradition.svg",
+				  "data": {
+					"systemEffects": [
+					  {
+						"category": "tradition",
+						"value": "hermeticism"
+					  }
+					],
+					"drainAttribute": "logic",
+					"spiritCombat": "fire",
+					"spiritDetection": "air",
+					"spiritIllusion": "water",
+					"spiritManipulation": "earth",
+					"spiritHealth": "man",
+					"possession": false
+				},
+			};
+
+			items.push(tradition);
+
 		};
+
 		if (data.race) {
 			switch(data.race) {
 				case "Elfe":
@@ -79,6 +106,26 @@ var exportFoundry = {
 		};
 
 		if(data.augmentations) {
+
+			data.augmentations.forEach(function(augmentation)
+            {		
+				if (augmentation.augments) {
+					console.log(augmentation.augments);
+					/*
+					augmentation.augments.forEach(function(acc)
+					{			
+						aug_acc = exportFoundry.get_foundry_augmentation(acc);
+						console.log(aug_acc);
+						items.push(aug_acc);
+					});	
+					*/
+				}
+				
+                aug = exportFoundry.get_foundry_augmentation(augmentation);
+                items.push(aug);
+
+				
+            });	
 			
 		};
 
@@ -1703,5 +1750,440 @@ var exportFoundry = {
 		return ap;
 	},
 
+
+	get_foundry_augmentation: function(augmentation)
+	{
+
+		var gameEffect = "", description = "", systemEffects = [], customEffects = [], itemEffects = [], itemRating = 0, essenceCost = 0, type, category = "", accessory = [], id = exportFoundry.makeID(16), isAccessory = false, name = augmentation.name, isPlugged = false;
+
+			switch(augmentation.name) {
+				case "Augmentation de densité osseuse":
+					description = "<p>La structure moléculaire des os est altérée pour en accroître la densité et la force élastique, et les ligaments sont renforcés. Cela alourdit légèrement le personnage.</p><p>L’augmentation de densité musculaire n’est pas compatible avec les autres augmentations qui changent ou altèrent les os, telle que l’ossature renforcée.</p><p>De par sa nature, il est impossible de retirer une augmentation de densité osseuse et donc d’en obtenir d’occasion.</p>";
+					gameEffect = "<p>L’attribut Constitution est augmenté de l’indice de l’augmentation de densité musculaire pour résister aux dommages (à l’exception de ceux causés par les drogues, toxines et maladies) et les dommages à mains nues sont également augmentés (voir la table d’augmentation de densité musculaire).</p";
+					itemRating = augmentation.rating;
+					essenceCost = 0.3;
+					type = "bioware";
+					customEffects = { "0": { "category": "characterResistances", "target": "data.defenses.physicalDamage", "type": "rating", "value": null, "multiplier": null } };
+				break;
+				case "Ossature renforcée":
+					description = "<p>Les os sont renforcés d’un maillage de plastique durci ou de métal, renforçant leur intégrité, leur solidité et leur force élastique mais augmentant le poids du corps.</p><p>Trois types d’ossature renforcée existent : plastique, aluminium et titane, un seul type pouvant être installé à la fois.</p><p>L’ossature renforcée n’est pas compatible avec les autres augmentations qui changent ou altèrent les os, telle que l’augmentation de densité osseuse.</p>";
+					gameEffect = "<p>Augmente la Constitution pour résister aux dommages (à l’exception de ceux causés par les drogues, toxines et maladies) de 2 et fournit 2 points d’Armure (cumulative avec les autres sources d’armure et sans causer d’encombrement).</p><p>Changent les dommages à mains nues à FOR + 2P.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.5;
+					type = "cyberware";
+					category = "bodyware";
+					customEffects = { "0": { "category": "characterResistances", "target": "data.resistances.physicalDamage", "type": "rating", "value": 2, "multiplier": null }, "1": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "value": 2, "multiplier": null } };
+				
+				break;
+				case "Cervelet amplifié":
+					description = "<p>Voilà le Saint Graal de la neuro-amplification. Bien que l’amplificateur cérébral existe depuis vingt ans, l’amélioration de l’instinct naturel de l’utilisateur échappait aux possibilités des chercheurs. C’est grâce à une percée d’Aztechnology que la réponse a pu être trouvée ; au lieu de se concentrer sur le cerveau postérieur, il fallait s’occuper du cervelet. Avec un travail prudent sur le cervelet latéral, le mouvement et l’absorption des données sensorielles peuvent être améliorés, ce qui entraîne une réponse plus naturelle aux stimuli externes et améliore littéralement le passage de la pensée à l’action. Tout ça pour dire que l’utilisateur est plus instinctif et est capable de répondre à des stimuli sans que ses satanées fonctions supérieures soient impliquées.</p>";
+					gameEffect = "<p>Le cervelet amplifié augmente l’Intuition de l’utilisateur de son indice.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.2;
+					type = "culturedBioware";
+					customEffects = { "0": { "category": "characterAttributes", "wifi": false, "transfer": false, "target": "data.attributes.intuition.augmented", "type": "rating" } };
+				
+				break;
+				case "Amplificateur cérébral":
+					description = "<p>Les circonvolutions du cerveau sont améliorées et des tissus nerveux supplémentaires sont ajoutés pour améliorer les performances du cerveau.</p>";
+					gameEffect = "<p>L’amplificateur cérébral ajoute son indice à l’attribut Logique.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.2;
+					type = "culturedBioware";
+					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.logic.augmented", "type": "rating", "multiplier": null } };
+
+				break;
+				case "Cyberbras (gauche":
+				case "Cyberbras (droit)":
+					description = "";
+					gameEffect = "";
+					itemRating = 1;
+					essenceCost = 1;
+					type = "cyberware";
+					category = "cyberlimbs";
+					customEffects = { "0": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
+
+				break;
+				case "Yeux cybernétiques":
+					description = "";
+					gameEffect = "";
+					itemRating = augmentation.rating;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+					customEffects = {"0": { "category": "visionTypes", "target": "data.visions.lowLight.natural", "type": "boolean", "value": "false" }, "1": { "category": "visionTypes", "target": "data.visions.thermographic.natural", "type": "boolean", "value": "false" }, "2": { "category": "visionTypes", "wifi": false, "target": "data.visions.ultrasound.natural", "type": "boolean", "value": "false" }, "3": { "category": "specialProperties", "target": "data.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 }};
+
+					/*
+					var item_1ID = exportFoundry.makeID(16);
+					var item_1 = {
+						"_id": item_1ID,
+						"name": "Compensation anti-flash",
+						"type": "itemAugmentation",
+						"img": "systems/sr5/img/items/itemAugmentation.svg",
+						"data": {
+						  "description": "<p>Protège de l’éblouissementet des flashes aveuglants.</p>",
+						  "gameEffect": "<p>Les modificateurs de vision d’éblouissement et de flashes (tels que les flash-pak) sont réduits (voir table p. 176)</p>",
+						  "isActive": true,
+						  "customEffects": {
+							"0": {
+							  "category": "environmentalModifiers",
+							  "wifi": false,
+							  "target": "data.itemsProperties.environmentalMod.glare",
+							  "type": "value",
+							  "value": -2,
+							  "multiplier": 1
+							}
+						  },
+						  "isActive": true,
+						  "itemRating": 0,
+						  "isWireless": true,
+						  "wirelessTurnedOn": true,
+						  "deviceRating": 2,
+						  "capacityTaken": {
+							"value": 1,
+							"base": 1,
+							"modifiers": [],
+							"multiplier": ""
+						  },
+						  "isAccessory": true,
+						  "type": "cyberware",
+						  "category": "eyeware",
+						  "grade": "standard",
+						  "isPlugged": true,
+						}
+					};
+					var item_2ID = exportFoundry.makeID(16);
+					var item_2 = {
+						"_id": item_2ID,
+						"name": "Interface visuelle",
+						"type": "itemAugmentation",
+						"img": "systems/sr5/img/items/itemAugmentation.svg",
+						"data": {
+						  "description": "<p>Amélioration courante, cette interfacepermet d’afficher des informations visuelles (textes,images, vidéos, heure, etc.) dans le champ de vision. Il s’agitle plus souvent d’ORA, mais il est en fait possible d’afficherà peu près n’importe quoi.</p><p>Il est par exemple possible à uneéquipe de partager des informations tactiques et de situationen temps réel.</p><p>Une interface visuelle est ce qu’il faut pourréellement  voirla RA et participer au monde moderne.</p>",
+						  "isActive": true,
+						  "itemRating": 0,
+						  "isWireless": true,
+						  "wirelessTurnedOn": true,
+						  "capacityTaken": {
+							"value": 0,
+							"base": 0,
+							"modifiers": [],
+							"multiplier": ""
+						  },
+						  "isAccessory": true,
+						  "type": "cyberware",
+						  "category": "eyeware",
+						  "grade": "standard",
+						  "isPlugged": true,
+						}
+					};
+					var item_3ID = exportFoundry.makeID(16);
+					var item_3 = {
+						"_id": item_3ID,
+						"name": "Smartlink",
+						"type": "itemAugmentation",
+						"img": "systems/sr5/img/items/itemAugmentation.svg",
+						"data": {
+						  "description": "<p>Cet accessoire doit être couplé à un smartgun pour tirer pleinement parti du système.</p><p>Le smartlinkinforme l’utilisateur de la distance des différentes cibles,ainsi que du niveau du chargeur (et du type de munitions),de l’échauffement du canon, du stress mécanique, etc. Sanssmartlink, le smartgun émet des données que personne nereçoit, et donc inutiles. Un système smartlink est plus efficaces’il est installé dans un oeil naturel ou cybernétique quedans un équipement externe, voir Smartgun, p. 435.</p>",
+						  "customEffects": {
+							"0": {
+							  "category": "specialProperties",
+							  "target": "data.specialProperties.smartlink",
+							  "type": "value",
+							  "value": 2,
+							  "multiplier": 1
+							}
+						  },
+						  "isActive": true,
+						  "itemRating": 0,
+						  "isWireless": true,
+						  "wirelessTurnedOn": true,
+						  "deviceRating": 2,
+						  "capacityTaken": {
+							"value": 3,
+							"base": 3,
+							"modifiers": [],
+							"multiplier": ""
+						  },
+						  "isAccessory": true,
+						  "type": "cyberware",
+						  "category": "eyeware",
+						  "grade": "standard",
+						  "isPlugged": true,						  
+						}
+					};
+					var item_4ID = exportFoundry.makeID(16);
+					var item_4 = {
+						"_id": item_4ID,
+						"name": "Vision nocturne",
+						"type": "itemAugmentation",
+						"img": "systems/sr5/img/items/itemAugmentation.svg",
+						"data": {
+						  "description": "<p>Cette amélioration permet de voir normalement sous des lumières aussi faibles qu’une nuit étoilée.</p><p>Elle n’est cependant d’aucun secours dans le noir complet.</p>",
+						  "customEffects": {
+							"0": {
+							  "category": "visionTypes",
+							  "target": "data.visions.lowLight.augmented",
+							  "type": "boolean",
+							  "value": "true"
+							}
+						  },
+						  "isActive": true,
+						  "itemRating": 0,
+						  "isWireless": true,
+						  "wirelessTurnedOn": true,
+						  "deviceRating": 2,
+						  "capacityTaken": {
+							"value": 2,
+							"base": 2,
+							"modifiers": [],
+							"multiplier": ""
+						  },
+						  "isAccessory": true,
+						  "type": "cyberware",
+						  "category": "eyeware",
+						  "grade": "standard",
+						  "isPlugged": true,
+						}
+					};
+					var item_5ID = exportFoundry.makeID(16);
+					var item_5 = {
+						"_id": item_5ID,
+						"name": "Vision thermographique",
+						"type": "itemAugmentation",
+						"img": "systems/sr5/img/items/itemAugmentation.svg",
+						"data": {
+						  "description": "<p>Cette amélioration permetde voir dans le spectre infrarouge, révélant ainsi la température.</p><p>C’est particulièrement pratique pour repérer lescréatures vivantes dans l’obscurité totale, pour comprendresi un moteur ou une machine a été utilisé récemment, etainsi de suite.</p>",
+						  "customEffects": {
+							"0": {
+							  "category": "visionTypes",
+							  "target": "data.visions.thermographic.augmented",
+							  "type": "boolean",
+							  "value": "true"
+							}
+						  },
+						  "isActive": true,
+						  "itemRating": 0,
+						  "isWireless": true,
+						  "wirelessTurnedOn": true,
+						  "deviceRating": 2,
+						  "capacityTaken": {
+							"value": 2,
+							"base": 2,
+							"modifiers": [],
+							"multiplier": ""
+						  },
+						  "isAccessory": true,
+						  "type": "cyberware",
+						  "category": "eyeware",
+						  "grade": "standard",
+						  "isPlugged": false,
+						}
+					};
+					accessory = [item_1, item_2, item_3, item_4, item_5];
+					*/
+				break;
+				case "Cyberjambe (gauche)":
+				case "Cyberjambe (droite)":
+					description = ""
+					gameEffect = "";
+					itemRating = 1;
+					essenceCost = 1;
+					type = "cyberware";
+					category = "cyberlimbs";
+					customEffects = { "0": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
+
+				break;
+				case "Datajack":
+					description = "<p>Un datajack fournit une interface neurale directe (p. 222), ce qui est pratique dans de nombreux cas, et contient environ un mètre de micro-câble rétractable qui permet de s’interfacer directement avec n’importe quel appareil via son connecteur universel.</p><p>Un datajack dispose d’une mémoire de stockage propre permettant de télécharger et stocker des fichiers. Deux personnes équipées de datajack peuvent se relier par un câble de fibre optique afin d’avoir une conversation mentale privée ne pouvant être espionnée ni par interception radio, ni par une oreille indiscrète.</p>";
+					gameEffect = "<p><em>Sans fil :</em>le datajack fournit un point de réduction de Bruit.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "headware";
+					customEffects = { "0": { "category": "matrixAttributes", "target": "data.matrix.attributes.noiseReduction", "type": "value", "value": 1, "multiplier": null } };
+
+				break;
+				case "Armure dermique":
+					description = "<p>Des plaques de plastique et fibres decéramiques sont greffées sur la peau. Les plaques sont clairementvisibles, et encore plus évidentes au toucher, maiselles peuvent être enjolivées par des couleurs et texturesstylisées. </p>";
+					gameEffect = "<p>L’armure dermique fournit un bonus d’armure égalà son indice (cumulatif avec les autres sources d’armure et sans causer d’encombrement). Elle ne peut pas être combinée avec d’autres augmentations de la peau qui fournissent de l’armure, orthoderme compris.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.5;
+					type = "cyberware";
+					category = "bodyware";
+					customEffects = { "0": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
+				
+				break;
+				case "Réservoir d\'air interne":
+					description = "<p>Le réservoir d’air interne remplace une partie d’un poumon par un réservoir d’air sous pression qui permet de retenir son souffle pendant (indice) heures.</p><p>Il rend possible les opérations sous-marines prolongées et immunise contre les toxines de vecteur inhalation tant que l’utilisateur retient sa respiration.</p>";
+					gameEffect = "<p>Activer ou désactiver le réservoir est une action simple. Il se recharge par une valve située sous la cage thoracique, ce qui prend cinq minutes, mais peut aussi se recharger en 6 heures de respiration normale.</p><p>Sans fil :activer ou désactiver le réservoir devient une action gratuite et l’utilisateur est informé en permanence du volume exact d’air ainsi que de sa pureté.</p>";
+					itemRating = 1;
+					essenceCost = 0.25;
+					type = "cyberware";
+					category = "bodyware";
+
+				break;
+				case "Renforcement musculaire":
+					description = "<p>Ce traitement spécial de tissage biologique renforce les tissus musculaires existants, plutôt que de les remplacer par des muscles cultivés en cuve.</p><p>Des câbles musculaires spécialement développés in-vitro sont tressés avec les fibres musculaires, ce qui augmente la masse musculaire, la force brute et la corpulence de la personne.</p><p>De par sa nature, il est impossible de retirer un renforcement musculaire et donc d’en obtenir d’occasion.</p>";
+					gameEffect = "<p>Le renforcement musculaire ajoute son indice à la Force du personnage. Cet implant n’est pas compatible avec les autres augmentations qui augmentent la Force, remplacement musculaire compris.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.2;
+					type = "bioware";
+					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.strength.augmented", "type": "rating", "multiplier": null } };
+
+				break;
+				case "Tonification musculaire":
+					description = "<p>Ce traitement augmente l’élasticité et la tension des fibres musculaires, ce qui affine la silhouette.</p>";
+					gameEffect = "<p>La tonification musculaire ajoute son indice à l’Agilitédu personnage. Cet implant n’est pas compatible avec lesautres augmentations qui augmentent l’Agilité, remplacement musculaire compris.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.2;
+					type = "bioware";
+					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.agility.augmented", "type": "rating", "multiplier": null } };
+
+				break;
+				case "Orthoderme":
+					description = "<p>Ce maillage de fibres biologiques intégrées à la peau fournit l’équivalent d’une armure personnelle tout en étant quasiment indiscernable.</p>";
+					gameEffect = "<p>L’orthoderme fournit un bonus d’armure égal à son indice (cumulatif avec les autres sources d’armure et sans causer d’encombrement). Il ne peut pas être combiné avec d’autres augmentations de la peau qui fournissent de l’armure, armure dermique comprise.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.25;
+					type = "bioware";
+					customEffects = { "0": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
+
+				break;
+				case "Griffes (retractable) implantées":
+					description = "<p>Armes biologiques des plus communes, les griffes, sont parfaitement fidèles à leur nom : des longues griffes acérées qui prolongent les doigts ou les orteils. Généralement acquises par paire, elles permettent à l’utilisateur de toujours être armé, mais elles doivent être déclarées comme armes létales. Les griffes sont disponibles en version rétractable ou non. Les utilisateurs devraient faire attention à adapter leurs tenues, ou à simplement sortir sans gants ou chaussures selon où se trouvent les griffes.</p>";
+					gameEffect = "<table style=\\\"width: 104.981%; height: 114px;\\\" border=\\\"1\\\">\\n<tbody>\\n<tr style=\\\"height: 38px;\\\">\\n<td style=\\\"width: 25.985%; text-align: center; height: 38px;\\\">Arme biologique de m&ecirc;l&eacute;e</td>\\n<td style=\\\"width: 26.717%; text-align: center; height: 38px;\\\">PRECISION</td>\\n<td style=\\\"width: 23.4231%; text-align: center; height: 38px;\\\">ALLONGE</td>\\n<td style=\\\"width: 7.68571%; text-align: center; height: 38px;\\\">VD</td>\\n<td style=\\\"width: 16.1034%; text-align: center; height: 38px;\\\">PA</td>\\n</tr>\\n<tr style=\\\"height: 76px;\\\">\\n<td style=\\\"width: 25.985%; text-align: center; height: 76px;\\\">Griffes</td>\\n<td style=\\\"width: 26.717%; text-align: center; height: 76px;\\\">(Limite physique)</td>\\n<td style=\\\"width: 23.4231%; text-align: center; height: 76px;\\\">-</td>\\n<td style=\\\"width: 7.68571%; text-align: center; height: 76px;\\\">(FOR+1)P</td>\\n<td style=\\\"width: 16.1034%; text-align: center; height: 76px;\\\">-3</td>\\n</tr>\\n</tbody>\\n</table>";
+					itemRating = 1;
+					essenceCost = 0;
+					type = "culturedBioware";
+					category = "cyberweapon";
+
+				break;
+				case "Amplificateur synaptique":
+					description = "<p>Les cellules nerveuses de la moelle épinière sont élargies et dupliquées, ce qui augmente la bande passante nerveuse. Il en résulte un temps de réaction bien plus court.</p>";
+					gameEffect = "<p>L’amplificateur fournit un bonus d’un point de Réaction (ainsi que les ajustements liés d’Initiative et Limite physique) et un dé d’initiative par point d’indice. L’amplificateur synaptique n’est compatible avec aucune autre amélioration de Réaction ou d’Initiative.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 0.5;
+					type = "culturedBioware";
+					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
+
+				break;
+				case "Réflexes câblés":
+					description = "<p>Une multitude d’accélérateurs neuraux et de stimulateurs d’adrénaline sont implantés lors d’une opération hautement invasive et douloureuse pour projeter l’utilisateur dans un monde entièrement nouveau où tout semble bouger au ralenti.</p><p>Les réflexes câblés ne sont compatibles avec aucune augmentation qui affecte la Réaction ou l’Initiative.</p>";
+					gameEffect = "<p>Les réflexes câblés peuvent être activés ou coupés par un interrupteur manuel en une action complexe ou sans fil en une action simple. Une fois activés, ils augmentent la Réaction (et donc l’Initiative) et le nombre de dés d’initiative de leur indice.</p><p><em>Sans fil :</em>les réflexes câblés deviennent compatibles avec un accroissement de réaction dont la fonctionnalité sans fil est activée. Leur bonus combiné peut dépasser le maximum de +4.</p>";
+					itemRating = augmentation.rating;
+					essenceCost = 2;
+					type = "cyberware";
+					category = "bodyware";
+					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
+
+				break;
+				default:
+				break;
+			};
+
+			
+			/*
+			switch (augmentation) {				
+				case "Compensation anti-flashs":
+					name = augmentation;
+					id = item_1ID;
+					description = "<p>Protège de l’éblouissementet des flashes aveuglants.</p>"
+					gameEffect = "<p>Les modificateurs de vision d’éblouissement et de flashes (tels que les flash-pak) sont réduits (voir table p. 176)</p>";
+					isAccessory = true;
+					itemRating = 0;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+					customEffects = { "0": { "category": "environmentalModifiers", "wifi": false, "target": "data.itemsProperties.environmentalMod.glare", "type": "value", "value": -2, "multiplier": 1 } };
+
+				break;
+				case "Interface visuelle":
+					name = augmentation;
+					id = item_2ID;
+					description = "<p>Amélioration courante, cette interfacepermet d’afficher des informations visuelles (textes,images, vidéos, heure, etc.) dans le champ de vision. Il s’agitle plus souvent d’ORA, mais il est en fait possible d’afficherà peu près n’importe quoi.</p><p>Il est par exemple possible à uneéquipe de partager des informations tactiques et de situationen temps réel.</p><p>Une interface visuelle est ce qu’il faut pourréellement  voirla RA et participer au monde moderne.</p>";
+					gameEffect = "";
+					isAccessory = true;
+					itemRating = 0;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+
+				break;
+				case "Smartlink":
+					name = augmentation;
+					id = item_3ID;
+					description = "<p>Cet accessoire doit être couplé à un smartgun pour tirer pleinement parti du système.</p><p>Le smartlinkinforme l’utilisateur de la distance des différentes cibles,ainsi que du niveau du chargeur (et du type de munitions),de l’échauffement du canon, du stress mécanique, etc. Sanssmartlink, le smartgun émet des données que personne nereçoit, et donc inutiles. Un système smartlink est plus efficaces’il est installé dans un oeil naturel ou cybernétique quedans un équipement externe, voir Smartgun, p. 435.</p>";
+					gameEffect = "";
+					isAccessory = true;
+					itemRating = 0;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+					customEffects = { "0": { "category": "specialProperties", "target": "data.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 } };
+
+				break;
+				case "Vision nocturne":
+					name = augmentation;
+					id = item_4ID;
+					description = "<p>Cette amélioration permet de voir normalement sous des lumières aussi faibles qu’une nuit étoilée.</p><p>Elle n’est cependant d’aucun secours dans le noir complet.</p>";
+					gameEffect = "<p>Les modificateurs de vision d’éblouissement et de flashes (tels que les flash-pak) sont réduits (voir table p. 176)</p>";
+					isAccessory = true;
+					itemRating = 0;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+					customEffects = { "0": { "category": "visionTypes", "target": "data.visions.lowLight.augmented", "type": "boolean", "value": "true" } };
+
+				break;
+				case "Vision thermographique":
+					name = augmentation;
+					id = item_5ID;
+					description = "<p>Cette amélioration permetde voir dans le spectre infrarouge, révélant ainsi la température.</p><p>C’est particulièrement pratique pour repérer lescréatures vivantes dans l’obscurité totale, pour comprendresi un moteur ou une machine a été utilisé récemment, etainsi de suite.</p>";
+					gameEffect = "";
+					isAccessory = true;
+					itemRating = 0;
+					essenceCost = 0;
+					type = "cyberware";
+					category = "eyeware";
+					customEffects = { "0": { "category": "visionTypes", "target": "data.visions.thermographic.augmented", "type": "boolean", "value": "true" } };
+
+				break;
+				default:
+				break;
+			}
+			*/
+
+			aug = {
+			"_id": id,
+      		"name": name,
+      		"type": "itemAugmentation",
+      		"img": "systems/sr5/img/items/itemAugmentation.svg",
+      		"data": {
+				"description": description,
+				"gameEffect": gameEffect,
+				"customEffects": customEffects,
+				"itemEffects": itemEffects,
+				"systemEffects": systemEffects,
+				"isActive": true,
+				"isWireless": true,
+				"wirelessTurnedOn": true,
+				"itemRating": itemRating,
+				"isAccessory": isAccessory,
+				"type": type,
+				"category": category,
+				"grade": "standard",
+				"isPlugged": isPlugged,
+				"essenceCost": {
+				  "value": 0,
+				  "base": essenceCost,
+				  "modifiers": [],
+				  "multiplier": "rating"
+				},
+				"accessory": accessory,
+			},
+		};
+			return aug;
+	},
 
 };
