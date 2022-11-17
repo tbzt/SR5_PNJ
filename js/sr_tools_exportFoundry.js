@@ -1079,28 +1079,23 @@ var exportFoundry = {
 				  "short": {
 					"value": 0,
 					"base": short,
-					"modifiers": []
 				  },
 				  "medium": {
 					"value": 0,
 					"base": medium,
-					"modifiers": []
 				  },
 				  "long": {
 					"value": 0,
 					"base": long,
-					"modifiers": []
 				  },
 				  "extreme": {
 					"value": 0,
 					"base": extreme,
-					"modifiers": []
 				  },
 				  "isStrengthBased": rangeIsStrengthBased
 				},
 				"damageValue": {
 				  "base": damageValue,
-				  "modifiers": [],
 				  "value": 0,
 				  "isStrengthBased": isStrengthBased
 				},
@@ -1108,19 +1103,16 @@ var exportFoundry = {
 				"damageElement": damageElement || "",
 				"armorPenetration": {
 				  "base": armorPenetration,
-				  "modifiers": [],
 				  "value": 0
 				},
 				"accuracy": {
 				  "base": accuracy,
-				  "modifiers": [],
 				  "value": 0,
 				  "isPhysicalLimitBased": true
 				},
 				"reach": {
 				  "value": 0,
 				  "base": reach || 0,
-				  "modifiers": []
 				},
 				"firingMode": {
 				  "singleShot": singleShot,
@@ -1139,12 +1131,10 @@ var exportFoundry = {
 				  "recoilCompensation": {
 					"value": 0,
 					"base": recoilCompensation,
-					"modifiers": []
 				  },
 				"weaponSkill": {
 					"dicePool": 0,
 					"base": 0,
-					"modifiers": [],					
 					"specialization": false,
 					"category": weaponSkill
 				}
@@ -1197,7 +1187,6 @@ var exportFoundry = {
 				"armorValue": {
 				  "value": 0,
 				  "base": armorValue,
-				  "modifiers": []
 				}
 			},
 		};
@@ -1472,7 +1461,6 @@ var exportFoundry = {
                 "systemEffects": [],
                 "damageValue": {
                   "base": 0,
-                  "modifiers": [],
                   "value": 0,
                   "isStrengthBased": false
                 },
@@ -1480,12 +1468,10 @@ var exportFoundry = {
                 "damageElement": damageElement,
                 "armorPenetration": {
                   "base": 0,
-                  "modifiers": [],
                   "value": 0
                 },
                 "accuracy": {
                   "base": 0,
-                  "modifiers": [],
                   "value": 0,
                   "isPhysicalLimitBased": false
                 },
@@ -1497,12 +1483,10 @@ var exportFoundry = {
                 "drain": {
                   "value": 0,
                   "base": drain,
-                  "modifiers": []
                 },
                 "drainValue": {
                   "value": 0,
                   "base": 0,
-                  "modifiers": []
                 },
                 "manipulationDamaging": false,
                 "illusionSense": illusionSense,
@@ -1856,7 +1840,6 @@ var exportFoundry = {
 						  "capacityTaken": {
 							"value": 1,
 							"base": 1,
-							"modifiers": [],
 							"multiplier": ""
 						  },
 						  "isAccessory": true,
@@ -1881,7 +1864,6 @@ var exportFoundry = {
 						  "capacityTaken": {
 							"value": 0,
 							"base": 0,
-							"modifiers": [],
 							"multiplier": ""
 						  },
 						  "isAccessory": true,
@@ -1916,7 +1898,6 @@ var exportFoundry = {
 						  "capacityTaken": {
 							"value": 3,
 							"base": 3,
-							"modifiers": [],
 							"multiplier": ""
 						  },
 						  "isAccessory": true,
@@ -1950,7 +1931,6 @@ var exportFoundry = {
 						  "capacityTaken": {
 							"value": 2,
 							"base": 2,
-							"modifiers": [],
 							"multiplier": ""
 						  },
 						  "isAccessory": true,
@@ -1984,7 +1964,6 @@ var exportFoundry = {
 						  "capacityTaken": {
 							"value": 2,
 							"base": 2,
-							"modifiers": [],
 							"multiplier": ""
 						  },
 						  "isAccessory": true,
@@ -2173,7 +2152,7 @@ var exportFoundry = {
       		"name": name,
       		"type": "itemAugmentation",
       		"img": "systems/sr5/img/items/itemAugmentation.svg",
-      		"systel": {
+      		"system": {
 				"description": description,
 				"gameEffect": gameEffect,
 				"customEffects": customEffects,
@@ -2191,7 +2170,6 @@ var exportFoundry = {
 				"essenceCost": {
 				  "value": 0,
 				  "base": essenceCost,
-				  "modifiers": [],
 				  "multiplier": "rating"
 				},
 				"accessory": accessory,
