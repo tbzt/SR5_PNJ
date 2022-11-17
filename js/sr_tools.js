@@ -1067,6 +1067,6 @@ function setup_controls()
 	view_intro();
 }
 
-var build_id = '1.0.1 fr';
+var build_id = '1.1.1 fr';
 var total_count = 98;
 var download_url = 'https://github.com/toktic/sr_gmt';
