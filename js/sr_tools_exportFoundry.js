@@ -35,7 +35,7 @@ var exportFoundry = {
 				  "name": "Hermétisme",
 				  "type": "itemTradition",
 				  "img": "systems/sr5/img/items/itemTradition.svg",
-				  "data": {
+				  "system": {
 					"systemEffects": [
 					  {
 						"category": "tradition",
@@ -176,7 +176,7 @@ var exportFoundry = {
 			"name": data.name,
 			"type": "actorGrunt",
 			"img": "systems/sr5/img/actors/actorGrunt.svg",
-			"data": {
+			"system": {
 			  "attributes": {
 				"body": {
 				  "natural": {
@@ -458,7 +458,8 @@ var exportFoundry = {
 				}
 			  },
 			  "magic": {
-				"magicType": magicType
+				"magicType": magicType,
+				"tradition": "",
 			  },
 			  "conditionMonitors": {
 				"stun": {
@@ -517,62 +518,75 @@ var exportFoundry = {
 				"description": data.notes || ""
 			  },
 			  "activeSpecialAttribute": specialAttribute
-			},"token": {
+			},
+			"prototypeToken": {
 				"name": data.name,
-				"img": "systems/sr5/img/actors/actorGrunt.svg",
 				"displayName": 40,
-				"actorLink": false,
+    			"actorLink": false,
+				"texture": {
+				"src": "systems/sr5/img/actors/actorGrunt.svg",
+				"scaleX": 1,
+				"scaleY": 1,
+				"offsetX": 0,
+				"offsetY": 0,
+				"rotation": 0,
+				"tint": null
+				},
 				"width": 1,
 				"height": 1,
-				"scale": 1,
-				"mirrorX": false,
-				"mirrorY": false,
 				"lockRotation": true,
 				"rotation": 0,
 				"alpha": 1,
-				"vision": true,
-				"dimSight": 100,
-				"brightSight": 0,
-				"sightAngle": 0,
-				"light": {
-				  "alpha": 0.5,
-				  "angle": 0,
-				  "bright": 0,
-				  "coloration": 1,
-				  "dim": 0,
-				  "gradual": true,
-				  "luminosity": 0.5,
-				  "saturation": 0,
-				  "contrast": 0,
-				  "shadows": 0,
-				  "animation": {
-					"speed": 5,
-					"intensity": 5,
-					"reverse": false
-				  },
-				  "darkness": {
-					"min": 0,
-					"max": 1
-				  }
-				},
 				"disposition": -1,
 				"displayBars": 40,
 				"bar1": {
-				  "attribute": "statusBars.physical"
+				"attribute": "statusBars.physical"
 				},
 				"bar2": {
-				  "attribute": "statusBars.stun"
+				"attribute": "statusBars.stun"
 				},
+				"light": {
+				"alpha": 0.5,
+				"angle": 360,
+				"bright": 0,
+				"color": null,
+				"coloration": 1,
+				"dim": 0,
+				"attenuation": 0.5,
+				"luminosity": 0.5,
+				"saturation": 0,
+				"contrast": 0,
+				"shadows": 0,
+				"animation": {
+					"type": null,
+					"speed": 5,
+					"intensity": 5,
+					"reverse": false
+				},
+				"darkness": {
+					"min": 0,
+					"max": 1
+				}
+				},
+				"sight": {
+				"enabled": true,
+				"range": 100,
+				"angle": 360,
+				"visionMode": "basic",
+				"color": null,
+				"attenuation": 0.1,
+				"brightness": 0,
+				"saturation": 0,
+				"contrast": 0
+				},
+				"detectionModes": [],
 				"flags": {},
-			  },
+				"randomImg": false
+			},
 			"items": items,
 			"effects": [],
-			"flags": {
-			  "sr5": {
-				"cumulativeDefense": null,
-				"cumulativeRecoil": 3
-			  }
-			}
+			"flags": {},
+			"_stats": {}
 		  }
 		return character;
 	},
@@ -1056,7 +1070,7 @@ var exportFoundry = {
       		"name": weapon,
       		"type": "itemWeapon",
       		"img": "systems/sr5/img/items/itemWeapon.svg",
-      		"data": {				
+      		"system": {				
 				"deviceRating": 2,
 				"quantity": 1,
         		"category": category,				
@@ -1176,7 +1190,7 @@ var exportFoundry = {
       		"name": armor,
       		"type": "itemArmor",
       		"img": "systems/sr5/img/items/itemArmor.svg",
-      		"data": {				
+      		"system": {				
 				"deviceRating": 2,
 				"quantity": 1,				
 				"isActive": true,
@@ -1232,7 +1246,7 @@ var exportFoundry = {
 				break;
 				case "Armure":
 					gameEffect = "<p>Ce sort crée un champ d’énergie magique étincelante autour du sujet qui le protège contre les dommages physiques.</p>\n<p>Fournit un indice d’Armure égal aux succès lors du test de Lancement de sorts et se cumule avec toute autre armure, sans être toutefois inclus dans les calculs de détermination d’encombrement de l’armure.</p>";
-                    customEffects = { "0": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "hits", "multiplier": 1, "transfer": true, "wifi": false } };
+                    customEffects = { "0": { "category": "itemArmor", "target": "system.itemsProperties.armor", "type": "hits", "multiplier": 1, "transfer": true, "wifi": false } };
                     category = "manipulation";
                     subCategory = "physical";
                     range = "lineOfSight";
@@ -1244,7 +1258,7 @@ var exportFoundry = {
 				break;
 				case "Agonie":
 					gameEffect = "<p>Favori des magiciens traversant des moments difficiles, Agonie inflige à une cible l'illusion d'une terrible douleur.</p>\n<p>Chaque succès excédentaire du magicien inflige temporairement une case de dommages physiques et une case de dommages étourdissants.</p>\n<p>Ce ne sont pas des dégâts réels, seulement une mesure de l’effet du sort. La cible est affectée de la même manière que par des dégâts réels, recevant les pénalités de blessures habituelles.</p>\n<p>Si un moniteur de condition de la cible est complètement rempli, elle est submergée de douleur, incapable de se déplacer ou d’agir.</p>\n<p>Une fois que le sort s’achève, la douleur et les cases de dégâts disparaissent immédiatement.</p>\n<p>Agonie affecte une seule cible.</p>";
-                    customEffects = { "0": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.stun.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true }, "1": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.condition.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true }, "2": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.physical.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true } };
+                    customEffects = { "0": { "category": "characterConditionMonitors", "system": "system.conditionMonitors.stun.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true }, "1": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.condition.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true }, "2": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.physical.actual", "type": "netHits", "multiplier": 1, "wifi": false, "transfer": true } };
                     category = "illusion";
                     subCategory = "realistic";
                     range = "lineOfSight";
@@ -1281,7 +1295,7 @@ var exportFoundry = {
 				break;
 				case "Augmentation de réflexes":
 					gameEffect = "<p>Ce sort augmente l’initiative d’un sujet.</p><p>\n<p>Chaque succès du test de Lancement de sorts ajoute 1 à l’Initiative de la cible, et chaque paire de succès ajoute un dé d’Initiative.</p>\n<p>Un personnage ne peut être affecté que par un seul sort d’Augmentation de réflexes à la fois, et le nombre maximum de dés d’Initiative que peut avoir un personnage est égal à 5D6.</p>";
-                    customEffects = { "0": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit", "type": "hits", "multiplier": 1, "transfer": true }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "hits", "multiplier": 0.5, "transfer": true } };
+                    customEffects = { "0": { "category": "characterInitiatives", "target": "system.initiatives.physicalInit", "type": "hits", "multiplier": 1, "transfer": true }, "1": { "category": "characterInitiatives", "target": "system.initiatives.physicalInit.dice", "type": "hits", "multiplier": 0.5, "transfer": true } };
                     category = "health";
                     subCategory = "";
                     range = "touch";
@@ -1291,7 +1305,7 @@ var exportFoundry = {
 				break;
 				case "Sens du combat":
 					gameEffect = "<p>Le sujet peut analyser les combats et autres situations dangereuses à portée, ressentant les événements une fraction de seconde avant qu'ils ne surviennent.</p>\n<p>Chaque succès du test de Lancement de sorts ajoute 1 dé à la Réaction lors des tests de surprise, et aussi aux jets faits pour se défendre contre les attaques de mêlée et à distance tant que le sort fait effet.</p>\n<p>Les bonus retirés de ce sort et du pouvoir d’adepte éponyme ne sont que partiellement cumulables, seul le meilleur modificateur de défense est retenu, cependant un personnage affecté par ces deux effets peut bénéficier du test de Perception et du modificateur de Réaction pour son test de Surprise, le cas échéant.</p>";
-                    customEffects = { "0": { "category": "characterDerivedAttributes", "target": "data.derivedAttributes.surprise", "type": "hits", "multiplier": 1, "transfer": true }, "1": { "category": "characterDefenses", "target": "data.defenses.defend", "type": "hits", "multiplier": 1, "transfer": true } };
+                    customEffects = { "0": { "category": "characterDerivedAttributes", "target": "system.derivedAttributes.surprise", "type": "hits", "multiplier": 1, "transfer": true }, "1": { "category": "characterDefenses", "target": "system.defenses.defend", "type": "hits", "multiplier": 1, "transfer": true } };
                     category = "detection";
                     subCategory = "psychic";
                     range = "touch";
@@ -1381,7 +1395,7 @@ var exportFoundry = {
 				break;
 				case "Confusion":
 					gameEffect = "<p>Ce sort produit un tourbillon de sensations contradictoires et d'images pour perturber les sens.</p>\n<p>Pour chaque succès excédentaire du test de Lancement de sorts, la cible subit un modificateur de réserve de dés de -1 sur tous ses tests à cause de la distraction.</p>";
-                    customEffects = { "0": { "category": "penaltyTypes", "wifi": false, "transfer": true, "target": "data.penalties.special.actual", "type": "netHits", "multiplier": -1 } };
+                    customEffects = { "0": { "category": "penaltyTypes", "wifi": false, "transfer": true, "target": "system.penalties.special.actual", "type": "netHits", "multiplier": -1 } };
                     category = "illusion";
                     subCategory = "realistic";
                     range = "lineOfSight";
@@ -1451,7 +1465,7 @@ var exportFoundry = {
       		"name": spell,
       		"type": "itemSpell",
       		"img": "systems/sr5/img/items/itemSpell.svg",
-      		"data": {	
+      		"system": {	
                 "gameEffect": gameEffect,
                 "customEffects": customEffects,
                 "itemEffects": [],
@@ -1530,7 +1544,7 @@ var exportFoundry = {
 					description = "<p>Le personnage se fond dans la foule : il est rarement remarqué et facilement oublié. Son apparence est ordinaire et il n'a ni caractéristiques physiques ni comportements distinctifs. Quiconque tente de le décrire n'arrive pas à en dire quelque chose de plus précis que \"taille moyenne, corpulence moyenne, chevelure moyenne, etc.\"</p>\n<p>Si le personnage se retrouve avec un tatouage, une cicatrice ou un implant visible, ou tout autre signe distinctif, les bonus de l'Avantage M. Tout le monde sont annulés jusqu'à ce que les signes distinctifs disparaissent de l'apparence du personnage.</p>\n<p>Dans certaines circonstances ou situations, le meneur de jeu peut décider que l'Avantage ne s'applique pas. Par exemple, un troll avec l'Avantage M. Tout le monde continue à dépasser de plusieurs têtes une foule d'humains et se repère donc de loin, peu importe à quel point ses cornes sont moyennes. Le personnage ne regagne ses bonus qu'en s'extrayant de la situation où il détonne.</p>"
 					gameEffect = "<p>L'Avantage M. Tout le monde augmente le seuil de 1 de quiconque tente de se rappeler de détails concernant le personnage.</p><p>Les personnes qui tentent de filer le personnage ou de le localiser physiquement par le biais de leurs contacts ou même de le repérer au milieu d'une foule reçoivent un modificateur de -2 à leur réserve de dés à tous les tests réalisés lors de ces tentatives. Le même modificateur s'applique si les personnes demandent autour d'elles des informations sur le personnage sur la base de sa description physique. Ce modificateur ne s'applique pas, cependant, aux recherches magiques ou matricielles.</p>";
 					type = "positive";
-					customEffects = { "0": { "category": "reputationTypes", "target": "data.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
+					customEffects = { "0": { "category": "reputationTypes", "target": "system.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
 				break;
 				case "Fou du volant":
 					description = "<p>Le Fou du volant est celui que vous cherchez quand il est temps d’appuyer sur le champignon et de filer. C’est un conducteur ou un pilote né. Une fois installé derrière le volant / le manche / les manettes d’un véhicule ou d’un drone, il a une compréhension intuitive des limites et des capacités dudit véhicule, et sait comment cajoler la machine qu’il contrôle pour qu’elle fonctionne à son maximum.</p>\n<p>Le joueur peut faire durer ce bonus 1D6 minutes supplémentaires s’il le souhaite. Ce choix pousse le véhicule ou le drone bien au-delà des limites de sa conception et entraîne un risque de dommages catastrophiques. Pour chaque minute pendant laquelle le personnage pousse le véhicule au-delà de la durée initiale du bonus, le véhicule encaisse automatiquement (pas de résistance) une case de dommages.</p>"
@@ -1541,7 +1555,7 @@ var exportFoundry = {
 					description = "<p>Quand un esprit insecte aux mandibules dégoulinantes charge, le personnage avec l’Avantage Tripes est celui qui a le plus de chance de tenir et se battre au lieu de paniquer.</p>"
 					gameEffect = "<p>Tripes procure au personnage un modificateur de réserve de dés de +2 aux tests pour résister à la peur et à l’intimidation, y compris induites magiquement par des sorts ou des pouvoirs de métacréatures.</p>";
 					type = "positive";
-					customEffects = { "0": { "category": "characterDerivedAttributes", "target": "data.derivedAttributes.composure", "type": "value", "value": 2, "multiplier": null } };
+					customEffects = { "0": { "category": "characterDerivedAttributes", "target": "system.derivedAttributes.composure", "type": "value", "value": 2, "multiplier": null } };
 				break;
 				case "Apparence humaine":
 					description = "<p>Un métahumain disposant du trait Apparence humaine peut passer pour un humain la plupart du temps. Les PNJ humains ont une attitude neutre envers un tel personnage lors de ses tests de compétences sociales (voir p. 86), même s'ils ont de gros préjugés envers les métahumains.</p>\n<p>Il se peut que le personnage subisse l'antipathie de PNJ métahumains qui n'aiment pas les humains et qui, soit le prennent pour un humain, soit pensent que ses motivations pour essayer d'avoir l'air humain sont louches.</p>\n<p>Seuls les elfes, les nains et les orks peuvent prendre le trait Apparence humaine.</p>"
@@ -1552,39 +1566,39 @@ var exportFoundry = {
 					description = "<p>Le dé roule ou la pièce tombe bien plus souvent en faveur du personnage que la normale, lui donnant l’occasion d’être bouche bée devant sa bonne fortune.</p>\n<p>Remarque : cela n’augmente pas la Chance du personnage mais lui donne seulement le droit de le faire ; le coût d’amélioration en Karma doit toujours être payé.</p>\n<p>Cet Avantage ne peut être pris qu’une fois et doit être approuvé par le meneur de jeu. Chanceux ne peut être combiné avec Attribut exceptionnel.</p>"
 					gameEffect = "<p>Ce trait permet à un personnage de posséder un attribut Chance supérieur d’un point à son maximum racial (par exemple, 8 pour un humain).</p>";
 					type = "positive";
-       				customEffects= { "0": { "category": "characterSpecialAttributes", "target": "data.specialAttributes.edge.maximum", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "reputationTypes", "target": "data.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
+       				customEffects= { "0": { "category": "characterSpecialAttributes", "target": "system.specialAttributes.edge.maximum", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "reputationTypes", "target": "system.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
 				break;
 				case "Résistance à la magie I":
 					description = "<p>Coût : 6 points de Karma par niveau (niveau max 4)</p>\n<p>Il s’agit de la merveilleuse capacité de pouvoir faire dévier une boule de feu.</p>\n<p>Le personnage reçoit 1 dé supplémentaire pour ses tests de résistance aux sorts par tranche de 6 points de Karma dépensés pour ce trait.</p>\n<p>Cet Avantage, toutefois, est toujours « actif » : le personnage ne peut diminuer sa résistance magique pour recevoir pleinement les effets bénéfiques de sorts tels que Soins.</p>\n<p>Un personnage doté de Résistance à la magie n’est jamais considéré comme un sujet volontaire pour les sorts qui en requièrent un : de tels sorts échouent automatiquement sur les personnages résistants à la magie.</p>\n<p>Un personnage doté d’un attribut Magie ne peut pas choisir ce trait.</p>"
 					gameEffect = "<p>Confère 1 dé supplémentaire aux tests de résistance aux sorts par niveau.</p>";
 					type = "positive";
-					customEffects= { "0": { "category": "characterResistances", "target": "data.resistances.directSpellMana", "type": "rating", "multiplier": null }, "1": { "category": "characterResistances", "target": "data.resistances.directSpellPhysical", "type": "rating", "multiplier": null } };
+					customEffects= { "0": { "category": "characterResistances", "target": "system.resistances.directSpellMana", "type": "rating", "multiplier": null }, "1": { "category": "characterResistances", "target": "system.resistances.directSpellPhysical", "type": "rating", "multiplier": null } };
 					itemRating = 1;
 				break;
 				case "Mémoire photographique":
 					description = "<p>Un personnage doté de Mémoire photographique peut se souvenir immédiatement des visages, des dates, des chiffres ou de tout ce qu’il a vu ou entendu.</p>"
 					gameEffect = "<p>Confère un modificateur de réserve de dés de +2 à tous les tests de Mémoire.</p>";
 					type = "positive";
-					customEffects = { "0": { "category": "characterDerivedAttributes", "target": "data.derivedAttributes.memory", "type": "value", "value": 2, "multiplier": null } };
+					customEffects = { "0": { "category": "characterDerivedAttributes", "target": "system.derivedAttributes.memory", "type": "value", "value": 2, "multiplier": null } };
 				break;
 				case "Dur à cuire":
 					description = "<p>Un personnage doté du trait Dur à cuire ignore les dommages plus facilement que les autres personnages.</p>"
 					gameEffect = "<p>Le personnage gagne un modificateur de réserve de dés de +1 en Constitution lors de tests de résistance aux dommages.</p>";
 					type = "positive";
-					customEffects = { "0": { "category": "characterResistances", "target": "data.defenses.physicalDamage", "type": "value", "value": 1, "multiplier": null } };
+					customEffects = { "0": { "category": "characterResistances", "target": "system.defenses.physicalDamage", "type": "value", "value": 1, "multiplier": null } };
 				break;
 				case "Rage de vivre I":
 					description = "<p>Coût : 3 points de Karma par niveau (niveau max 3)</p>\n<p>Pour chaque niveau de Rage de vivre, le personnage gagne 1 case de surplus de dommages supplémentaire (p. 103). Ces cases supplémentaires ne permettent au personnage que d’encaisser des dommages supplémentaires avant de mourir ; elles n’augmentent pas le seuil à partir duquel le personnage perd connaissance. Elles n’affectent pas non plus les modificateurs de blessures subis par le personnage</p>"
 					gameEffect = "<p>Confère 1 case de surplus de dommages supplémentaire par niveau.</p>";
 					type = "positive";
 					itemRating = 1;
-					customEffects = { "0": { "category": "characterConditionMonitors", "wifi": false, "transfer": false, "target": "data.conditionMonitors.overflow", "type": "rating", "multiplier": 1 } };
+					customEffects = { "0": { "category": "characterConditionMonitors", "wifi": false, "transfer": false, "target": "system.conditionMonitors.overflow", "type": "rating", "multiplier": 1 } };
 				break;
 				case "Malchanceux":
 					description = "<p>Ce personnage a la poisse et sa propre chance se retourne souvent contre lui. À chaque fois que ce personnage utilise sa Chance, lancer 1D6. Sur un résultat de 1, la Chance est dépensée mais a l’effet exactement opposé à ce qui était souhaité.</p>\n<p>Par exemple, si un personnage espérait gagner des dés supplémentaires en dépensant de la Chance, le nombre de dés qu’il aurait dû gagner est au contraire retranché de sa réserve de dés. Si un personnage dépense de la Chance pour agir en premier dans sa Passe d’Initiative, il agit en fait en dernier. S’il dépense de la Chance pour un Blitz, il ne lance aucun dé et son score d’initiative est égal à son attribut Initiative. Si un personnage dépense de la Chance pour annuler une complication, celle-ci se transforme en échec critique.</p>\n<p>Le personnage ne subit de Malchance que sur un seul jet de Chance par séance de jeu. Après que le personnage ait subit sa Malchance, il n’a plus à tester sa Malchance sur de futures dépenses de Chance durant la même séance de jeu.</p>"
 					gameEffect = "<p>Sans cet avantage, toute action accomplie uniquement avec la mauvaise main (comme tirer avec une arme) subit un modificateur de réserve de dés de -2 (voir Arme dans la mauvaise main, p. 179).</p>";
 					type = "negative";
-					customEffects = { "0": { "category": "reputationTypes", "target": "data.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
+					customEffects = { "0": { "category": "reputationTypes", "target": "system.notoriety", "type": "value", "value": -1, "multiplier": 1, "wifi": false, "transfer": false } };
 				break;
 				case "Mauvaise réputation":
 					description = "<p>Le personnage Ambidextre peut manipuler des objets avec l’une ou l’autre main indifféremment.</p>"
@@ -1660,7 +1674,7 @@ var exportFoundry = {
       		"name": quality,
       		"type": "itemQuality",
       		"img": "systems/sr5/img/items/itemQuality.svg",
-      		"data": {
+      		"system": {
 				"description": description,
 				"gameEffect": gameEffect,
 				"customEffects": customEffects,
@@ -1685,7 +1699,7 @@ var exportFoundry = {
 					description = "<p>Ce pouvoir augmente la vitesse de réaction de l’adepte, tout comme les réflexes câblés.</p><p>Le niveau maximal de Réflexes améliorés est 3, et cette augmentation ne peut être combinée avec d’autres augmentations technologiques ou magiques de l’initiative.</p>"
 					gameEffect = "<p>Chaque niveau confère un modificateur de +1 à la Réaction qui affecte également l’Initiative, et +1D6 dés d’initiative (avec un maximum de 5D6).</p>";
 					itemRating = power.rating;
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "system.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
 				break;
 				case "Compétence améliorée":
 					description = "<p>Ce pouvoir augmente l’indice d’une compétence spécifique de combat, de véhicules, physique, sociale ou technique de 1 point par niveau.</p>\n<p>Il est nécessaire de connaître cette compétence afin d’acheter ce pouvoir pour l’augmenter ,et il est impossible de l’acheter pour des groupes decompétences.</p>\n<p>L’amélioration maximale possible est égale àla moitié du niveau actuel de la compétence (soit un indice total égal au maximum à niveau actuel × 1,5), arrondie ausupérieur.</p>"
@@ -1693,19 +1707,19 @@ var exportFoundry = {
 					itemRating = power.rating;
 					 switch(power.ability) {
 						case "Pistolets":
-						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "data.skills.pistols.test", "type": "rating", "multiplier": null } };
+						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "system.skills.pistols.test", "type": "rating", "multiplier": null } };
 						break;
 						case "Fusils":
-						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "data.skills.longarms.test", "type": "rating", "multiplier": null } };
+						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "system.skills.longarms.test", "type": "rating", "multiplier": null } };
 						break;
 						case "Armes automatiques":
-						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "data.skills.automatics.test", "type": "rating", "multiplier": null } };
+						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "system.skills.automatics.test", "type": "rating", "multiplier": null } };
 						break;
 						case "Armes tranchantes":
-						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "data.skills.blades.test", "type": "rating", "multiplier": null } };
+						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "system.skills.blades.test", "type": "rating", "multiplier": null } };
 						break;
 						case "Armes contondantes":
-						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "data.skills.clubs.test", "type": "rating", "multiplier": null } };
+						customEffects = { "0": { "category": "skills", "wifi": false, "transfer": false, "target": "system.skills.clubs.test", "type": "rating", "multiplier": null } };
 						break;
 					 }
 				break;
@@ -1715,16 +1729,16 @@ var exportFoundry = {
 					itemRating = power.rating;
 					 switch(power.attribute) {
 						case "Agility":
-						customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.agility.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "data.attributes.agility.maximum", "type": "rating", "multiplier": 1 } };
+						customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.agility.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "system.attributes.agility.maximum", "type": "rating", "multiplier": 1 } };
 						break;
 						case "Strength":
-						customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.strength.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "data.attributes.strength.maximum", "type": "rating", "multiplier": 1 } };
+						customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.strength.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "system.attributes.strength.maximum", "type": "rating", "multiplier": 1 } };
 						break;
 						case "Reaction":
-						customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "data.attributes.reaction.maximum", "type": "rating", "multiplier": 1 } };
+						customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.reaction.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "system.attributes.reaction.maximum", "type": "rating", "multiplier": 1 } };
 						break;
 						case "Body":
-						customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.body.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "data.attributes.body.maximum", "type": "rating", "multiplier": 1 } };
+						customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.body.augmented", "type": "rating", "multiplier": 1 }, "1": { "category": "characterAttributes", "target": "system.attributes.body.maximum", "type": "rating", "multiplier": 1 } };
 						break;
 					 }
 				break;
@@ -1735,7 +1749,7 @@ var exportFoundry = {
       		"name": power.name,
       		"type": "itemAdeptPower",
       		"img": "systems/sr5/img/items/itemAdeptPower.svg",
-      		"data": {
+      		"system": {
 				"description": description,
 				"gameEffect": gameEffect,
 				"customEffects": customEffects,
@@ -1763,7 +1777,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.3;
 					type = "bioware";
-					customEffects = { "0": { "category": "characterResistances", "target": "data.defenses.physicalDamage", "type": "rating", "value": null, "multiplier": null } };
+					customEffects = { "0": { "category": "characterResistances", "target": "system.defenses.physicalDamage", "type": "rating", "value": null, "multiplier": null } };
 				break;
 				case "Ossature renforcée":
 					description = "<p>Les os sont renforcés d’un maillage de plastique durci ou de métal, renforçant leur intégrité, leur solidité et leur force élastique mais augmentant le poids du corps.</p><p>Trois types d’ossature renforcée existent : plastique, aluminium et titane, un seul type pouvant être installé à la fois.</p><p>L’ossature renforcée n’est pas compatible avec les autres augmentations qui changent ou altèrent les os, telle que l’augmentation de densité osseuse.</p>";
@@ -1772,7 +1786,7 @@ var exportFoundry = {
 					essenceCost = 0.5;
 					type = "cyberware";
 					category = "bodyware";
-					customEffects = { "0": { "category": "characterResistances", "target": "data.resistances.physicalDamage", "type": "rating", "value": 2, "multiplier": null }, "1": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "value": 2, "multiplier": null } };
+					customEffects = { "0": { "category": "characterResistances", "target": "system.resistances.physicalDamage", "type": "rating", "value": 2, "multiplier": null }, "1": { "category": "itemArmor", "target": "system.itemsProperties.armor", "type": "rating", "value": 2, "multiplier": null } };
 				
 				break;
 				case "Cervelet amplifié":
@@ -1781,7 +1795,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.2;
 					type = "culturedBioware";
-					customEffects = { "0": { "category": "characterAttributes", "wifi": false, "transfer": false, "target": "data.attributes.intuition.augmented", "type": "rating" } };
+					customEffects = { "0": { "category": "characterAttributes", "wifi": false, "transfer": false, "target": "system.attributes.intuition.augmented", "type": "rating" } };
 				
 				break;
 				case "Amplificateur cérébral":
@@ -1790,7 +1804,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.2;
 					type = "culturedBioware";
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.logic.augmented", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.logic.augmented", "type": "rating", "multiplier": null } };
 
 				break;
 				case "Cyberbras (gauche":
@@ -1801,7 +1815,7 @@ var exportFoundry = {
 					essenceCost = 1;
 					type = "cyberware";
 					category = "cyberlimbs";
-					customEffects = { "0": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
+					customEffects = { "0": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
 
 				break;
 				case "Yeux cybernétiques":
@@ -1811,7 +1825,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "eyeware";
-					customEffects = {"0": { "category": "visionTypes", "target": "data.visions.lowLight.natural", "type": "boolean", "value": "false" }, "1": { "category": "visionTypes", "target": "data.visions.thermographic.natural", "type": "boolean", "value": "false" }, "2": { "category": "visionTypes", "wifi": false, "target": "data.visions.ultrasound.natural", "type": "boolean", "value": "false" }, "3": { "category": "specialProperties", "target": "data.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 }};
+					customEffects = {"0": { "category": "visionTypes", "target": "system.visions.lowLight.natural", "type": "boolean", "value": "false" }, "1": { "category": "visionTypes", "target": "system.visions.thermographic.natural", "type": "boolean", "value": "false" }, "2": { "category": "visionTypes", "wifi": false, "target": "system.visions.ultrasound.natural", "type": "boolean", "value": "false" }, "3": { "category": "specialProperties", "target": "system.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 }};
 
 					/*
 					var item_1ID = exportFoundry.makeID(16);
@@ -1820,7 +1834,7 @@ var exportFoundry = {
 						"name": "Compensation anti-flash",
 						"type": "itemAugmentation",
 						"img": "systems/sr5/img/items/itemAugmentation.svg",
-						"data": {
+						"system": {
 						  "description": "<p>Protège de l’éblouissementet des flashes aveuglants.</p>",
 						  "gameEffect": "<p>Les modificateurs de vision d’éblouissement et de flashes (tels que les flash-pak) sont réduits (voir table p. 176)</p>",
 						  "isActive": true,
@@ -1828,7 +1842,7 @@ var exportFoundry = {
 							"0": {
 							  "category": "environmentalModifiers",
 							  "wifi": false,
-							  "target": "data.itemsProperties.environmentalMod.glare",
+							  "target": "system.itemsProperties.environmentalMod.glare",
 							  "type": "value",
 							  "value": -2,
 							  "multiplier": 1
@@ -1858,7 +1872,7 @@ var exportFoundry = {
 						"name": "Interface visuelle",
 						"type": "itemAugmentation",
 						"img": "systems/sr5/img/items/itemAugmentation.svg",
-						"data": {
+						"system": {
 						  "description": "<p>Amélioration courante, cette interfacepermet d’afficher des informations visuelles (textes,images, vidéos, heure, etc.) dans le champ de vision. Il s’agitle plus souvent d’ORA, mais il est en fait possible d’afficherà peu près n’importe quoi.</p><p>Il est par exemple possible à uneéquipe de partager des informations tactiques et de situationen temps réel.</p><p>Une interface visuelle est ce qu’il faut pourréellement  voirla RA et participer au monde moderne.</p>",
 						  "isActive": true,
 						  "itemRating": 0,
@@ -1883,12 +1897,12 @@ var exportFoundry = {
 						"name": "Smartlink",
 						"type": "itemAugmentation",
 						"img": "systems/sr5/img/items/itemAugmentation.svg",
-						"data": {
+						"system": {
 						  "description": "<p>Cet accessoire doit être couplé à un smartgun pour tirer pleinement parti du système.</p><p>Le smartlinkinforme l’utilisateur de la distance des différentes cibles,ainsi que du niveau du chargeur (et du type de munitions),de l’échauffement du canon, du stress mécanique, etc. Sanssmartlink, le smartgun émet des données que personne nereçoit, et donc inutiles. Un système smartlink est plus efficaces’il est installé dans un oeil naturel ou cybernétique quedans un équipement externe, voir Smartgun, p. 435.</p>",
 						  "customEffects": {
 							"0": {
 							  "category": "specialProperties",
-							  "target": "data.specialProperties.smartlink",
+							  "target": "system.specialProperties.smartlink",
 							  "type": "value",
 							  "value": 2,
 							  "multiplier": 1
@@ -1918,12 +1932,12 @@ var exportFoundry = {
 						"name": "Vision nocturne",
 						"type": "itemAugmentation",
 						"img": "systems/sr5/img/items/itemAugmentation.svg",
-						"data": {
+						"system": {
 						  "description": "<p>Cette amélioration permet de voir normalement sous des lumières aussi faibles qu’une nuit étoilée.</p><p>Elle n’est cependant d’aucun secours dans le noir complet.</p>",
 						  "customEffects": {
 							"0": {
 							  "category": "visionTypes",
-							  "target": "data.visions.lowLight.augmented",
+							  "target": "system.visions.lowLight.augmented",
 							  "type": "boolean",
 							  "value": "true"
 							}
@@ -1952,12 +1966,12 @@ var exportFoundry = {
 						"name": "Vision thermographique",
 						"type": "itemAugmentation",
 						"img": "systems/sr5/img/items/itemAugmentation.svg",
-						"data": {
+						"system": {
 						  "description": "<p>Cette amélioration permetde voir dans le spectre infrarouge, révélant ainsi la température.</p><p>C’est particulièrement pratique pour repérer lescréatures vivantes dans l’obscurité totale, pour comprendresi un moteur ou une machine a été utilisé récemment, etainsi de suite.</p>",
 						  "customEffects": {
 							"0": {
 							  "category": "visionTypes",
-							  "target": "data.visions.thermographic.augmented",
+							  "target": "system.visions.thermographic.augmented",
 							  "type": "boolean",
 							  "value": "true"
 							}
@@ -1991,7 +2005,7 @@ var exportFoundry = {
 					essenceCost = 1;
 					type = "cyberware";
 					category = "cyberlimbs";
-					customEffects = { "0": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "data.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
+					customEffects = { "0": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.physical", "type": "value", "value": 1, "multiplier": null }, "1": { "category": "characterConditionMonitors", "target": "system.conditionMonitors.condition", "type": "value", "value": 1, "multiplier": null } };
 
 				break;
 				case "Datajack":
@@ -2001,7 +2015,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "headware";
-					customEffects = { "0": { "category": "matrixAttributes", "target": "data.matrix.attributes.noiseReduction", "type": "value", "value": 1, "multiplier": null } };
+					customEffects = { "0": { "category": "matrixAttributes", "target": "system.matrix.attributes.noiseReduction", "type": "value", "value": 1, "multiplier": null } };
 
 				break;
 				case "Armure dermique":
@@ -2011,7 +2025,7 @@ var exportFoundry = {
 					essenceCost = 0.5;
 					type = "cyberware";
 					category = "bodyware";
-					customEffects = { "0": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
+					customEffects = { "0": { "category": "itemArmor", "target": "system.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
 				
 				break;
 				case "Réservoir d\'air interne":
@@ -2029,7 +2043,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.2;
 					type = "bioware";
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.strength.augmented", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.strength.augmented", "type": "rating", "multiplier": null } };
 
 				break;
 				case "Tonification musculaire":
@@ -2038,7 +2052,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.2;
 					type = "bioware";
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.agility.augmented", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.agility.augmented", "type": "rating", "multiplier": null } };
 
 				break;
 				case "Orthoderme":
@@ -2047,7 +2061,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.25;
 					type = "bioware";
-					customEffects = { "0": { "category": "itemArmor", "target": "data.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
+					customEffects = { "0": { "category": "itemArmor", "target": "system.itemsProperties.armor", "type": "rating", "multiplier": 1 } };
 
 				break;
 				case "Griffes (retractable) implantées":
@@ -2065,7 +2079,7 @@ var exportFoundry = {
 					itemRating = augmentation.rating;
 					essenceCost = 0.5;
 					type = "culturedBioware";
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "system.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
 
 				break;
 				case "Réflexes câblés":
@@ -2075,7 +2089,7 @@ var exportFoundry = {
 					essenceCost = 2;
 					type = "cyberware";
 					category = "bodyware";
-					customEffects = { "0": { "category": "characterAttributes", "target": "data.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "data.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
+					customEffects = { "0": { "category": "characterAttributes", "target": "system.attributes.reaction.augmented", "type": "rating", "multiplier": null }, "1": { "category": "characterInitiatives", "target": "system.initiatives.physicalInit.dice", "type": "rating", "multiplier": null } };
 
 				break;
 				default:
@@ -2095,7 +2109,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "eyeware";
-					customEffects = { "0": { "category": "environmentalModifiers", "wifi": false, "target": "data.itemsProperties.environmentalMod.glare", "type": "value", "value": -2, "multiplier": 1 } };
+					customEffects = { "0": { "category": "environmentalModifiers", "wifi": false, "target": "system.itemsProperties.environmentalMod.glare", "type": "value", "value": -2, "multiplier": 1 } };
 
 				break;
 				case "Interface visuelle":
@@ -2120,7 +2134,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "eyeware";
-					customEffects = { "0": { "category": "specialProperties", "target": "data.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 } };
+					customEffects = { "0": { "category": "specialProperties", "target": "system.specialProperties.smartlink", "type": "value", "value": 2, "multiplier": 1 } };
 
 				break;
 				case "Vision nocturne":
@@ -2133,7 +2147,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "eyeware";
-					customEffects = { "0": { "category": "visionTypes", "target": "data.visions.lowLight.augmented", "type": "boolean", "value": "true" } };
+					customEffects = { "0": { "category": "visionTypes", "target": "system.visions.lowLight.augmented", "type": "boolean", "value": "true" } };
 
 				break;
 				case "Vision thermographique":
@@ -2146,7 +2160,7 @@ var exportFoundry = {
 					essenceCost = 0;
 					type = "cyberware";
 					category = "eyeware";
-					customEffects = { "0": { "category": "visionTypes", "target": "data.visions.thermographic.augmented", "type": "boolean", "value": "true" } };
+					customEffects = { "0": { "category": "visionTypes", "target": "system.visions.thermographic.augmented", "type": "boolean", "value": "true" } };
 
 				break;
 				default:
@@ -2159,7 +2173,7 @@ var exportFoundry = {
       		"name": name,
       		"type": "itemAugmentation",
       		"img": "systems/sr5/img/items/itemAugmentation.svg",
-      		"data": {
+      		"systel": {
 				"description": description,
 				"gameEffect": gameEffect,
 				"customEffects": customEffects,
