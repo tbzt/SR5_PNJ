@@ -459,7 +459,6 @@ var exportFoundry = {
 			  },
 			  "magic": {
 				"magicType": magicType,
-				"tradition": "",
 			  },
 			  "conditionMonitors": {
 				"edge": {
