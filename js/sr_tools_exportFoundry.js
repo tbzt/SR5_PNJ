@@ -462,25 +462,13 @@ var exportFoundry = {
 				"tradition": "",
 			  },
 			  "conditionMonitors": {
-				"stun": {
-				  "base": 0,
-				  "actual": {
-					"base": 0
-				  }
-				},
-				"physical": {
-				  "base": 0,
-				  "actual": {
-					"base": 0
-				  }
-				},
 				"edge": {
 				  "base": data.professional_rating,
 				  "actual": {
 					"base": 0
 				  }
 				},
-				"overflow": {
+				"condition": {
 				  "base": 0,
 				  "actual": {
 					"base": 0
@@ -488,27 +476,11 @@ var exportFoundry = {
 				}
 			  },
 			  "statusBars": {
-				"stun": {
-				  "value": 0,
-				  "max": 0
-				},
-				"physical": {
-				  "value": 0,
-				  "max": 0
-				},
 				"edge": {
 				  "value": 0,
 				  "max": 0
 				},
 				"condition": {
-				  "value": 0,
-				  "max": 0
-				},
-				"matrix": {
-				  "value": 0,
-				  "max": 0
-				},
-				"overflow": {
 				  "value": 0,
 				  "max": 0
 				}
