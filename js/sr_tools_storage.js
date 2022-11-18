@@ -19,7 +19,7 @@ var storage = {
 		localStorage.cast_tabs = JSON.stringify([
 			{
 				tab_id: 1,
-				name: 'Full Cast',
+				name: 'Tous les PNJ',
 				order: 1,
 				characters: [] // This is an array of {character_id, order} objects
 			}

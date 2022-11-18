@@ -151,6 +151,57 @@ function view_cast(show_intro)
 				$export_dialog.dialog('open');
 			  });
 
+			  $char_template.find('.export_dialog').detach();
+				var $export_dialog = $char_template.find('.tab_export_dialog').dialog({
+				  autoOpen: false,
+				  modal: true,
+				  title: 'Exporter',
+				  width: 450,
+				  buttons: [
+					{
+						text: "JSON",
+						click: function () {
+						  let character = storage.get_character(cast.character_id);
+						  let dataStr = JSON.stringify(character);
+						  let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+					  
+						  let exportFileDefaultName = 'PNJ_' + character.name + '_data.json';
+					  
+						  let linkElement = document.createElement('a');
+						  linkElement.setAttribute('href', dataUri);
+						  linkElement.setAttribute('download', exportFileDefaultName);
+						  linkElement.click();
+						  $(this).dialog("close");
+						  view_cast();
+						}
+					  },
+					{
+					  text: "Foundry",
+					  click: function () {
+						let character = storage.get_character(cast.character_id);
+						let char = exportFoundry.get_export_foundry(character);
+						let dataStr = JSON.stringify(char);
+						let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+					
+						let exportFileDefaultName = 'PNJ_' + character.name + '_Foundry_data.json';
+					
+						let linkElement = document.createElement('a');
+						linkElement.setAttribute('href', dataUri);
+						linkElement.setAttribute('download', exportFileDefaultName);
+						linkElement.click();
+						$(this).dialog("close");
+						view_cast();
+					  }
+					},
+					{
+					  text: "Annuler",
+					  click: function () {
+						$(this).dialog("close");
+					  }
+					}
+				  ]
+				});
+
 			$char_template.find('.tab_clone_dialog').detach();
 			var $clone_dialog = $char_template.find('.clone_dialog').dialog({
 				autoOpen: false,
@@ -316,6 +367,10 @@ function view_cast(show_intro)
 					$clone_dialog.dialog('open');
 				});
 
+				$char_template.find('.export_cast_member').button().click(function () {
+					$export_dialog.dialog('open');
+				  });
+
 				$char_template.find('.export_dialog').detach();
 				var $export_dialog = $char_template.find('.tab_export_dialog').dialog({
 				  autoOpen: false,
@@ -366,10 +421,7 @@ function view_cast(show_intro)
 					}
 				  ]
 				});
-		
-				$char_template.find('.export_cast_member').button().click(function () {
-				  $export_dialog.dialog('open');
-				});
+	
 
 				$char_template.find('.created_date').html('Créé le : ' + render.format_string_date(character.created));
 
